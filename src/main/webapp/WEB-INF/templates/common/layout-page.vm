@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrmoe=1" />
+<meta name="viewport" content="width=device-width" />
+<title>${pageTitle}</title>
+<link rel="shortcut icon" href="${s.ctx}resources/images/favicon.ico?v=$!{s.ver}" />
+<script src="$!{s.ctx}resources/vendor/requirejs/require.js?v=$!{s.ver}"></script>
+<link rel="stylesheet" type="text/css" href="$!{s.ctx}resources/vendor/font-awesome/css/font-awesome.min.css?v=$!{s.ver}">
+<link rel="stylesheet" type="text/css" href="$!{s.ctx}resources/custom/bootstrap/css/bootstrap.min.css?v=$!{s.ver}">
+<link rel="stylesheet" type="text/css" href="$!{s.ctx}resources/custom/bootstrap/css/bootstrap-theme.min.css?v=$!{s.ver}">
+<link rel="stylesheet" type="text/css" href="$!{s.ctx}resources/css/base-bootstrap.css?v=$!{s.ver}">
+<script>
+	require([ '$!{s.ctx}resources/js/biz-init.js' ], function() {
+		require([ 'jquery', 'biz-utils' ], function($, Biz) {
+			$.ajaxSetup({
+				data : {
+					"v" : Biz.Constant.ver
+				}
+			});
+		});
+	});
+</script>
+</head>
+<body>
+	<!-- base-header -->
+	#parse($!{header})
+	<section class="base-wrapper">
+		<!-- base-sidebar -->
+		<div class="leftpanel">#parse($!{sidebar})</div>
+		<!-- base-content -->
+		<div class="mainpanel">$!{screen_content}</div>
+	</section>
+	<!-- base-footer -->
+	<!-- <script src="$!{s.s_footer_url}"></script> -->
+</body>
+</html>

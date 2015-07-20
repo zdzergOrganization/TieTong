@@ -1,0 +1,295 @@
+#set($userName=$session.getAttribute("user"))
+
+<header id="biz-header" style="box-sizing: border-box; position: relative; z-index: 1000;">
+	<div class="header-notification-container hide"></div>
+	<div class="header-container">
+		<div class="base-module">
+			<div class="ide-logo" title="铁通财务系统"></div>
+		</div>
+		<div class="tenant-info left-line">
+			<div>
+				<span>东莞铁通财务系统</span>
+			</div>
+		</div>
+		<div class="ide-module">
+			<div>
+				<span role="ide" class="active"><a  href="${s.ctx}pages/sync.html">人员信息管理</a></span>
+			</div>
+			<div>
+				<span role="ide" class="active"><a  href="${s.ctx}pages/oss/data.html">kpi计算编辑</a></span>
+			</div>
+			<div>
+				<span role="ide" class="active"><a  href="${s.ctx}pages/ads.html">计算</a></span>
+			</div>
+		</div>
+	</div>
+</header>
+<style type="text/css">
+.header-container {
+	height: 35px;
+	width: 100%;
+	background-color: #3F455A;
+}
+
+.header-container * {
+	font-size: 12px;
+	color: #FFFFFF;
+}
+
+.header-container>div {
+	height: 100%;
+}
+
+.base-module, .tenant-info, .project-info, .ide-module {
+	height: 100%;
+	float: left;
+	position: relative;
+}
+
+.welcome, .welcome>div {
+	height: 100%;
+	float: right;
+}
+
+.welcome .setting, .welcome .msg {
+	cursor: pointer;
+}
+
+.welcome .msg .badge {
+	display: none;
+	margin-left: 15px;
+	border-radius: 2px;
+	padding: 2px 7px;
+	background-color: #FF6C00;
+	font-weight: 100;
+	transform: scale(0.8);
+}
+
+.base-module>div, .tenant-info>div, .project-info>div, .ide-module>div {
+	height: 100%;
+	float: left;
+	position: relative;
+}
+
+.project-info .chosen-single {
+	background: #3F455A !important;
+	border: none;
+	border-radius: 0px;
+	padding: 0 20px;
+	height: 35px;
+}
+
+.project-info .chosen-single div {
+	display: none;
+}
+
+.project-info .chosen-single span {
+	margin-top: 3px;
+}
+
+.project-info .chosen-single:hover {
+	background: #53586B;
+}
+
+.project-info .chosen-with-drop .chosen-single {
+	background: #53586B !important;
+	border: none;
+	box-shadow: none;
+}
+
+.project-info .chosen-drop {
+	background: #53586B;
+	border: none;
+}
+
+.project-info .chosen-container .chosen-results li.no-results {
+	background: #53586B;
+}
+
+.ide-logo {
+	width: 40px;
+	height: 100%;
+	background: url(${s.ctx}resources/images/IDE_icon_new.png) no-repeat -500px -45px;
+}
+
+.other-app:before {
+	z-index: 1;
+	content: '';
+	display: block;
+	position: absolute;
+	top: 11px;
+	width: 10px;
+	height: 10px;
+	margin-left: 6px;
+	background: url(${s.ctx}resources/images/base_app.png) no-repeat center;
+}
+
+.header-container .dropdown-toggle {
+	height: 35px;
+	padding: 7px 20px;
+}
+
+.header-container .dropdown-toggle:hover, .header-container .dropdown.open .dropdown-toggle {
+	background-color: #53586B;
+	color: #FFFFFF;
+}
+
+.header-container .dropdown-menu {
+	padding: 0px;
+	border: none;
+	background-color: none !important;
+}
+
+.header-container .dropdown-menu li a {
+	background-color: #53586B;
+	color: #FFFFFF;
+	padding-top: 7px;
+	padding-bottom: 7px;
+}
+
+.header-container .dropdown-menu li a:hover {
+	background-color: #3F455A;
+}
+
+.tenant-info>div {
+	padding: 7px 20px 7px 30px;
+}
+
+.tenant-info:before {
+	z-index: 1;
+	content: '';
+	display: block;
+	position: absolute;
+	top: 10px;
+	width: 14px;
+	height: 14px;
+	margin-left: 14px;
+	background: url(${s.ctx}resources/images/project.png) no-repeat center;
+}
+
+.ide-module {
+	padding-left: 20px;
+}
+
+.ide-module>div {
+	padding: 7px 2px;
+}
+
+.ide-module .other-module, .ide-module .other-module .dropdown-menu li {
+	display: none;
+}
+
+.ide-module span {
+	padding: 3px 8px;
+	background-color: #53586B;
+	border-radius: 2px;
+}
+
+.ide-module span a:hover, .ide-module span a:active, .ide-module span a:focus, .ide-module span a:visited {
+	text-decoration: none;
+	color: #FFF;
+}
+
+.ide-module span.active {
+	background-color: #476D8E;
+}
+
+.ide-module span:hover {
+	cursor: pointer;
+}
+
+.welcome {
+	padding-right: 5px;
+}
+
+.welcome .help {
+	float: right;
+}
+
+.welcome #help-drop, .welcome .setting, .welcome .msg {
+	height: 35px;
+	width: 35px;
+	background: url(${s.ctx}resources/images/IDE_icon_new.png) no-repeat 0 0;
+}
+
+.header-container .welcome #help-drop {
+	background-position: -635px -46px;
+}
+
+.header-container .welcome .setting {
+	background-position: -602px -46px;
+}
+
+.header-container .welcome .msg {
+	background: url(${s.ctx}resources/images/msg.png) no-repeat center;
+}
+
+.welcome .user {
+	position: relative;
+}
+
+.welcome .user .dropdown:before {
+	content: '欢迎, ';
+	color: #9A9FB4;
+	position: absolute;
+	margin-top: 8px;
+	margin-left: -27px;
+	z-index: 1;
+}
+
+.ide-module .other-module:after, .welcome .user:after {
+	content: '';
+	width: 9px;
+	display: block;
+	height: 35px;
+	position: absolute;
+	background: url(${s.ctx}resources/images/dropdown.png) no-repeat center;
+	top: 0;
+	right: 6px;
+}
+
+.left-line:after {
+	content: '';
+	width: 0px;
+	border-left: 1px solid #646A7A;
+	display: block;
+	height: 12px;
+	position: relative;
+	float: right;
+	top: 11px;
+}
+
+.header-container .chosen-container .chosen-search input {
+	background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.header-container .chosen-container .chosen-results li.highlighted {
+	background-color: #3875D7;
+	background-image: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(20%, #3875D7), color-stop(90%, #2A62BC));
+	background-image: -webkit-linear-gradient(#3875D7 20%, #2A62BC 90%);
+	background-image: -moz-linear-gradient(#3875d7 20%, #2a62bc 90%);
+	background-image: -o-linear-gradient(#3875d7 20%, #2a62bc 90%);
+	background-image: linear-gradient(#3875D7 20%, #2A62BC 90%);
+	color: #FFF;
+}
+
+/********************************** 通知 ********************************/
+.header-notification-container .alert {
+	padding: 0;
+	margin: 0;
+	border: none;
+	height: 100%;
+}
+
+.header-notification-container .close {
+	top: 0;
+	right: 10px;
+}
+
+.header-notification-container .header-notification-content {
+	text-align: center;
+	font: 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+	height: 25px;
+	line-height: 25px;
+}
+</style>

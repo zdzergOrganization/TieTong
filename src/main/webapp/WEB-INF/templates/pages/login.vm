@@ -1,0 +1,31 @@
+#set($pageTitle="登录") #set($ACTIVE_SIDEBAR_ID="login") #set($layout="common/layout-page.vm")
+#set($header="common/header-login.vm") #set($sidebar="common/sidebar-tietong.vm")
+
+<div class="content">
+	<!-- the content head of the page begin-->
+	<div class="container-fluid" style="width:30%" >
+		<form class="form-horizontal" action="${s.ctx}rest/oss/login" method="post" name="login_name" id="login_form">
+			<div class="control-group">
+				<label class="control-label">用户名：</label>
+			    <div class="controls">
+			      <input class="form-control" type="text" name="username">
+			    </div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">密码：</label>
+			    <div class="controls">
+			      <input class="form-control" type="password" name="password">
+			    </div>
+			</div>
+			<div class="control-group">
+				#if ($msg && $msg != '')
+					<label id="msg" style="color:red;display:block">$msg</label>
+				#else
+					<br>
+				#end
+				<input class="form-control btn-primary" type="submit" name="submit" value="登录">
+			</div>
+		</form>
+	</div>
+	<!-- the content head of the page end-->
+</div>

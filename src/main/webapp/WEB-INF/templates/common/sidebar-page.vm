@@ -1,0 +1,7 @@
+<div class="base-sidebar">
+	<ul class="nav">
+		<li><a href="${s.ctx}guizhou-pot/pages/sync.html" #if($!ACTIVE_SIDEBAR_ID== "sync") class="active" #end>数据同步</a></li>
+		<li><a href="${s.ctx}guizhou-pot/pages/tables.html" #if($!ACTIVE_SIDEBAR_ID== "table") class="active" #end>表管理</a></li>
+		<li><a href="${s.ctx}guizhou-pot/pages/query.html" #if($!ACTIVE_SIDEBAR_ID== "query") class="active" #end>数据查询</a></li>
+	</ul>
+</div>

@@ -1,0 +1,7 @@
+<div class="base-sidebar">
+	<ul class="nav">
+		<li><a href="${s.ctx}guizhou-pot/pages/oss/data.html" #if($!ACTIVE_SIDEBAR_ID== "data") class="active" #end>数据管理</a></li>
+		<li><a href="${s.ctx}guizhou-pot/pages/oss/privilege.html" #if($!ACTIVE_SIDEBAR_ID== "privilege") class="active" #end>数据上传</a></li>
+		<li><a href="${s.ctx}guizhou-pot/pages/oss/reference.html" #if($!ACTIVE_SIDEBAR_ID== "reference") class="active" #end>相关资料</a></li>
+	</ul>
+</div>
