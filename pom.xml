@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.aliyun.databiz</groupId>
-	<artifactId>TieTong</artifactId>
+	<groupId>tietong</groupId>
+	<artifactId>gongzi</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>TieTong</name>
-	<url>http://www.aliyun.com</url>
+	<url></url>
 	<packaging>war</packaging>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -21,22 +21,6 @@
 		<dep.spring4.version>4.1.1.RELEASE</dep.spring4.version>
 	</properties>
 	<dependencies>
-	
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>fastjson</artifactId>
-			<version>${dep.fastjson.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.aliyun.odps</groupId>
-			<artifactId>odps-sdk-core-internal</artifactId>
-			<version>0.16.7</version>
-		</dependency>
-		<dependency>
-			<groupId>com.aliyun.odps</groupId>
-			<artifactId>odps-sdk-core</artifactId>
-			<version>0.16.7</version>
-		</dependency>
 		
 		<dependency>
 			<groupId>cglib</groupId>

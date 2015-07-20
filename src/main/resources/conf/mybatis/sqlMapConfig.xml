@@ -12,10 +12,7 @@
 		<setting name="defaultExecutorType" value="REUSE" />
 		<setting name="defaultStatementTimeout" value="25000" />
 	</settings>
-	<typeAliases> 
-        <typeAlias alias="BusEntity" type="com.aliyun.databiz.ads.pot.data.object.BusEntity"/> 
-    </typeAliases> 
-    <!-- <mappers> 
-        <mapper resource="conf/mybatis/mapper/BusMapper.xml" /> 
-    </mappers>  -->
+	<!-- <typeAliases> 
+        <typeAlias alias="BusEntity" type="com.tietong.api"/> 
+    </typeAliases>  -->
 </configuration>

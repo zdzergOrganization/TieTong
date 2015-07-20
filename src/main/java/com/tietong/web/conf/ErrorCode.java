@@ -1,18 +1,11 @@
-/**
- * Copyright 2012 Alibaba.com All right reserved. This software is the
- * confidential and proprietary information of Alibaba.com ("Confidential
- * Information"). You shall not disclose such Confidential Information and shall
- * use it only in accordance with the terms of the license agreement you entered
- * into with Alibaba.com.
- */
-package com.aliyun.databiz.ads.pot.web;
+package com.tietong.web.conf;
 
 
 /**
  * 错误代码枚举类. <br>
  * 错误代码为0时代表正常，非0时代表异常，一般错误代码为负数。
  *
- * @author 邬启明（激酶） 2015-4-27 11:40:06
+ * @author 周玎  2015-7-20 11:40:06
  * @version 1.0
  */
 public enum ErrorCode {

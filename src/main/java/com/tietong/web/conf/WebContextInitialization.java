@@ -1,13 +1,4 @@
-/**
- * Copyright 2012 Alibaba.com All right reserved. This software is the
- * confidential and proprietary information of Alibaba.com ("Confidential
- * Information"). You shall not disclose such Confidential Information and shall
- * use it only in accordance with the terms of the license agreement you entered
- * into with Alibaba.com.
- *
- * File generated at: 2015年1月5日下午11:49:09
- */
-package com.aliyun.databiz.ads.pot.web.servlet;
+package com.tietong.web.conf;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,8 +15,8 @@ import org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver;
 /**
  * 
  *
- * @author 李昊龙
- * @created 2015年1月5日下午11:49:09
+ * @author 周玎
+ * @created 2015年7月20日下午11:49:09
  * @version aslan 2.0
  */
 public class WebContextInitialization implements ApplicationContextAware {

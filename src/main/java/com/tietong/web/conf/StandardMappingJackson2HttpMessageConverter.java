@@ -1,14 +1,4 @@
-package com.aliyun.databiz.ads.pot.web;
-
-/**
- * Copyright 2012 Alibaba.com All right reserved. This software is the
- * confidential and proprietary information of Alibaba.com ("Confidential
- * Information"). You shall not disclose such Confidential Information and shall
- * use it only in accordance with the terms of the license agreement you entered
- * into with Alibaba.com.
- *
- * File generated at: 2015年1月20日下午4:46:51
- */
+package com.tietong.web.conf;
 
 import java.io.IOException;
 
@@ -19,8 +9,8 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 /**
  * 标准的JOSN响应convert类
  *
- * @author 李昊龙
- * @created 2015年1月20日下午4:46:51
+ * @author 周玎  
+ * @created 2015-7-20 11:40:06
  * @version aslan 2.0
  */
 public class StandardMappingJackson2HttpMessageConverter extends MappingJackson2HttpMessageConverter {

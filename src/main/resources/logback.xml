@@ -10,7 +10,7 @@
 	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<!-- rollover daily -->
-			<fileNamePattern>/home/admin/base-meta/logs/simba-%d{yyyyMMdd}.%i.log</fileNamePattern>
+			<fileNamePattern>databiz-%d{yyyyMMdd}.%i.log</fileNamePattern>
 			<maxHistory>5</maxHistory>
 			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
 				<!-- or whenever the file size reaches 100MB -->
@@ -22,59 +22,11 @@
 			</pattern>
 		</encoder>
 	</appender>
-	<appender name="AccessLogFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<!-- rollover daily -->
-			<fileNamePattern>/home/admin/base-meta/logs/simba-access-%d{yyyyMMdd}.%i.log</fileNamePattern>
-			<maxHistory>5</maxHistory>
-			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-				<!-- or whenever the file size reaches 100MB -->
-				<maxFileSize>100MB</maxFileSize>
-			</timeBasedFileNamingAndTriggeringPolicy>
-		</rollingPolicy>
-		<encoder>
-			<pattern>%msg%n</pattern>
-		</encoder>
-	</appender>
-	<appender name="IndexLogFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<!-- rollover daily -->
-			<fileNamePattern>/home/admin/base-meta/logs/simba-index-%d{yyyyMMdd}.%i.log</fileNamePattern>
-			<maxHistory>5</maxHistory>
-			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-				<!-- or whenever the file size reaches 100MB -->
-				<maxFileSize>100MB</maxFileSize>
-			</timeBasedFileNamingAndTriggeringPolicy>
-		</rollingPolicy>
-		<encoder>
-			<pattern>%-5level %d{MM-dd HH:mm:ss} [%thread] %msg%n</pattern>
-		</encoder>
-	</appender>
-
-	<!-- logback为java中的包 -->
+ 
 	<logger name="logback" />
-	<!--logback.LogbackDemo：类的全路径 -->
+	
 	<logger name="org.apache.ibatis" level="INFO" additivity="false">
 		<appender-ref ref="STDOUT" />
-	</logger>
-	<logger name="com.mangofactory.swagger" level="ERROR" additivity="false">
-		<appender-ref ref="STDOUT" />
-	</logger>
-	<logger name="org.quartz" level="WARN" additivity="false">
-		<appender-ref ref="STDOUT" />
-	</logger>
-	<logger name="com.alibaba.base.meta" level="INFO" additivity="false">
-		<appender-ref ref="STDOUT" />
-		<appender-ref ref="FILE" />
-	</logger>
-	<logger name="com.alibaba.base.meta.metaservice.utils.LogUtil" level="DEBUG" additivity="false">
-		<appender-ref ref="AccessLogFILE" />
-	</logger>
-	<logger name="com.alibaba.base.common.log.LogWriter" level="DEBUG" additivity="false">
-		<appender-ref ref="AccessLogFILE" />
-	</logger>
-	<logger name="com.alibaba.base.meta.metaservice.search.index.IndexCallable" level="DEBUG" additivity="false">
-		<appender-ref ref="IndexLogFILE" />
 	</logger>
 
 	<root level="INFO">

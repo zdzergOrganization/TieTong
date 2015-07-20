@@ -20,14 +20,13 @@
 	<context:property-placeholder location="classpath:config.properties" />
 	<!-- Spring MVC配置 -->
 	<context:annotation-config />
-	<context:component-scan base-package="com.aliyun.databiz" />
 	<!--默认的mvc注解映射的支持 -->
 	<mvc:annotation-driven />
 	<!-- 支持异步方法执行 -->
 	<task:annotation-driven />
 
 	<!-- 定义数据源 -->
-	<bean id="adsDataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+	<bean id="mysqlDataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="${jdbc.driverClassName}" />
 		<property name="url" value="${jdbc.url}" />
 		<property name="username" value="${jdbc.username}" />
@@ -42,15 +41,15 @@
 
 	<!-- 定义jdbcTemplate -->
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-		<property name="dataSource" ref="adsDataSource" />
+		<property name="dataSource" ref="mysqlDataSource" />
 	</bean>
 	
 	<bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
-		<constructor-arg ref="adsDataSource" />
+		<constructor-arg ref="mysqlDataSource" />
 	</bean>
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="adsDataSource" />
+		<property name="dataSource" ref="mysqlDataSource" />
 		<property name="configLocation" value="classpath:conf/mybatis/sqlMapConfig.xml" />
 		<property name="mapperLocations">
 			<array>
@@ -65,7 +64,7 @@
 	</bean>
 
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.aliyun.databiz.ads.pot.data.mapper" />
+		<property name="basePackage" value="com.tietong.mapper" />
 	</bean>
 
 </beans>

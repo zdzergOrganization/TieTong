@@ -1,19 +1,10 @@
-/**
- * Copyright 2012 Alibaba.com All right reserved. This software is the
- * confidential and proprietary information of Alibaba.com ("Confidential
- * Information"). You shall not disclose such Confidential Information and shall
- * use it only in accordance with the terms of the license agreement you entered
- * into with Alibaba.com.
- *
- * File generated at: 2015年1月20日下午4:57:31
- */
-package com.aliyun.databiz.ads.pot.web;
+package com.tietong.web.conf;
 
 /**
  * 标准响应bean. 这个Bean在序列化为json后可以生成标准的HTTP响应格式。
  * 
  *
- * @author 邬启明（激酶） 2015-4-27 11:40:06
+ * @author 周玎  2015-7-20 11:40:06
  * @version 1.0
  */
 public class StandardJsonResult {
