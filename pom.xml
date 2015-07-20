@@ -2,9 +2,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.aliyun.databiz</groupId>
-	<artifactId>POT-ADS</artifactId>
+	<artifactId>TieTong</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>POT-ADS</name>
+	<name>TieTong</name>
 	<url>http://www.aliyun.com</url>
 	<packaging>war</packaging>
 	<properties>
@@ -282,7 +282,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>POT-ADS</finalName>
+		<finalName>TieTong</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -308,7 +308,7 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.6</version>
 				<configuration>
-					<warName>POT-ADS</warName>
+					<warName>TieTong</warName>
 					<webappDirectory>target/exploded/POT-Ningxia.war</webappDirectory>
 					<webXml>src/main/webapp/WEB-INF/web.xml</webXml>
 					<archiveClasses>false</archiveClasses>
