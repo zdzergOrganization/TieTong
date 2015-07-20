@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aliyun.databiz.ads.pot.data.mapper.BusMapper"> 
+	
+    <select id="getPosition" parameterType="String" resultType="BusEntity" >
+    	SELECT
+    		c.id AS id,
+    		c.update_time AS updateTime, 
+    		c.server_time AS serverTime, 
+    		c.longitude AS longitude, 
+    		c.latitude AS latitude,
+    		c.driver_id AS driverId,
+			c.driver_name AS driverName,
+			c.license_plate AS licensePlate,
+			c.register_date AS registerDate
+    	FROM (
+	    	SELECT
+    			a.id as id,
+    			a.update_time,
+    			a.server_time,
+    			a.longitude,
+    			a.latitude,
+    			b.driver_id,
+    			b.driver_name,
+    			b.license_plate,
+    			b.register_date
+    	 	FROM
+    	 		ass.bus_coordinate a
+    	 	JOIN 
+    	 		ass.bus b
+    	 	ON
+    	 		a.id = b.id
+    	) c
+		WHERE
+			c.id = #{id} 
+    </select> 
+ 
+    <insert id="updateBusPosition" parameterType="BusEntity" >
+    	insert into ass.bus_coordinate(id,update_time,server_time,longitude,latitude) 
+    	values(#{id},#{updateTime},#{serverTime},#{longitude},#{latitude}) 
+    </insert> 
+        
+</mapper> 

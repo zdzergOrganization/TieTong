@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans    
+    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd    
+    http://www.springframework.org/schema/tx    
+    http://www.springframework.org/schema/tx/spring-tx-4.0.xsd   
+    http://www.springframework.org/schema/context   
+    http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop-4.0.xsd  
+    http://www.springframework.org/schema/mvc   
+    http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+    http://www.springframework.org/schema/task
+    http://www.springframework.org/schema/task/spring-task-4.0.xsd">
+
+
+	<!-- 加载配置文件 -->
+	<context:property-placeholder location="classpath:config.properties" />
+	<!-- Spring MVC配置 -->
+	<context:annotation-config />
+	<context:component-scan base-package="com.aliyun.databiz" />
+	<!--默认的mvc注解映射的支持 -->
+	<mvc:annotation-driven />
+	<!-- 支持异步方法执行 -->
+	<task:annotation-driven />
+
+	<!-- 定义数据源 -->
+	<bean id="adsDataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<!-- 连接池中保留的最小连接数。 -->
+		<property name="minIdle" value="${jdbc.cpool.minPoolSize}" />
+		<!-- 连接池中保留的最大连接数。 -->
+		<property name="maxIdle" value="${jdbc.cpool.maxPoolSize}" />
+		<!-- 初始化时获取的连接数，取值应在minPoolSize与maxPoolSize之间.-->
+		<property name="initialSize" value="${jdbc.cpool.initialPoolSize}" />
+	</bean>
+
+	<!-- 定义jdbcTemplate -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="adsDataSource" />
+	</bean>
+	
+	<bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+		<constructor-arg ref="adsDataSource" />
+	</bean>
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="adsDataSource" />
+		<property name="configLocation" value="classpath:conf/mybatis/sqlMapConfig.xml" />
+		<property name="mapperLocations">
+			<array>
+				<value>classpath*:conf/mybatis/mapper/*.xml</value>
+			</array>
+		</property>
+	</bean>
+
+	<!-- 配置SQLSession模板 -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.aliyun.databiz.ads.pot.data.mapper" />
+	</bean>
+
+</beans>
