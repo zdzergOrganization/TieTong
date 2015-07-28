@@ -68,7 +68,7 @@
 	<!-- 配置velocity引擎 -->
 	<bean id="velocityConfigurer" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
 		<!-- 模板存放的路径 -->
-		<property name="resourceLoaderPath" value="/WEB-INF/templates/" />
+		<property name="resourceLoaderPath" value="/WEB-INF/templates/tietong" />
 		<property name="configLocation" value="classpath:velocity.properties" />
 	</bean>
 

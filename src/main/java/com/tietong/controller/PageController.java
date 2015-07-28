@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class PageController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String sync(ModelMap model, HttpServletRequest request) {
+	public String Login(ModelMap model, HttpServletRequest request) {
 		return "pages/login";
 	}
 	

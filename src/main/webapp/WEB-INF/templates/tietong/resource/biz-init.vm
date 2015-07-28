@@ -1,0 +1,140 @@
+## 设置Biz命名空间
+var Biz = {
+	## 用户信息
+	User : {},
+	## 配置信息
+	Config : {
+		'defaultPageSize' : 10,
+		'prod' : '${s.prod}',
+	},
+	## 全局信息，包括当前项目信息等
+	Global : {},
+	## 系统中的常量
+	Constant : {
+		'ctx' : '${s.ctx}',
+		'ver' : '${s.ver}',
+		'errCode' : 'BIZ_ERROR',
+	},
+	## 前端工具类
+	Utils : {},
+	## 所有验证信息
+	Validate : {},
+	## 临时函数、变量，用于跨作用域传递信息
+	Temp : {}
+};
+## 初始化requirejs
+var conf = {
+	baseUrl : Biz.Constant.ctx + "resources/vendor/",
+	paths : {
+		'ace/ace' : Biz.Constant.ctx + 'resources/custom/ace/src' + (Biz.Config.prod ? '-min' : '') + '/ace',
+		'ace/mode/sql' : Biz.Constant.ctx + 'resources/custom/ace/src' + (Biz.Config.prod ? '-min' : '') + '/mode-sql',
+		'bootstrap' : Biz.Constant.ctx + 'resources/custom/bootstrap/js/bootstrap' + (Biz.Config.prod ? '.min' : ''),
+		'datatables' : 'datatables/media/js/jquery.dataTables' + (Biz.Config.prod ? '.min' : ''),
+		'datejs' : 'datejs/date',
+		'EventEmitter' : 'EventEmitter/EventEmitter' + (Biz.Config.prod ? '.min' : ''),
+		'jBox' : 'jBox/jBox' + (Biz.Config.prod ? '.min' : ''),
+		'jquery' : 'jquery/jquery' + (Biz.Config.prod ? '.min' : ''),
+		'juicer' : 'juicer/juicer',
+		'biz-utils' : '../js/biz-utils',
+		'require-css' : 'require-css/css' + (Biz.Config.prod ? '.min' : '')
+	},
+	map : {
+		'*' : {
+			'css' : 'require-css'
+		}
+	},
+	shim : {
+		'ace/mode/sql' : {
+			deps : [ 'ace/ace' ],
+			exports : "ace"
+		},
+		'bootstrap' : {
+			deps : [ 'jquery' ],
+			exports : "$"
+		},
+		'datatables' : {
+			deps : [ "jquery", 'css!datatables/media/css/jquery.dataTables' + (Biz.Config.prod ? '.min' : '') ],
+			exports : "$.fn.popover"
+		},
+		'datejs' : {
+			exports : "Date"
+		},
+		'jBox' : {
+			deps : [ 'jquery', 'css!' + Biz.Constant.ctx + 'resources/vendor/jBox/jBox' ],
+			exports : 'jBox'
+		},
+		'juicer' : {
+			exports : 'juicer',
+			init : function() {
+				//var juicer = require('juicer');
+				// 初始化模板引擎插件juicer
+				juicer.set({
+					'tag::interpolateOpen' : '!{',
+					'tag::noneencodeOpen' : '!!{',
+				});
+				/** 当val为null或未定义时返回defVal */
+				juicer.register('toDefault', function() {
+					var len = arguments.length;
+					for (var i = 0; i < len; i++) {
+						if (arguments[i] !== null && arguments[i] !== undefined) {
+							return arguments[i];
+						}
+					}
+					return '';
+				});
+				juicer.register('emptyToDefault', function() {
+					var len = arguments.length;
+					for (var i = 0; i < len; i++) {
+						if (arguments[i] !== null && arguments[i] !== undefined
+								&& !(typeof (arguments[i]) === 'string' && arguments[i].length == 0)) {
+							return arguments[i];
+						}
+					}
+					return ' ';
+				});
+				juicer.register('renderDataSize', function() {
+					var len = arguments.length;
+					if (len == 1) {
+						return Biz.Utils.renderDataSize(arguments[0]);
+					} else if (len > 1) {
+						return Biz.Utils.renderDataSize(arguments[0], arguments[1]);
+					}
+					return '';
+				});
+			}
+		}
+	},
+	enforceDefine : true,
+	urlArgs : 'v=' + Biz.Constant.ver
+}
+require.config(conf);
+
+## 初始化公共类，这部分纯js原生代码写的，无需使用第三方组件
+Biz.Utils.debug = function(msg) {
+	#if($!prod) return; 
+	#else 
+	var t = new Date();
+	var timeStr = t.getHours()+':'+t.getMinutes()+':'+t.getSeconds()+'_'+t.getMilliseconds();
+	console.trace('[' + timeStr + ']: ' + msg); 
+	#end
+};
+
+/** 将Byte形式的存储大小，变为可读的大小 */
+Biz.Utils.renderDataSize = function(size, precision) {
+	var s = size == null ? 0 : size;
+	var p = (precision === undefined || precision < 0) ? 2 : precision;
+	var unit = [ '', 'K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y', 'B' ];
+	for (var i = 0; i < unit.length; i++) {
+		if (Math.abs(s) < 1024 || (i + 1 == unit.length)) {
+			return s.toFixed(p) + unit[i];
+		}
+		s = s / 1024;
+	}
+};
+require(['bootstrap'], function() {
+	Biz.Utils.debug("biz-init loaded.");
+});
+
+if ( typeof define === "function" && define.amd ) {
+	define(Biz);
+}

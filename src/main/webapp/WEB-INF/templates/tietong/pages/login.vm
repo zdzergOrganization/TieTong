@@ -4,17 +4,17 @@
 <div class="content">
 	<!-- the content head of the page begin-->
 	<div class="container-fluid" style="width:30%" >
-		<form class="form-horizontal" action="${s.ctx}rest/oss/login" method="post" name="login_name" id="login_form">
+		<form class="form-horizontal" action="${s.ctx}login" method="post" name="login_name" id="login_form">
 			<div class="control-group">
 				<label class="control-label">用户名：</label>
 			    <div class="controls">
-			      <input class="form-control" type="text" name="username">
+			      <input class="form-control" type="text" name="userName">
 			    </div>
 			</div>
 			<div class="control-group">
 				<label class="control-label">密码：</label>
 			    <div class="controls">
-			      <input class="form-control" type="password" name="password">
+			      <input class="form-control" type="password" name="passWord">
 			    </div>
 			</div>
 			<div class="control-group">
