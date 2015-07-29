@@ -8,6 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tietong.dao.User;
 import com.tietong.mapper.TieTongMapper;
@@ -24,8 +25,10 @@ public class RestController {
 	 * 判断账号密码是否正确.<br>
 	 */
 	@RequestMapping(value="/login" , method=RequestMethod.POST)
-	public String Login(@RequestParam("userName") String userName,
-			@RequestParam("passWord") String passWord, ModelMap model,
+	public @ResponseBody String Login(
+			@RequestParam("userName") String userName,
+			@RequestParam("passWord") String passWord, 
+			ModelMap model,
 			HttpSession httpSession){
 		User user = tietongmapper.getUserByName(userName);
 		
