@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 
 public class LoginFilter implements Filter {
 		
-	private static final String LOGIN_URL = "login";
+	private static final String LOGIN_URL = "pages/login.html";
 	
     private FilterConfig config = null;  
     public void destroy() {  
@@ -31,6 +31,7 @@ public class LoginFilter implements Filter {
         String redirectUrl = contextPath + "/" + LOGIN_URL;
         if (!url.equals(redirectUrl) && userObj == null) {
             ((HttpServletResponse)response).sendRedirect(redirectUrl);  
+        	//chain.doFilter(request, response);
         } else {  
             chain.doFilter(request, response);   
         }  

@@ -1,0 +1,28 @@
+.tietong-header{
+	width: 100%;
+	height: 51px;
+}
+
+.tietong-pagebody{
+	width: 100%;
+	height: 100%;
+}
+
+.tietong-leftpanel{
+	width: 250px;
+	height: 100%;
+	float: left;
+}
+
+.tietong-mainpanel{
+	width: calc(100% - 250px);
+	height: 100%;
+	float: right;
+	background-color: white;
+	min-height: 900px;
+}
+
+.sidebar{
+	margin-top: 0;
+	height: 100%;
+}

@@ -83,7 +83,7 @@
 		<property name="exposeSpringMacroHelpers" value="true" /><!--是否使用spring对宏定义的支持 -->
 		<property name="exposeRequestAttributes" value="true" /><!--是否开放request属性 -->
 		<property name="requestContextAttribute" value="rc" /><!--request属性引用名称 -->
-		<property name="layoutUrl" value="common/layout-default.vm" /><!--指定layout文件 -->
+		<property name="layoutUrl" value="common/layout-default.vm" /><!-- 指定layout文件 -->
 		<property name="viewClass" value="org.springframework.web.servlet.view.velocity.VelocityLayoutView" />
 	</bean>
 	<bean class="com.tietong.web.conf.WebContextInitialization"></bean>

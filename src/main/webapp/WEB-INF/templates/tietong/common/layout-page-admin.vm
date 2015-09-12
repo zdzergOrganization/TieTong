@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>东莞铁通绩效系统</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="$!{s.ctx}resource-admin/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="$!{s.ctx}resource-admin/css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- DataTables CSS -->
+    <link href="$!{s.ctx}resource-admin/css/plugins/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="$!{s.ctx}resource-admin/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="$!{s.ctx}resource-admin/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <link href="$!{s.ctx}resource-admin/css/header-sidebar.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body>
+	<!-- base-header -->
+	<div class="tietong-header">#parse($!{header})</div>
+	<div class="tietong-pagebody">
+		<!-- base-sidebar -->
+		<div class="tietong-leftpanel">#parse($!{sidebar})</div>
+		<!-- base-content -->
+		<div class="tietong-mainpanel">$!{screen_content}</div>
+	</div>
+	<!-- base-footer -->
+	<!-- <script src="$!{s.s_footer_url}"></script> -->
+</body>
+    <!-- /#wrapper -->
+
+    <!-- jQuery Version 1.11.0 -->
+    <script src="$!{s.ctx}resource-admin/js/jquery-1.11.0.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="$!{s.ctx}resource-admin/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="$!{s.ctx}resource-admin/js/plugins/metisMenu/metisMenu.min.js"></script>
+
+    <!-- DataTables JavaScript -->
+    <script src="$!{s.ctx}resource-admin/js/plugins/dataTables/jquery.dataTables.js"></script>
+    <script src="$!{s.ctx}resource-admin/js/plugins/dataTables/dataTables.bootstrap.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="$!{s.ctx}resource-admin/js/sb-admin-2.js"></script>
+
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+    $(document).ready(function() {
+        $('#dataTables-example').dataTable();
+    });
+    </script>
+</html>
