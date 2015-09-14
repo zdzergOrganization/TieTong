@@ -1,0 +1,4 @@
+#set($layout="common/layout-page-admin.vm")
+#set($header="common/header-admin.vm")
+#set($sidebar="common/sidebar-admin.vm")
+444
