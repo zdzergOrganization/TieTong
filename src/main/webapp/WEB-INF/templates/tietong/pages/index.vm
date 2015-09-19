@@ -1,4 +1,5 @@
 #set($layout="common/layout-page-admin.vm")
 #set($header="common/header-admin.vm")
+#set($active_sidebar_id="index")
 #set($sidebar="common/sidebar-admin.vm")
-123
+$active_sidebar_id

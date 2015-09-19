@@ -1,4 +1,135 @@
 #set($layout="common/layout-page-admin.vm")
 #set($header="common/header-admin.vm")
+#set($active_sidebar_id="emplyee")
 #set($sidebar="common/sidebar-admin.vm")
-444
+<!-- <h1 class="page-header">人员信息</h1>
+ -->
+ 
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+
+			<div class="panel-heading">
+				人员信息
+				<div style="float: right;margin-top: -7px;">
+					<button type="button" class="btn btn-primary">添加人员</button>
+					<button type="button" class="btn btn-primary">批量添加</button>
+				</div>
+			</div>
+
+			<!-- /.panel-heading -->
+			<div class="panel-body">
+				<div class="table-responsive">
+					<!-- <table class="table table-striped table-bordered table-hover" id="dataTables-example"> -->
+					<table class="table table-striped table-bordered table-hover" id="dataTables-example">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>姓名</th>
+								<th>性别(s)</th>
+								<th>年龄</th>
+								<th>职务</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="odd gradeX">
+								<td>1</td>
+								<td>小馨馨</td>
+								<td>女</td>
+								<td class="center">18</td>
+								<td class="center">局长</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>1</td>
+								<td>小丁丁</td>
+								<td>男</td>
+								<td class="center">18</td>
+								<td class="center">市长</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>1</td>
+								<td>小丁丁</td>
+								<td>男</td>
+								<td class="center">18</td>
+								<td class="center">市长</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>1</td>
+								<td>小丁丁</td>
+								<td>男</td>
+								<td class="center">18</td>
+								<td class="center">市长</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>1</td>
+								<td>小丁丁</td>
+								<td>男</td>
+								<td class="center">18</td>
+								<td class="center">市长</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>1</td>
+								<td>小丁丁</td>
+								<td>男</td>
+								<td class="center">18</td>
+								<td class="center">市长</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>1</td>
+								<td>小丁丁</td>
+								<td>男</td>
+								<td class="center">18</td>
+								<td class="center">市长</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>1</td>
+								<td>小丁丁</td>
+								<td>男</td>
+								<td class="center">18</td>
+								<td class="center">市长</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>1</td>
+								<td>小丁丁</td>
+								<td>男</td>
+								<td class="center">18</td>
+								<td class="center">市长</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>1</td>
+								<td>小丁丁</td>
+								<td>男</td>
+								<td class="center">18</td>
+								<td class="center">市长</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>1</td>
+								<td>小丁丁</td>
+								<td>男</td>
+								<td class="center">18</td>
+								<td class="center">市长</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>1</td>
+								<td>小丁丁</td>
+								<td>男</td>
+								<td class="center">18</td>
+								<td class="center">市长</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>1</td>
+								<td>小丁丁</td>
+								<td>男</td>
+								<td class="center">18</td>
+								<td class="center">市长</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<!-- /.panel-body -->
+		</div>
+		<!-- /.panel -->
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
