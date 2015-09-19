@@ -13,8 +13,29 @@
 				人员信息
 				<div style="float: right;margin-top: -7px;">
 					<button type="button" class="btn btn-primary">添加人员</button>
-					<button type="button" class="btn btn-primary">批量添加</button>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#batch_add">批量添加</button>
 				</div>
+			<!-- Modal -->
+			<div class="modal fade" id="batch_add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="myModalLabel">批量添加</h4>
+			      </div>
+			      <div class="modal-body">
+			        <!-- Disable the styling -->
+					<input type="file" data-bfi-disabled>
+					<input type="text" style="float: right;margin-top: -24px;width: 250px;" placeholder="输入计算月最终日 例如：2015-05-31">
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-primary" id="batch_add_commit">提交</button>
+			        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+				
 			</div>
 
 			<!-- /.panel-heading -->
@@ -46,83 +67,6 @@
 								<td class="center">18</td>
 								<td class="center">市长</td>
 							</tr>
-							<tr class="odd gradeX">
-								<td>1</td>
-								<td>小丁丁</td>
-								<td>男</td>
-								<td class="center">18</td>
-								<td class="center">市长</td>
-							</tr>
-							<tr class="odd gradeX">
-								<td>1</td>
-								<td>小丁丁</td>
-								<td>男</td>
-								<td class="center">18</td>
-								<td class="center">市长</td>
-							</tr>
-							<tr class="odd gradeX">
-								<td>1</td>
-								<td>小丁丁</td>
-								<td>男</td>
-								<td class="center">18</td>
-								<td class="center">市长</td>
-							</tr>
-							<tr class="odd gradeX">
-								<td>1</td>
-								<td>小丁丁</td>
-								<td>男</td>
-								<td class="center">18</td>
-								<td class="center">市长</td>
-							</tr>
-							<tr class="odd gradeX">
-								<td>1</td>
-								<td>小丁丁</td>
-								<td>男</td>
-								<td class="center">18</td>
-								<td class="center">市长</td>
-							</tr>
-							<tr class="odd gradeX">
-								<td>1</td>
-								<td>小丁丁</td>
-								<td>男</td>
-								<td class="center">18</td>
-								<td class="center">市长</td>
-							</tr>
-							<tr class="odd gradeX">
-								<td>1</td>
-								<td>小丁丁</td>
-								<td>男</td>
-								<td class="center">18</td>
-								<td class="center">市长</td>
-							</tr>
-							<tr class="odd gradeX">
-								<td>1</td>
-								<td>小丁丁</td>
-								<td>男</td>
-								<td class="center">18</td>
-								<td class="center">市长</td>
-							</tr>
-							<tr class="odd gradeX">
-								<td>1</td>
-								<td>小丁丁</td>
-								<td>男</td>
-								<td class="center">18</td>
-								<td class="center">市长</td>
-							</tr>
-							<tr class="odd gradeX">
-								<td>1</td>
-								<td>小丁丁</td>
-								<td>男</td>
-								<td class="center">18</td>
-								<td class="center">市长</td>
-							</tr>
-							<tr class="odd gradeX">
-								<td>1</td>
-								<td>小丁丁</td>
-								<td>男</td>
-								<td class="center">18</td>
-								<td class="center">市长</td>
-							</tr>
 						</tbody>
 					</table>
 				</div>
@@ -133,3 +77,18 @@
 	</div>
 	<!-- /.col-lg-12 -->
 </div>
+
+<script>
+	(function() {
+		require([ '${s.ctx}resources/js/biz-init.js' ], function() {
+			var employeeJs = '${s.ctx}pages-js/employee.js';
+			require([ "jquery", 'biz-utils', employeeJs, 'EventEmitter', 'juicer' ], function($, Biz, Ossprivilege) {
+				Biz.Utils.debug("dependencies loaded.");
+				$(document).ready(function() {
+					Biz.Utils.debug("document ready.");
+					/* new employeeJs().init(); */
+				});
+			});
+		});
+	}());
+</script>

@@ -1,0 +1,98 @@
+define(function(require, exports, module) {
+	// 申明需要用到的第三方类库
+	var $ = require('jquery');
+	var Biz = require('biz-utils');
+	var EventEmitter = require('EventEmitter');
+	var juicer = require('juicer');
+	// 申明需要使用的模板
+	var auditsTables = juicer("#audit-tables");
+	
+	// 申明需要访问到的URL
+	var urls = {
+		batchAddCommit : {
+			url : Biz.Constant.ctx + 'rest/employee/batchAddCommit',
+			method : 'GET'
+		},
+	};
+
+	function Model(employee) {
+		Object.defineProperties(this, {
+			"audits" : {
+				set : function(value) {
+					this._audits = value;
+					employee.ee.emitEvent('audits_loaded');
+				},
+				get : function() {
+					return this._audits;
+				},
+				enumerable : true,
+				configurable : false,
+			},
+			
+		});
+		this.audits = [];
+		return this;
+	}
+
+	function Controller(employee) {
+		
+		Controller.prototype.batchAddCommit = function() {
+			
+			$.ajax({
+				method: urls.batchAddCommit.method,
+				url: urls.batchAddCommit.url,
+				data: {
+					bucketName: employee.model.bucket,
+					prefix: employee.model.prefix
+				},
+				dataType: 'json',
+				success: function(data, status) {
+					Biz.Utils.handlAjaxResult(data).done(function(json) {
+						for (var i = 0; i < json.length; i ++ ) {
+							var obj = json[i];
+							if (obj["dir"]) {
+								obj['prefix'] = obj['prefix'].substring(
+										obj['prefix'].substring(0, obj['prefix'].length-1).lastIndexOf('/') + 1);
+							} else {
+								obj['key'] = obj['key'].substring(obj['key'].lastIndexOf('/') + 1);
+							}
+						}
+						employee.model.objects = json;
+					}).fail(function() {
+						employee.ee.emitEvent('employee_error', [ '查询失败' ]);
+					});
+				}
+			});
+			
+		}
+		
+	}
+
+	function View(employee) {
+		//点击bucket后查看内部文件
+		View.prototype.objectsLoading = function() {
+			var html = '<i class="fa fa-spinner fa-spin" style="font-size: 2em; line-height:2em;"></i>';
+			$('#otherBucket-tables-rows').html('<td colspan="5" align="center">' + html + '</td>');
+		}
+	}
+
+	function employee() {
+		var employee = this;
+
+		// 1.初始化变量
+		this.ee = new EventEmitter();
+		this.model = new Model(employee);
+		this.view = new View(employee);
+		this.controller = new Controller(employee);
+		
+		$('#batch_add_commit').on('click', function(event) {
+			employee.controller.batchAddCommit;
+		});
+	}
+
+	employee.prototype.init = function() {
+		return this;
+	};
+
+	module.exports = employee;
+});
