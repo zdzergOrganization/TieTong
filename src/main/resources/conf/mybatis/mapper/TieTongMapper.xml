@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tietong.mapper.TieTongMapper"> 
-	<select id="getUserByName" resultType="com.tietong.dao.User">
+<mapper namespace="com.tietong.dao.TieTongMapper"> 
+	<select id="getUserByName" resultType="com.tietong.pojo.User">
 		SELECT
     		id,
     		username, 
@@ -12,4 +12,10 @@
 		WHERE
 			a.username = #{username} 
 	</select>
+	
+	<insert id="insertEmployeeInfo" parameterType="com.tietong.pojo.Employee">
+	insert into employee_info(employee_name,type,region_pq,region_q,region_wg,entry_date,quit_date,month_end_date)
+	values
+	(#{employee_name},#{type},#{region_pq},#{region_q},#{region_wg},#{entry_date},#{quit_date},#{month_end_date})
+	</insert>
 </mapper> 

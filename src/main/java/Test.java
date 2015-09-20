@@ -32,6 +32,7 @@ public class Test {
 	                wb = new HSSFWorkbook(input);  
 	            Sheet sheet = wb.getSheetAt(0);     //获得第一个表单  
 	            Iterator<Row> rows = sheet.rowIterator(); //获得第一个表单的迭代器  
+	            //sheet.getRow(1).getCell(0);
 	            while (rows.hasNext()) {  
 	                Row row = rows.next();  //获得行数据  
 	                System.out.println("第" + row.getRowNum() + "行");  //获得行号从0开始  

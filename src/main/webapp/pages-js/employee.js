@@ -36,30 +36,21 @@ define(function(require, exports, module) {
 
 	function Controller(employee) {
 		
-		Controller.prototype.batchAddCommit = function() {
+		Controller.prototype.batchAddCommit = function(filePath,monthEnd) {
 			
 			$.ajax({
 				method: urls.batchAddCommit.method,
 				url: urls.batchAddCommit.url,
 				data: {
-					bucketName: employee.model.bucket,
-					prefix: employee.model.prefix
+					filePath: filePath,
+					monthEnd: monthEnd
 				},
 				dataType: 'json',
 				success: function(data, status) {
 					Biz.Utils.handlAjaxResult(data).done(function(json) {
-						for (var i = 0; i < json.length; i ++ ) {
-							var obj = json[i];
-							if (obj["dir"]) {
-								obj['prefix'] = obj['prefix'].substring(
-										obj['prefix'].substring(0, obj['prefix'].length-1).lastIndexOf('/') + 1);
-							} else {
-								obj['key'] = obj['key'].substring(obj['key'].lastIndexOf('/') + 1);
-							}
-						}
-						employee.model.objects = json;
+						
 					}).fail(function() {
-						employee.ee.emitEvent('employee_error', [ '查询失败' ]);
+						
 					});
 				}
 			});
@@ -85,8 +76,10 @@ define(function(require, exports, module) {
 		this.view = new View(employee);
 		this.controller = new Controller(employee);
 		
+		var filePath = $('#file-path').val();
+		var monthEnd = $('#month-end').val();
 		$('#batch_add_commit').on('click', function(event) {
-			employee.controller.batchAddCommit;
+			employee.controller.batchAddCommit(filePath,monthEnd);
 		});
 	}
 

@@ -64,7 +64,7 @@
 	</bean>
 
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.tietong.mapper" />
+		<property name="basePackage" value="com.tietong.dao" />
 	</bean>
 
 </beans>

@@ -1,47 +1,51 @@
 package com.tietong.controller;
 
-import javax.servlet.http.HttpSession;
+import java.util.List;
 
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.tietong.dao.User;
-import com.tietong.mapper.TieTongMapper;
-import com.tietong.web.conf.Constants;
-import com.tietong.web.conf.StandardJsonResult;
+import com.tietong.dao.TieTongMapper;
+import com.tietong.pojo.Employee;
+import com.tietong.web.util.ReadExcel;
 
 @Controller
+@RequestMapping("/rest")
 public class RestController {
+	/*@Autowired
+	private TieTongMapper tieTongMapper;*/
 	
-	@Autowired
-	private TieTongMapper tietongmapper;
-	/**
-	 * 登录
-	 * 判断账号密码是否正确.<br>
-	 */
-	@RequestMapping(value="/login" , method=RequestMethod.POST)
-	public @ResponseBody String Login(
-			@RequestParam("userName") String userName,
-			@RequestParam("passWord") String passWord, 
-			ModelMap model,
-			HttpSession httpSession){
-		User user = tietongmapper.getUserByName(userName);
+	@RequestMapping(value="/employee/batchAddCommit" , method=RequestMethod.GET)
+	public @ResponseBody void batchAddCommit(String filePath,String monthEnd){
 		
-		//如果密码正确
-		if(user != null && user.getPassword().equals(passWord)){
-			httpSession.setAttribute(Constants.SESSION_USER_NAME, userName);
-			httpSession.setAttribute(Constants.SESSION_USER_ID, user.getId());
-			return "redirect:/guizhou-pot/pages/oss/data.html";
-		}
-		
-		//密码不对
-		model.put("msg", Constants.LOGIN_FAILED_MSG);
-		return "pages/login";
+		//读取批量导入的员工信息
+		ReadExcel readExcel = new ReadExcel();
+		Workbook wb  = readExcel.read(filePath);
+        Sheet sheet = wb.getSheetAt(0);     //获得第一个表单  
+        
+        //去掉表头，从第一行取数据
+        for(int i=1;i<sheet.getLastRowNum();i++){
+        	Employee employee = null;
+            Row row = sheet.getRow(i);
+            employee.setEmployee_name(row.getCell(0).toString());
+            employee.setType(row.getCell(1).toString());
+            employee.setRegion_pq(row.getCell(2).toString());
+            employee.setRegion_q(row.getCell(3).toString());
+            employee.setRegion_wg(row.getCell(4).toString());
+            employee.setEntry_date(row.getCell(5).toString());
+            employee.setQuit_date(row.getCell(6).toString());
+            employee.setMonth_end_date(row.getCell(7).toString());
+            
+            //插入数据库
+            //tieTongMapper.insertEmployeeInfo(employee);
+        }
+        
 	}
 
 }
