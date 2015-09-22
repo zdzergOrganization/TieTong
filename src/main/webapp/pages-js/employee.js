@@ -36,7 +36,7 @@ define(function(require, exports, module) {
 
 	function Controller(employee) {
 		
-		Controller.prototype.batchAddCommit = function(filePath,monthEnd) {
+		Controller.prototype.batchAddCommit = function(filePath) {
 			
 			$.ajax({
 				method: urls.batchAddCommit.method,
@@ -77,9 +77,8 @@ define(function(require, exports, module) {
 		this.controller = new Controller(employee);
 		
 		var filePath = $('#file-path').val();
-		var monthEnd = $('#month-end').val();
 		$('#batch_add_commit').on('click', function(event) {
-			employee.controller.batchAddCommit(filePath,monthEnd);
+			employee.controller.batchAddCommit(filePath);
 		});
 	}
 

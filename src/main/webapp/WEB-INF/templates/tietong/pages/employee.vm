@@ -26,7 +26,7 @@
 			      <div class="modal-body">
 			        <!-- Disable the styling -->
 					<input id="file-path" type="file" data-bfi-disabled>
-					<input id="month-end" type="text" style="float: right;margin-top: -24px;width: 250px;" placeholder="输入计算月最终日 例如：2015-05-31">
+					<!-- <input id="month-end" type="text" style="float: right;margin-top: -24px;width: 250px;" placeholder="输入计算月最终日 例如：2015-05-31"> -->
 			      </div>
 			      <div class="modal-footer">
 			        <button type="button" class="btn btn-primary" id="batch_add_commit">提交</button>

@@ -34,7 +34,33 @@
     <![endif]-->
     
     <link href="$!{s.ctx}resource-admin/css/header-sidebar.css" rel="stylesheet" type="text/css"/>
+    
+        <!-- jQuery Version 1.11.0 -->
+    <script src="$!{s.ctx}resource-admin/js/jquery-1.11.0.js"></script>
 
+    <!-- Bootstrap Core JavaScript -->
+    <script src="$!{s.ctx}resource-admin/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="$!{s.ctx}resource-admin/js/plugins/metisMenu/metisMenu.min.js"></script>
+
+    <!-- DataTables JavaScript -->
+    <script src="$!{s.ctx}resource-admin/js/plugins/dataTables/jquery.dataTables.js"></script>
+    <script src="$!{s.ctx}resource-admin/js/plugins/dataTables/dataTables.bootstrap.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="$!{s.ctx}resource-admin/js/sb-admin-2.js"></script>
+    
+    <!-- requirejs引入 -->
+	<script src="$!{s.ctx}resources/vendor/requirejs/require.js?v=$!{s.ver}"></script> 
+
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+    $(document).ready(function() {
+        $('#dataTables-example').dataTable();
+    });
+    </script>
+    
 </head>
 
 <body>
@@ -51,26 +77,5 @@
 </body>
     <!-- /#wrapper -->
 
-    <!-- jQuery Version 1.11.0 -->
-    <script src="$!{s.ctx}resource-admin/js/jquery-1.11.0.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="$!{s.ctx}resource-admin/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="$!{s.ctx}resource-admin/js/plugins/metisMenu/metisMenu.min.js"></script>
-
-    <!-- DataTables JavaScript -->
-    <script src="$!{s.ctx}resource-admin/js/plugins/dataTables/jquery.dataTables.js"></script>
-    <script src="$!{s.ctx}resource-admin/js/plugins/dataTables/dataTables.bootstrap.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="$!{s.ctx}resource-admin/js/sb-admin-2.js"></script>
-
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
-    $(document).ready(function() {
-        $('#dataTables-example').dataTable();
-    });
-    </script>
 </html>

@@ -22,7 +22,7 @@ public class RestController {
 	private TieTongMapper tieTongMapper;*/
 	
 	@RequestMapping(value="/employee/batchAddCommit" , method=RequestMethod.GET)
-	public @ResponseBody void batchAddCommit(String filePath,String monthEnd){
+	public @ResponseBody void batchAddCommit(String filePath){
 		
 		//读取批量导入的员工信息
 		ReadExcel readExcel = new ReadExcel();
