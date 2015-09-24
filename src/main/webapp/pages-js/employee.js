@@ -42,8 +42,7 @@ define(function(require, exports, module) {
 				method: urls.batchAddCommit.method,
 				url: urls.batchAddCommit.url,
 				data: {
-					filePath: filePath,
-					monthEnd: monthEnd
+					filePath: filePath
 				},
 				dataType: 'json',
 				success: function(data, status) {
@@ -76,9 +75,18 @@ define(function(require, exports, module) {
 		this.view = new View(employee);
 		this.controller = new Controller(employee);
 		
-		var filePath = $('#file-path').val();
-		$('#batch_add_commit').on('click', function(event) {
-			employee.controller.batchAddCommit(filePath);
+		/*function batch_add_commit(){
+			document.getElementById("batch_add_commit").submit();
+		}*/
+		
+		$('#batch_add_commit').click(function(event) {
+			//document.getElementById("batch_add_commit").submit();
+			var filePath = $('#batch_add_form').submit();
+			
+			//alert(filePath);
+			//batch_add_commit();
+			//var filePath = $('#file-path').val();
+			//employee.controller.batchAddCommit(filePath);
 		});
 	}
 

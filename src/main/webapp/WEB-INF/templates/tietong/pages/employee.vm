@@ -25,8 +25,10 @@
 			      </div>
 			      <div class="modal-body">
 			        <!-- Disable the styling -->
-					<input id="file-path" type="file" data-bfi-disabled>
+			        <form id="batch_add_form" action="upload.do?url=/rest/employee/batchAddCommit" method="post" enctype="multipart/form-data">  
+					<input id="file-path" name="file" type="file" data-bfi-disabled >
 					<!-- <input id="month-end" type="text" style="float: right;margin-top: -24px;width: 250px;" placeholder="输入计算月最终日 例如：2015-05-31"> -->
+					</form>
 			      </div>
 			      <div class="modal-footer">
 			        <button type="button" class="btn btn-primary" id="batch_add_commit">提交</button>
@@ -35,6 +37,9 @@
 			    </div>
 			  </div>
 			</div>
+			<script type="text/javascript">
+			
+			</script>
 				
 			</div>
 
@@ -81,12 +86,12 @@
 <script>
 	(function() {
 		require([ '${s.ctx}resources/js/biz-init.js' ], function() {
-			var employeeJs = '${s.ctx}pages-js/employee.js';
-			require([ "jquery", 'biz-utils', employeeJs, 'EventEmitter', 'juicer' ], function($, Biz, Ossprivilege) {
+			var employeeJs = '${s.ctx}pages-js/employee.js?version=2';
+			require([ "jquery", 'biz-utils', employeeJs, 'EventEmitter', 'juicer' ], function($, Biz, employeeJs) {
 				Biz.Utils.debug("dependencies loaded.");
 				$(document).ready(function() {
 					Biz.Utils.debug("document ready.");
-					/* new employeeJs().init(); */
+					new employeeJs().init();
 				});
 			});
 		});

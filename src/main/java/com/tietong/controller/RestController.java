@@ -18,8 +18,8 @@ import com.tietong.web.util.ReadExcel;
 @Controller
 @RequestMapping("/rest")
 public class RestController {
-	/*@Autowired
-	private TieTongMapper tieTongMapper;*/
+	@Autowired
+	private TieTongMapper tieTongMapper;
 	
 	@RequestMapping(value="/employee/batchAddCommit" , method=RequestMethod.GET)
 	public @ResponseBody void batchAddCommit(String filePath){
@@ -40,10 +40,12 @@ public class RestController {
             employee.setRegion_wg(row.getCell(4).toString());
             employee.setEntry_date(row.getCell(5).toString());
             employee.setQuit_date(row.getCell(6).toString());
-            employee.setMonth_end_date(row.getCell(7).toString());
+            
+            //先不输入计算月份
+            //employee.setMonth_end_date(row.getCell(7).toString());
             
             //插入数据库
-            //tieTongMapper.insertEmployeeInfo(employee);
+            tieTongMapper.insertEmployeeInfo(employee);
         }
         
 	}
