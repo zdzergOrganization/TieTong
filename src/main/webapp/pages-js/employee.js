@@ -5,49 +5,47 @@ define(function(require, exports, module) {
 	var EventEmitter = require('EventEmitter');
 	var juicer = require('juicer');
 	// 申明需要使用的模板
-	var auditsTables = juicer("#audit-tables");
+	var tmplTables = juicer("#tmpl-tables");
 	
 	// 申明需要访问到的URL
 	var urls = {
-		batchAddCommit : {
-			url : Biz.Constant.ctx + 'rest/employee/batchAddCommit',
+		getAllEmployeeInfo : {
+			url : Biz.Constant.ctx + 'rest/employee/getAllEmployeeInfo',
 			method : 'GET'
 		},
 	};
 
 	function Model(employee) {
 		Object.defineProperties(this, {
-			"audits" : {
+			"allEmployeeInfo" : {
 				set : function(value) {
-					this._audits = value;
-					employee.ee.emitEvent('audits_loaded');
+					this._allEmployeeInfo = value;
+					employee.ee.emitEvent('allEmployeeInfo_loaded');
 				},
 				get : function() {
-					return this._audits;
+					return this._allEmployeeInfo;
 				},
 				enumerable : true,
 				configurable : false,
 			},
 			
 		});
-		this.audits = [];
+		this.allEmployeeInfo = [];
 		return this;
 	}
 
 	function Controller(employee) {
 		
-		Controller.prototype.batchAddCommit = function(filePath) {
+		Controller.prototype.getAllEmployeeInfo = function() {
 			
 			$.ajax({
-				method: urls.batchAddCommit.method,
-				url: urls.batchAddCommit.url,
-				data: {
-					filePath: filePath
-				},
+				method: urls.getAllEmployeeInfo.method,
+				url: urls.getAllEmployeeInfo.url,
+				data: {},
 				dataType: 'json',
 				success: function(data, status) {
 					Biz.Utils.handlAjaxResult(data).done(function(json) {
-						
+						employee.model.allEmployeeInfo = json;
 					}).fail(function() {
 						
 					});
@@ -59,11 +57,18 @@ define(function(require, exports, module) {
 	}
 
 	function View(employee) {
-		//点击bucket后查看内部文件
-		View.prototype.objectsLoading = function() {
+		//查看所有职员信息
+		View.prototype.allEmployeeInfo_loading = function() {
 			var html = '<i class="fa fa-spinner fa-spin" style="font-size: 2em; line-height:2em;"></i>';
-			$('#otherBucket-tables-rows').html('<td colspan="5" align="center">' + html + '</td>');
-		}
+			$('#tables-rows').html('<td colspan="8" align="center">' + html + '</td>');
+		};
+		
+		View.prototype.allEmployeeInfo_loaded = function() {
+			var tbody = $("#tables-rows");
+			tbody.html($(tmplTables.render({
+				employees : employee.model.allEmployeeInfo
+			})));
+		};
 	}
 
 	function employee() {
@@ -75,22 +80,17 @@ define(function(require, exports, module) {
 		this.view = new View(employee);
 		this.controller = new Controller(employee);
 		
-		/*function batch_add_commit(){
-			document.getElementById("batch_add_commit").submit();
-		}*/
+		employee.ee.addListeners('allEmployeeInfo_loaded',[ employee.view.allEmployeeInfo_loading,
+		                                                   employee.view.allEmployeeInfo_loaded ]);
+		
 		
 		$('#batch_add_commit').click(function(event) {
-			//document.getElementById("batch_add_commit").submit();
-			var filePath = $('#batch_add_form').submit();
-			
-			//alert(filePath);
-			//batch_add_commit();
-			//var filePath = $('#file-path').val();
-			//employee.controller.batchAddCommit(filePath);
+			$('#batch_add_form').submit();
 		});
 	}
 
 	employee.prototype.init = function() {
+		this.controller.getAllEmployeeInfo();
 		return this;
 	};
 

@@ -11,13 +11,13 @@ import lombok.ToString;
 @NoArgsConstructor
 public class Employee {
 	private int id;
-	private String employee_name;
+	private String employeeName;
 	private String type;	
-	private String region_pq;	
-	private String region_q;	
-	private String region_wg;	
-	private String entry_date;
-	private String quit_date;
-	private String month_end_date;
-	private String create_time;
+	private String regionPQ;	
+	private String regionQ;	
+	private String regionWG;	
+	private String entryDate;
+	private String quitDate;
+	private String monthEndDate;
+	private String createTime;
 }

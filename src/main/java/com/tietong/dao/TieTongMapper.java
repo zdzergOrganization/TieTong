@@ -1,5 +1,7 @@
 package com.tietong.dao;
 
+import java.util.List;
+
 import com.tietong.pojo.Employee;
 import com.tietong.pojo.User;
 
@@ -17,4 +19,10 @@ public interface TieTongMapper {
 	 * @param employee
 	 */
 	public void insertEmployeeInfo(Employee employee);
+	
+	/**
+	 * 读取全部员工信息数据
+	 * @param employee
+	 */
+	public List<Employee> getAllEmployeeInfo();
 }

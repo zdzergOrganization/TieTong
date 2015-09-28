@@ -1,5 +1,6 @@
 package com.tietong.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.tietong.dao.TieTongMapper;
 import com.tietong.pojo.Employee;
+import com.tietong.web.conf.StandardJsonResult;
 import com.tietong.web.util.ReadExcel;
 
 @Controller
@@ -27,7 +29,7 @@ public class RestController {
 	//private Employee employee = new Employee();
 	
 	@RequestMapping(value="/employee/batchAddCommit" , method=RequestMethod.GET)
-	public @ResponseBody void batchAddCommit(HttpServletRequest request){
+	public @ResponseBody String batchAddCommit(HttpServletRequest request){
 		Map<String,?> map = RequestContextUtils.getInputFlashMap(request);   
 		//读取文件路径
 		String filePath = (String) map.get("filePath");
@@ -42,13 +44,13 @@ public class RestController {
         	//Employee employee = new Employee();
             Row row = sheet.getRow(i);
             String s = readExcel.getValue(row.getCell(0));
-            employee.setEmployee_name(s);
+            employee.setEmployeeName(s);
             employee.setType(readExcel.getValue(row.getCell(1)));
-            employee.setRegion_pq(readExcel.getValue(row.getCell(2)));
-            employee.setRegion_q(readExcel.getValue(row.getCell(3)));
-            employee.setRegion_wg(readExcel.getValue(row.getCell(4)));
-            employee.setEntry_date(readExcel.getValue(row.getCell(5)));
-            employee.setQuit_date(readExcel.getValue(row.getCell(6)));
+            employee.setRegionPQ(readExcel.getValue(row.getCell(2)));
+            employee.setRegionQ(readExcel.getValue(row.getCell(3)));
+            employee.setRegionWG(readExcel.getValue(row.getCell(4)));
+            employee.setEntryDate(readExcel.getValue(row.getCell(5)));
+            employee.setQuitDate(readExcel.getValue(row.getCell(6)));
             
             //先不输入计算月份
             //employee.setMonth_end_date(readExcel.getValue(row.getCell(7)));
@@ -57,6 +59,14 @@ public class RestController {
             tieTongMapper.insertEmployeeInfo(employee);
         }
         
+        return "redirect:/employee/getAllEmployeeInfo";
+        
+	}
+	
+	@RequestMapping(value="/employee/getAllEmployeeInfo" , method=RequestMethod.GET)
+	public @ResponseBody StandardJsonResult getAllEmployeeInfo(){
+		List<Employee> employees = tieTongMapper.getAllEmployeeInfo();
+		return new StandardJsonResult(employees);
 	}
 
 }

@@ -16,6 +16,23 @@
 	<insert id="insertEmployeeInfo" parameterType="com.tietong.pojo.Employee">
 	insert into employee_info(employee_name,type,region_pq,region_q,region_wg,entry_date,quit_date,month_end_date,create_time)
 	values
-	(#{employee_name},#{type},#{region_pq},#{region_q},#{region_wg},#{entry_date},#{quit_date},#{month_end_date},now())
+	(#{employeeName},#{type},#{regionPQ},#{regionQ},#{regionWG},#{entryDate},#{quitDate},#{monthEndDate},now())
 	</insert>
+	
+	<select id="getAllEmployeeInfo" resultType="com.tietong.pojo.Employee">
+		SELECT
+    		id,
+    		employee_name as employeeName,
+    		type,
+    		region_pq as regionPQ,
+    		region_q as regionQ,
+    		region_wg as regionWG,
+    		entry_date as entryDate,
+    		quit_date as quitDate,
+    		month_end_date as monthEndDate,
+    		create_time as createTime
+    	FROM employee_info a
+	</select>
+	
+	
 </mapper> 
