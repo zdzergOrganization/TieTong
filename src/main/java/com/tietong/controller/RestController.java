@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
@@ -29,7 +31,7 @@ public class RestController {
 	//private Employee employee = new Employee();
 	
 	@RequestMapping(value="/employee/batchAddCommit" , method=RequestMethod.GET)
-	public @ResponseBody String batchAddCommit(HttpServletRequest request){
+	public String batchAddCommit(HttpServletRequest request){
 		Map<String,?> map = RequestContextUtils.getInputFlashMap(request);   
 		//读取文件路径
 		String filePath = (String) map.get("filePath");
@@ -59,7 +61,7 @@ public class RestController {
             tieTongMapper.insertEmployeeInfo(employee);
         }
         
-        return "redirect:/employee/getAllEmployeeInfo";
+        return "redirect:/pages/employee.html";
         
 	}
 	
@@ -67,6 +69,12 @@ public class RestController {
 	public @ResponseBody StandardJsonResult getAllEmployeeInfo(){
 		List<Employee> employees = tieTongMapper.getAllEmployeeInfo();
 		return new StandardJsonResult(employees);
+	}
+	
+	@RequestMapping(value="/employee/employeeDel" , method=RequestMethod.GET)
+	public @ResponseBody StandardJsonResult employeeDel(@RequestParam(value = "employeeDelId") int id){
+		tieTongMapper.employeeDel(id);
+		return new StandardJsonResult("succ");
 	}
 
 }

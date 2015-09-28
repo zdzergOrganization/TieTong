@@ -25,4 +25,13 @@ public interface TieTongMapper {
 	 * @param employee
 	 */
 	public List<Employee> getAllEmployeeInfo();
+	
+	/**
+	 * 删除单个员工信息数据
+	 * @param employee
+	 * @return 
+	 */
+	public void employeeDel(int Id);
+	
+	
 }

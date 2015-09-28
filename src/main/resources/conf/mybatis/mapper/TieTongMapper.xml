@@ -33,6 +33,10 @@
     		create_time as createTime
     	FROM employee_info a
 	</select>
+    
+    <delete id="employeeDel" >
+        DELETE FROM employee_info where id=#{id}
+    </delete>
 	
 	
 </mapper> 

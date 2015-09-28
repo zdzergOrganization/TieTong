@@ -55,11 +55,11 @@
 	<script src="$!{s.ctx}resources/vendor/requirejs/require.js?v=$!{s.ver}"></script> 
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
+    <!-- <script>
     $(document).ready(function() {
         $('#dataTables-example').dataTable();
     });
-    </script>
+    </script> -->
     
 </head>
 

@@ -12,7 +12,7 @@
 			<div class="panel-heading">
 				人员信息
 				<div style="float: right;margin-top: -7px;">
-					<button type="button" class="btn btn-primary">添加人员</button>
+					<button type="button" class="btn btn-primary" id="test">添加人员</button>
 					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#batch_add">批量添加</button>
 				</div>
 			<!-- Modal -->
@@ -58,6 +58,7 @@
 								<th>所属网格</th>
 								<th>到职日</th>
 								<th>职务暂停日</th>
+								<th>操作</th>
 							</tr>
 						</thead>
 						<tbody id="tables-rows">
@@ -65,9 +66,10 @@
 						</tbody>
 					</table>
 			<script type="text/juicer" id="tmpl-tables">
-				{@each employees as employee}
+				{@each employees as employee,index}
 					<tr class="odd gradeX">
-						<td>!{employee.id}</td>
+						<td>!{Number(index)+1}</td>
+						<td hidden id="employee_id">!{employee.id}</td>
 						<td>!{employee.employeeName}</td>
 						<td>!{employee.type}</td>
 						<td>!{employee.regionPQ}</td>
@@ -75,6 +77,7 @@
 						<td>!{employee.regionWG}</td>
 						<td>!{employee.entryDate}</td>
 						<td>!{employee.quitDate}</td>
+						<td><a class="employeeDel" data-toggle="modal" data-target="#employeeDelModal" style="cursor:pointer">删除</a></td>
 					</tr>
 				{@/each}
 			</script>
@@ -87,11 +90,33 @@
 	<!-- /.col-lg-12 -->
 </div>
 
+<div class="modal fade" id="employeeDelModal" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h5 class="modal-title" style="margin-left: 10px;">确定删除用户？</h5>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn" id="employeeDelBtn" data-dismiss="modal"
+					style="background-color: #04B1F3; border-radius: 0px; color: white;">确定</button>
+				<button type="button" class="btn" data-dismiss="modal"
+					style="background-color: white; border-radius: 0px; color: #04B1F3; border: 1px solid #04B1F3">取消</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 <script>
 	(function() {
 		require([ '${s.ctx}resources/js/biz-init.js' ], function() {
 			var employeeJs = '${s.ctx}pages-js/employee.js?version=2';
-			require([ "jquery", 'biz-utils', employeeJs, 'EventEmitter', 'juicer' ], function($, Biz, employeeJs) {
+			require([ "jquery", 'biz-utils', employeeJs, 'EventEmitter',
+					'juicer' ], function($, Biz, employeeJs) {
 				Biz.Utils.debug("dependencies loaded.");
 				$(document).ready(function() {
 					Biz.Utils.debug("document ready.");
@@ -101,3 +126,7 @@
 		});
 	}());
 </script>
+
+<!-- <script>
+    $('#test').click(function(){$('#dataTables-example').dataTable();});
+</script> -->
