@@ -35,6 +35,11 @@ public class RestController {
 		Map<String,?> map = RequestContextUtils.getInputFlashMap(request);   
 		//读取文件路径
 		String filePath = (String) map.get("filePath");
+		String truncateFlag = (String) map.get("truncateFlag");
+		//是否清空
+		if(truncateFlag != null){
+			tieTongMapper.truncate();
+		}
 		//读取批量导入的员工信息
 		ReadExcel readExcel = new ReadExcel();
 		Workbook wb  = readExcel.read(filePath);
@@ -60,6 +65,32 @@ public class RestController {
             //插入数据库
             tieTongMapper.insertEmployeeInfo(employee);
         }
+        
+        return "redirect:/pages/employee.html";
+        
+	}
+	
+	@RequestMapping(value="/employee/singleAddCommit" , method=RequestMethod.POST)
+	public String singleAddCommit(
+			String employeeName,
+			String type,
+			String regionPQ,
+			String regionQ,
+			String regionWG,
+			String entryDate,
+			String quitDate){
+		
+    	Employee employee = new Employee();
+    	employee.setEmployeeName(employeeName);    
+    	employee.setType(type);
+    	employee.setRegionPQ(regionPQ);
+    	employee.setRegionQ(regionQ);
+    	employee.setRegionWG(regionWG);
+    	employee.setEntryDate(entryDate);
+    	employee.setQuitDate(quitDate);
+    	
+        //插入数据库
+        tieTongMapper.insertEmployeeInfo(employee);
         
         return "redirect:/pages/employee.html";
         

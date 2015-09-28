@@ -32,7 +32,12 @@
     		month_end_date as monthEndDate,
     		create_time as createTime
     	FROM employee_info a
+    	order by create_time desc
 	</select>
+    
+    <delete id="truncate" >
+        truncate employee_info
+    </delete>
     
     <delete id="employeeDel" >
         DELETE FROM employee_info where id=#{id}

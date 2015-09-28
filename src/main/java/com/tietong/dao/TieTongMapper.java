@@ -33,5 +33,12 @@ public interface TieTongMapper {
 	 */
 	public void employeeDel(int Id);
 	
+	/**
+	 * 删除所有员工信息数据
+	 * @param employee
+	 * @return 
+	 */
+	public void truncate();
+	
 	
 }

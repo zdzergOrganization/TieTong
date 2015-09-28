@@ -4,50 +4,95 @@
 #set($sidebar="common/sidebar-admin.vm")
 <!-- <h1 class="page-header">人员信息</h1>
  -->
- 
+
 <div class="row">
 	<div class="col-lg-12">
 		<div class="panel panel-default">
 
 			<div class="panel-heading">
 				人员信息
-				<div style="float: right;margin-top: -7px;">
-					<button type="button" class="btn btn-primary" id="test">添加人员</button>
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#batch_add">批量添加</button>
+				<div style="float: right; margin-top: -7px;">
+					<button type="button" class="btn btn-primary" data-toggle="modal"
+						data-target="#single_add">添加人员</button>
+					<button type="button" class="btn btn-primary" data-toggle="modal"
+						data-target="#batch_add">批量添加</button>
 				</div>
-			<!-- Modal -->
-			<div class="modal fade" id="batch_add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-			  <div class="modal-dialog" role="document">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			        <h4 class="modal-title" id="myModalLabel">批量添加</h4>
-			      </div>
-			      <div class="modal-body">
-			        <!-- Disable the styling -->
-			        <form id="batch_add_form" action="upload.do?url=/rest/employee/batchAddCommit" method="post" enctype="multipart/form-data">  
-					<input id="file-path" name="file" type="file" data-bfi-disabled >
-					<!-- <input id="month-end" type="text" style="float: right;margin-top: -24px;width: 250px;" placeholder="输入计算月最终日 例如：2015-05-31"> -->
-					</form>
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-primary" id="batch_add_commit">提交</button>
-			        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-			      </div>
-			    </div>
-			  </div>
-			</div>
-			<script type="text/javascript">
-			
-			</script>
+				<!-- Modal -->
+				<div class="modal fade" id="batch_add" tabindex="-1" role="dialog"
+					aria-labelledby="myModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								<h4 class="modal-title" id="myModalLabel">批量添加</h4>
+							</div>
+							<div class="modal-body">
+								<!-- Disable the styling -->
+								<form id="batch_add_form"
+									action="upload.do?url=/rest/employee/batchAddCommit"
+									method="post" enctype="multipart/form-data">
+									<input id="file-path" name="file" type="file" data-bfi-disabled>
+									<span style="float : right; margin-top : -6px; ">选中删除之前所有员工  <input type="checkbox" id="checkboxTrunc" name="truncateFlag" value="1"></span>
+									<!-- <input id="month-end" type="text" style="float: right;margin-top: -24px;width: 250px;" placeholder="输入计算月最终日 例如：2015-05-31"> -->
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary"
+									id="batch_add_commit">提交</button>
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">取消</button>
+							</div>
+						</div>
+					</div>
+				</div>
 				
+				<!-- 单个用户添加 -->
+				<div class="modal fade" id="single_add" tabindex="-1" role="dialog"
+					aria-labelledby="myModalLabel">
+					<div class="modal-dialog modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								<h4 class="modal-title" id="myModalLabel">添加人员</h4>
+							</div>
+							<div class="modal-body">
+								<!-- Disable the styling -->
+								<form id="single_add_form"
+									action="${s.ctx}rest/employee/singleAddCommit"
+									method="post" enctype="multipart/form-data">
+									人员姓名 : <input id="employeeName" name="employeeName" type="text">
+									类型 : <input id="type" name="type" type="text">
+									片区 : <input id="regionPQ" name="regionPQ" type="text">
+									区 : <input id="regionQ" name="regionQ" type="text">
+									所属网格 : <input id="regionWG" name="regionWG" type="text">
+									到职日 : <input id="entryDate" name="entryDate" type="text">
+									职务暂停日 : <input id="quitDate" name="quitDate" type="text">
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary"
+									id="single_add_commit">提交</button>
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">取消</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
 			</div>
 
 			<!-- /.panel-heading -->
 			<div class="panel-body">
 				<div class="table-responsive">
 					<!-- <table class="table table-striped table-bordered table-hover" id="dataTables-example"> -->
-					<table class="table table-striped table-bordered table-hover" id="dataTables-example">
+					<table class="table table-striped table-bordered table-hover"
+						id="dataTables-example">
 						<thead>
 							<tr>
 								<th>ID</th>
@@ -62,10 +107,10 @@
 							</tr>
 						</thead>
 						<tbody id="tables-rows">
-						
+
 						</tbody>
 					</table>
-			<script type="text/juicer" id="tmpl-tables">
+					<script type="text/juicer" id="tmpl-tables">
 				{@each employees as employee,index}
 					<tr class="odd gradeX">
 						<td>!{Number(index)+1}</td>
@@ -90,8 +135,8 @@
 	<!-- /.col-lg-12 -->
 </div>
 
-<div class="modal fade" id="employeeDelModal" tabindex="-1" role="dialog"
-	aria-labelledby="myModalLabel">
+<div class="modal fade" id="employeeDelModal" tabindex="-1"
+	role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -102,7 +147,8 @@
 				<h5 class="modal-title" style="margin-left: 10px;">确定删除用户？</h5>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn" id="employeeDelBtn" data-dismiss="modal"
+				<button type="button" class="btn" id="employeeDelBtn"
+					data-dismiss="modal"
 					style="background-color: #04B1F3; border-radius: 0px; color: white;">确定</button>
 				<button type="button" class="btn" data-dismiss="modal"
 					style="background-color: white; border-radius: 0px; color: #04B1F3; border: 1px solid #04B1F3">取消</button>

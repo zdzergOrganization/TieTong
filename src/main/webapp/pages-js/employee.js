@@ -116,7 +116,14 @@ define(function(require, exports, module) {
 		employee.ee.addListeners('allEmployeeInfo_loaded',[ employee.view.allEmployeeInfo_loading, employee.view.allEmployeeInfo_loaded ]);
 				
 		$('#batch_add_commit').click(function(event) {
+			/*if($('#checkboxTrunc').is(':checked')){
+				var truncateFlag = 1;
+			}*/
 			$('#batch_add_form').submit();
+		});
+		
+		$('#single_add_commit').click(function(event) {
+			$('#single_add_form').submit();
 		});
 		
 		$('#tables-rows').delegate('.employeeDel','click',function(){
