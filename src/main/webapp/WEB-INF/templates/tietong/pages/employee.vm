@@ -172,7 +172,3 @@
 		});
 	}());
 </script>
-
-<!-- <script>
-    $('#test').click(function(){$('#dataTables-example').dataTable();});
-</script> -->

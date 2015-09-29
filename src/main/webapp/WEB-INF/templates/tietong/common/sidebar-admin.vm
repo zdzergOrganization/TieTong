@@ -13,14 +13,14 @@
                             </div>
                             <!-- /input-group -->
                         </li>
-                        <li #if($active_sidebar_id == "emplyee") class="active" #end>
+                        <li #if($active_sidebar_id == "emplyee" or $active_sidebar_id == "upload") class="active" #end>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 基础模块<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li #if($active_sidebar_id == "emplyee") style="background-color:#eee;" #end>
                                     <a href="${s.ctx}pages/employee.html">人员信息管理</a>
                                 </li>
-                                <li>
-                                    <a href="morris.html">业务表上传</a>
+                                <li #if($active_sidebar_id == "upload") style="background-color:#eee;" #end>
+                                    <a href="${s.ctx}pages/upload.html">业务表上传</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

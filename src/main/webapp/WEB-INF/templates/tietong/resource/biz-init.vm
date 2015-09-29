@@ -29,6 +29,8 @@ var conf = {
 		'ace/ace' : Biz.Constant.ctx + 'resources/custom/ace/src' + (Biz.Config.prod ? '-min' : '') + '/ace',
 		'ace/mode/sql' : Biz.Constant.ctx + 'resources/custom/ace/src' + (Biz.Config.prod ? '-min' : '') + '/mode-sql',
 		'bootstrap' : Biz.Constant.ctx + 'resources/custom/bootstrap/js/bootstrap' + (Biz.Config.prod ? '.min' : ''),
+		'bootstrap-datepicker' : Biz.Constant.ctx + 'resources/custom/bootstrap-datepicker/bootstrap-datepicker.i18n',
+		'bootstrap-datepicker-basic' : 'bootstrap-datepicker/js/bootstrap-datepicker' + (Biz.Config.prod ? '.min' : ''),
 		'datatables' : 'datatables/media/js/jquery.dataTables' + (Biz.Config.prod ? '.min' : ''),
 		'datejs' : 'datejs/date',
 		'EventEmitter' : 'EventEmitter/EventEmitter' + (Biz.Config.prod ? '.min' : ''),
@@ -50,6 +52,15 @@ var conf = {
 		},
 		'bootstrap' : {
 			deps : [ 'jquery' ],
+			exports : "$"
+		},
+		'bootstrap-datepicker' : {
+			deps : [ 'jquery', 'bootstrap', 'bootstrap-datepicker-basic'],
+			exports : "$"
+		},
+		'bootstrap-datepicker-basic' : {
+			deps : [ 'jquery', 'bootstrap',
+					'css!' + Biz.Constant.ctx + 'resources/vendor/bootstrap-datepicker/css/bootstrap-datepicker' + (Biz.Config.prod ? '.min' : '') ],
 			exports : "$"
 		},
 		'datatables' : {

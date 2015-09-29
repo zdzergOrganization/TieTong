@@ -26,7 +26,7 @@ public class UserLoginController {
 		User user = tieTongMapper.getUserByName(userName);
 		if(user != null && user.getPassword().equals(password)){
 			httpSession.setAttribute(Constants.SESSION_USER_NAME, userName);
-			return "pages/index";
+			return "pages/employee";
 		}
 		return "pages/login";
 	}

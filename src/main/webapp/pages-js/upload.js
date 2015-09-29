@@ -10,21 +10,21 @@ define(function(require, exports, module) {
 	// 申明需要访问到的URL
 	var urls = {
 		getAllEmployeeInfo : {
-			url : Biz.Constant.ctx + 'rest/employee/getAllEmployeeInfo',
+			url : Biz.Constant.ctx + 'rest/upload/getAllEmployeeInfo',
 			method : 'GET'
 		},
-		employeeDel : {
-			url : Biz.Constant.ctx + 'rest/employee/employeeDel',
+		uploadDel : {
+			url : Biz.Constant.ctx + 'rest/upload/uploadDel',
 			method : 'GET'
 		},
 	};
 
-	function Model(employee) {
+	function Model(upload) {
 		Object.defineProperties(this, {
 			"allEmployeeInfo" : {
 				set : function(value) {
 					this._allEmployeeInfo = value;
-					employee.ee.emitEvent('allEmployeeInfo_loaded');
+					upload.ee.emitEvent('allEmployeeInfo_loaded');
 				},
 				get : function() {
 					return this._allEmployeeInfo;
@@ -32,12 +32,12 @@ define(function(require, exports, module) {
 				enumerable : true,
 				configurable : false,
 			},
-			"employeeDelId" : {
+			"uploadDelId" : {
 				set : function(value) {
-					this._employeeDelId = value;
+					this._uploadDelId = value;
 				},
 				get : function() {
-					return this._employeeDelId;
+					return this._uploadDelId;
 				},
 				enumerable : true,
 				configurable : false,
@@ -45,11 +45,11 @@ define(function(require, exports, module) {
 			
 		});
 		this.allEmployeeInfo = [];
-		this.employeeDelId = '';
+		this.uploadDelId = '';
 		return this;
 	}
 
-	function Controller(employee) {
+	function Controller(upload) {
 		
 		Controller.prototype.getAllEmployeeInfo = function() {
 			
@@ -60,7 +60,7 @@ define(function(require, exports, module) {
 				dataType: 'json',
 				success: function(data, status) {
 					Biz.Utils.handlAjaxResult(data).done(function(json) {
-						employee.model.allEmployeeInfo = json;
+						upload.model.allEmployeeInfo = json;
 					}).fail(function() {
 						
 					});
@@ -69,16 +69,16 @@ define(function(require, exports, module) {
 			
 		};
 		
-		Controller.prototype.employeeDel = function(employeeDelId) {
+		Controller.prototype.uploadDel = function(uploadDelId) {
 			
 			$.ajax({
-				method: urls.employeeDel.method,
-				url: urls.employeeDel.url,
-				data: {employeeDelId : employeeDelId},
+				method: urls.uploadDel.method,
+				url: urls.uploadDel.url,
+				data: {uploadDelId : uploadDelId},
 				dataType: 'json',
 				success: function(data, status) {
 					Biz.Utils.handlAjaxResult(data).done(function(json) {
-						employee.controller.getAllEmployeeInfo();
+						upload.controller.getAllEmployeeInfo();
 					}).fail(function() {
 					});
 				}
@@ -88,7 +88,7 @@ define(function(require, exports, module) {
 		
 	}
 
-	function View(employee) {
+	function View(upload) {
 		//查看所有职员信息
 		View.prototype.allEmployeeInfo_loading = function() {
 			var html = '<i class="fa fa-spinner fa-spin" style="font-size: 2em; line-height:2em;"></i>';
@@ -98,50 +98,32 @@ define(function(require, exports, module) {
 		View.prototype.allEmployeeInfo_loaded = function() {
 			var tbody = $("#tables-rows");
 			tbody.html($(tmplTables.render({
-				employees : employee.model.allEmployeeInfo
+				uploads : upload.model.allEmployeeInfo
 			})));
 
 	        $('#dataTables-example').dataTable();
 		};
 	}
 
-	function employee() {
-		var employee = this;
+	function upload() {
+		var upload = this;
 
 		// 1.初始化变量
 		this.ee = new EventEmitter();
-		this.model = new Model(employee);
-		this.view = new View(employee);
-		this.controller = new Controller(employee);
-		
-		employee.ee.addListeners('allEmployeeInfo_loaded',[ employee.view.allEmployeeInfo_loading, employee.view.allEmployeeInfo_loaded ]);
-				
-		$('#batch_add_commit').click(function(event) {
-			/*if($('#checkboxTrunc').is(':checked')){
-				var truncateFlag = 1;
-			}*/
-			$('#batch_add_form').submit();
-		});
-		
-		$('#single_add_commit').click(function(event) {
-			$('#single_add_form').submit();
-		});
-		
-		$('#tables-rows').delegate('.employeeDel','click',function(){
-			employee.model.employeeDelId=$($($(this).parent('td')).parent('tr')).find('#employee_id').text();
-		})
-
-		$('#employeeDelModal').delegate('#employeeDelBtn','click',function(){
-		//$('#employeeDelBtn').click(function(event) {
-			//$('#employeeDelModal').modal('toggle');
-			employee.controller.employeeDel(employee.model.employeeDelId);
-		});
+		this.model = new Model(upload);
+		this.view = new View(upload);
+		this.controller = new Controller(upload);
 	}
 
-	employee.prototype.init = function() {
-		this.controller.getAllEmployeeInfo();
+	upload.prototype.init = function() {
+		// 初始化时间控件
+		$('.datepicker').datepicker({
+	        autoclose: true,
+	        minViewMode: 1,
+	        orientation: "top left"
+	    })
 		return this;
 	};
 
-	module.exports = employee;
+	module.exports = upload;
 });
