@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -18,7 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.tietong.dao.TieTongMapper;
+import com.tietong.dao.UploadTablesStatusMapper;
 import com.tietong.pojo.Employee;
+import com.tietong.pojo.UploadTablesStatus;
 import com.tietong.web.conf.StandardJsonResult;
 import com.tietong.web.util.ReadExcel;
 
@@ -27,6 +28,8 @@ import com.tietong.web.util.ReadExcel;
 public class RestController {
 	@Autowired
 	private TieTongMapper tieTongMapper;
+	@Autowired
+	private UploadTablesStatusMapper uploadTablesStatusMapper;
 	
 	//private Employee employee = new Employee();
 	
@@ -106,6 +109,16 @@ public class RestController {
 	public @ResponseBody StandardJsonResult employeeDel(@RequestParam(value = "employeeDelId") int id){
 		tieTongMapper.employeeDel(id);
 		return new StandardJsonResult("succ");
+	}
+	
+	/**
+	 * 取得当月上传表的状态
+	 * @return
+	 */
+	@RequestMapping(value="/upload/getUploadTablesStatus" , method=RequestMethod.GET)
+	public @ResponseBody StandardJsonResult getUploadTablesStatus(@RequestParam(value = "uploadMonth") String uploadMonth){
+		List<UploadTablesStatus> uploadTablesStatus = uploadTablesStatusMapper.getUploadTablesStatus(uploadMonth);
+		return new StandardJsonResult(uploadTablesStatus);
 	}
 
 }

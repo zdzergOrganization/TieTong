@@ -33,29 +33,24 @@
 							</tr>
 						</thead>
 						<tbody id="tables-rows">
-							<tr>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-							</tr>
+						
 						</tbody>
 					</table>
+					<script type="text/juicer" id="tmpl-tables">
+						{@each uploadTablesStatus as uploadTable,index}
+							<tr>
+								<td>!{Number(index)+1}</td>
+								<td>!{uploadTable.uploadMonth}</td>
+								<td>!{uploadTable.tablesDesc}</td>
+								{@if uploadTable.cnt>0}
+								<td style="color:green">已上传</td>
+								{@else}
+								<td style="color:red">未上传</td>
+								{@/if}
+								<td>ttt</td>
+							</tr>
+						{@/each}
+					</script>
 				</div>
 			</div>
 			<!-- /.panel-body -->

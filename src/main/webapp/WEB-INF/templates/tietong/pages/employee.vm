@@ -35,7 +35,8 @@
 									action="upload.do?url=/rest/employee/batchAddCommit"
 									method="post" enctype="multipart/form-data">
 									<input id="file-path" name="file" type="file" data-bfi-disabled>
-									<span style="float : right; margin-top : -6px; ">选中删除之前所有员工  <input type="checkbox" id="checkboxTrunc" name="truncateFlag" value="1"></span>
+									<a href="${s.ctx}download/人员基础信息.xlsx" style="text-decoration:underline;color:red;">上传模板下载</a>
+									<span style="float : right; margin-top : -6px; ">删除之前所有员工  <input type="checkbox" id="checkboxTrunc" name="truncateFlag" value="1"></span>
 									<!-- <input id="month-end" type="text" style="float: right;margin-top: -24px;width: 250px;" placeholder="输入计算月最终日 例如：2015-05-31"> -->
 								</form>
 							</div>

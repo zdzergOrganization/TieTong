@@ -9,58 +9,43 @@ define(function(require, exports, module) {
 	
 	// 申明需要访问到的URL
 	var urls = {
-		getAllEmployeeInfo : {
-			url : Biz.Constant.ctx + 'rest/upload/getAllEmployeeInfo',
-			method : 'GET'
-		},
-		uploadDel : {
-			url : Biz.Constant.ctx + 'rest/upload/uploadDel',
+		getUploadTablesStatus : {
+			url : Biz.Constant.ctx + 'rest/upload/getUploadTablesStatus',
 			method : 'GET'
 		},
 	};
 
 	function Model(upload) {
 		Object.defineProperties(this, {
-			"allEmployeeInfo" : {
+			"uploadTablesStatus" : {
 				set : function(value) {
-					this._allEmployeeInfo = value;
-					upload.ee.emitEvent('allEmployeeInfo_loaded');
+					this._uploadTablesStatus = value;
+					upload.ee.emitEvent('uploadTablesStatus_loaded');
 				},
 				get : function() {
-					return this._allEmployeeInfo;
-				},
-				enumerable : true,
-				configurable : false,
-			},
-			"uploadDelId" : {
-				set : function(value) {
-					this._uploadDelId = value;
-				},
-				get : function() {
-					return this._uploadDelId;
+					return this._uploadTablesStatus;
 				},
 				enumerable : true,
 				configurable : false,
 			},
 			
 		});
-		this.allEmployeeInfo = [];
-		this.uploadDelId = '';
+		this.uploadTablesStatus = [];
 		return this;
 	}
 
 	function Controller(upload) {
 		
-		Controller.prototype.getAllEmployeeInfo = function() {
+		Controller.prototype.getUploadTablesStatus = function(uploadMonth) {
 			
 			$.ajax({
-				method: urls.getAllEmployeeInfo.method,
-				url: urls.getAllEmployeeInfo.url,
-				data: {},
+				method: urls.getUploadTablesStatus.method,
+				url: urls.getUploadTablesStatus.url,
+				data: {uploadMonth : uploadMonth},
 				dataType: 'json',
 				success: function(data, status) {
 					Biz.Utils.handlAjaxResult(data).done(function(json) {
-						upload.model.allEmployeeInfo = json;
+						upload.model.uploadTablesStatus = json;
 					}).fail(function() {
 						
 					});
@@ -78,7 +63,7 @@ define(function(require, exports, module) {
 				dataType: 'json',
 				success: function(data, status) {
 					Biz.Utils.handlAjaxResult(data).done(function(json) {
-						upload.controller.getAllEmployeeInfo();
+						upload.controller.getUploadTablesStatus();
 					}).fail(function() {
 					});
 				}
@@ -95,13 +80,11 @@ define(function(require, exports, module) {
 			$('#tables-rows').html('<td colspan="9" align="center">' + html + '</td>');
 		};
 		
-		View.prototype.allEmployeeInfo_loaded = function() {
+		View.prototype.uploadTablesStatus_loaded = function() {
 			var tbody = $("#tables-rows");
 			tbody.html($(tmplTables.render({
-				uploads : upload.model.allEmployeeInfo
+				uploadTablesStatus : upload.model.uploadTablesStatus
 			})));
-
-	        $('#dataTables-example').dataTable();
 		};
 	}
 
@@ -113,15 +96,43 @@ define(function(require, exports, module) {
 		this.model = new Model(upload);
 		this.view = new View(upload);
 		this.controller = new Controller(upload);
-	}
-
-	upload.prototype.init = function() {
+		
+		upload.ee.addListeners('uploadTablesStatus_loaded',[ upload.view.uploadTablesStatus_loaded ]);
+		
 		// 初始化时间控件
 		$('.datepicker').datepicker({
 	        autoclose: true,
 	        minViewMode: 1,
 	        orientation: "top left"
-	    })
+	    });
+		
+		$('.datepicker')
+		.datepicker()
+		.on('changeDate', function(){
+			var datepicker_date = $('.datepicker').datepicker('getDate');
+			
+		    var y = datepicker_date.getFullYear();
+		    var m = datepicker_date.getMonth()+1;//获取当前月份的日期
+		    if(m<10){m='0'+m}
+		    var uploadMonth = y + '-' + m
+		    upload.controller.getUploadTablesStatus(uploadMonth);
+		});
+	
+	}
+
+	upload.prototype.init = function() {
+		//设置当前时间
+		$('.datepicker').datepicker('setDate',new Date());
+		
+		var datepicker_date = $('.datepicker').datepicker('getDate');
+	    var y = datepicker_date.getFullYear();
+	    var m = datepicker_date.getMonth()+1;//获取当前月份的日期
+	    if(m<10){m='0'+m}
+	    var uploadMonth = y + '-' + m
+		
+		//查询上传表状态
+		this.controller.getUploadTablesStatus(uploadMonth);
+		
 		return this;
 	};
 

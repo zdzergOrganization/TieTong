@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tietong.dao.UploadTablesStatusMapper"> 
+	<select id="getUploadTablesStatus" resultType="com.tietong.pojo.UploadTablesStatus">
+		select 
+			a.id,
+			#{uploadMonth} as uploadMonth,
+			a.tables_name as tablesName,
+			a.tables_desc as tablesDesc,
+			b.cnt
+			from upload_base_info a
+			left join
+			(
+				select 'bz' as table_name,DATE_FORMAT(upload_month,'%Y-%m') as upload_month,count(1) as cnt  from bz a group by DATE_FORMAT(upload_month,'%Y-%m')
+				union ALL
+				select 'y_gh_td' as table_name,DATE_FORMAT(upload_month,'%Y-%m') as upload_month,count(1) as cnt  from y_gh_td a group by DATE_FORMAT(upload_month,'%Y-%m')
+				union ALL
+				select 'ad_xz_xf' as table_name,DATE_FORMAT(upload_month,'%Y-%m') as upload_month,count(1) as cnt  from ad_xz_xf a group by DATE_FORMAT(upload_month,'%Y-%m')
+				union ALL
+				select 'zxln_zyyn' as table_name,DATE_FORMAT(upload_month,'%Y-%m') as upload_month,count(1) as cnt  from zxln_zyyn a group by DATE_FORMAT(upload_month,'%Y-%m')
+				union ALL
+				select 'gzxry_dywgdf' as table_name,DATE_FORMAT(upload_month,'%Y-%m') as upload_month,count(1) as cnt  from gzxry_dywgdf a group by DATE_FORMAT(upload_month,'%Y-%m')
+				union ALL
+				select 'jtkh_kh' as table_name,DATE_FORMAT(upload_month,'%Y-%m') as upload_month,count(1) as cnt  from jtkh_kh a group by DATE_FORMAT(upload_month,'%Y-%m')
+				union ALL
+				select 'jtkh_zb' as table_name,DATE_FORMAT(upload_month,'%Y-%m') as upload_month,count(1) as cnt  from jtkh_zb a group by DATE_FORMAT(upload_month,'%Y-%m')
+			) b
+			on a.tables_name = b.table_name
+			and b.upload_month = #{uploadMonth}
+			order by a.id
+	</select>
+	
+</mapper> 
