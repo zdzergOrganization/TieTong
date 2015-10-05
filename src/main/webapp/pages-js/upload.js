@@ -117,6 +117,17 @@ define(function(require, exports, module) {
 		    var uploadMonth = y + '-' + m
 		    upload.controller.getUploadTablesStatus(uploadMonth);
 		});
+		
+		//动态模态框 取得需要上传的表名和时间
+		$('#uploadBaseTablesModal').on('show.bs.modal', function (event) {
+			  var a = $(event.relatedTarget) 
+			  var uploadMonth =$($(a.parent('td')).parent('tr')).find('#idUploadMonth').text();
+			  var tablesName =$($(a.parent('td')).parent('tr')).find('#idTablesName').text();
+			  var tablesDesc =$($(a.parent('td')).parent('tr')).find('#idTablesDesc').text();
+			  var modal = $(this);
+			  modal.find('#myModalLabel').text('时间:' + uploadMonth + ', ' + tablesDesc + '表-上传');
+			  modal.find('#modules_download').attr('href','/TieTong/download/'+tablesDesc+'.xlsx');
+			})
 	
 	}
 
