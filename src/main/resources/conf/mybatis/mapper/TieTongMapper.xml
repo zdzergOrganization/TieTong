@@ -32,7 +32,7 @@
     		month_end_date as monthEndDate,
     		create_time as createTime
     	FROM employee_info a
-    	order by create_time desc
+    	order by id desc
 	</select>
     
     <delete id="truncate" >

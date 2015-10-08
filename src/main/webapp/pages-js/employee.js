@@ -71,10 +71,11 @@ define(function(require, exports, module) {
 		
 		Controller.prototype.employeeDel = function(employeeDelId) {
 			
-			$.ajax({
+			/*$.ajax({
 				method: urls.employeeDel.method,
 				url: urls.employeeDel.url,
 				data: {employeeDelId : employeeDelId},
+                async : false,
 				dataType: 'json',
 				success: function(data, status) {
 					Biz.Utils.handlAjaxResult(data).done(function(json) {
@@ -84,16 +85,29 @@ define(function(require, exports, module) {
 				}
 			});
 			
+			window.location.replace("http://www.baidu.com/");*/
+
+			$.ajax({
+				method: urls.employeeDel.method,
+				url: urls.employeeDel.url,
+				data: {employeeDelId : employeeDelId},
+                async : false,
+				dataType: 'json',
+				success: function(data, status) {
+					location.href="employee.html"
+				}
+			});
+			
 		};
 		
 	}
 
 	function View(employee) {
 		//查看所有职员信息
-		View.prototype.allEmployeeInfo_loading = function() {
+		/*View.prototype.allEmployeeInfo_loading = function() {
 			var html = '<i class="fa fa-spinner fa-spin" style="font-size: 2em; line-height:2em;"></i>';
 			$('#tables-rows').html('<td colspan="9" align="center">' + html + '</td>');
-		};
+		};*/
 		
 		View.prototype.allEmployeeInfo_loaded = function() {
 			var tbody = $("#tables-rows");
@@ -101,7 +115,25 @@ define(function(require, exports, module) {
 				employees : employee.model.allEmployeeInfo
 			})));
 
-	        //$('#dataTables-example').dataTable();
+	        $('#dataTables-example').dataTable({
+	            "sPaginationType" : "full_numbers",
+	            "oLanguage" : {
+	                "sLengthMenu": "每页显示 _MENU_ 条记录",
+	                "sZeroRecords": "抱歉， 没有找到",
+	                "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
+	                "sInfoEmpty": "没有数据",
+	                "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
+	                "sZeroRecords": "没有检索到数据",
+	                 "sSearch": "查找:",
+	                "oPaginate": {
+	                "sFirst": "首页",
+	                "sPrevious": "前一页",
+	                "sNext": "后一页",
+	                "sLast": "尾页"
+	                }
+	            },
+	            "aLengthMenu": [[-1, 10, 25, 50, 100], ["所有", 10, 30, 50, 100]],  
+	        });
 		};
 	}
 
@@ -114,12 +146,9 @@ define(function(require, exports, module) {
 		this.view = new View(employee);
 		this.controller = new Controller(employee);
 		
-		employee.ee.addListeners('allEmployeeInfo_loaded',[ employee.view.allEmployeeInfo_loading, employee.view.allEmployeeInfo_loaded ]);
+		employee.ee.addListeners('allEmployeeInfo_loaded',[ employee.view.allEmployeeInfo_loaded ]);
 				
 		$('#batch_add_commit').click(function(event) {
-			/*if($('#checkboxTrunc').is(':checked')){
-				var truncateFlag = 1;
-			}*/
 			$('#batch_add_form').submit();
 		});
 		
@@ -132,8 +161,6 @@ define(function(require, exports, module) {
 		})
 
 		$('#employeeDelModal').delegate('#employeeDelBtn','click',function(){
-		//$('#employeeDelBtn').click(function(event) {
-			//$('#employeeDelModal').modal('toggle');
 			employee.controller.employeeDel(employee.model.employeeDelId);
 		});
 	}

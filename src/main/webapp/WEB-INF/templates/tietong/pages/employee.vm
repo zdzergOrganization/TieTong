@@ -97,6 +97,7 @@
 						<thead>
 							<tr>
 								<th>ID</th>
+								<th hidden>人员姓名id</th>
 								<th>人员姓名</th>
 								<th>类型</th>
 								<th>片区</th>
@@ -163,7 +164,7 @@
 		require([ '${s.ctx}resources/js/biz-init.js' ], function() {
 			var employeeJs = '${s.ctx}pages-js/employee.js?version=2';
 			require([ "jquery", 'biz-utils', employeeJs, 'EventEmitter',
-					'juicer' ], function($, Biz, employeeJs) {
+					'juicer' , 'datatables'], function($, Biz, employeeJs) {
 				Biz.Utils.debug("dependencies loaded.");
 				$(document).ready(function() {
 					Biz.Utils.debug("document ready.");
@@ -172,4 +173,5 @@
 			});
 		});
 	}());
+	/* setTimeout("$('#dataTables-example').dataTable();",5000); */
 </script>
