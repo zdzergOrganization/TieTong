@@ -53,7 +53,7 @@
 				<!-- 单个用户添加 -->
 				<div class="modal fade" id="single_add" tabindex="-1" role="dialog"
 					aria-labelledby="myModalLabel">
-					<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-dialog modal-lg" style="width: 1300px;" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal"
@@ -65,15 +65,42 @@
 							<div class="modal-body">
 								<!-- Disable the styling -->
 								<form id="single_add_form"
-									action="${s.ctx}rest/employee/singleAddCommit"
-									method="post" enctype="multipart/form-data">
-									人员姓名 : <input id="employeeName" name="employeeName" type="text">
-									类型 : <input id="type" name="type" type="text">
-									片区 : <input id="regionPQ" name="regionPQ" type="text">
-									区 : <input id="regionQ" name="regionQ" type="text">
-									所属网格 : <input id="regionWG" name="regionWG" type="text">
-									到职日 : <input id="entryDate" name="entryDate" type="text">
-									职务暂停日 : <input id="quitDate" name="quitDate" type="text">
+									action="${s.ctx}rest/employee/singleAddCommit" method="post"
+									enctype="multipart/form-data">
+									<table class="table table-striped table-bordered table-hover">
+										<thead>
+											<tr>
+												<th>人员姓名</th>
+												<th>类型</th>
+												<th>片区</th>
+												<th>区</th>
+												<th>所属网格</th>
+												<th>到职日</th>
+												<th>职务暂停日</th>
+											</tr>
+										</thead>
+										<tbody>
+											<td><input id="employeeName" name="employeeName"
+												type="text"></td>
+											<td><input id="type" name="type" type="text"></td>
+											<td>
+										<input id="regionPQ" name="regionPQ" type="text">
+											</td>
+											<td>
+											<input id="regionQ" name="regionQ" type="text">
+											</td>
+											<td>
+											<input id="regionWG" name="regionWG" type="text">
+											</td>
+											<td>
+											<input id="entryDate" name="entryDate" type="text">
+											</td>
+											<td>
+											<input id="quitDate" name="quitDate" type="text">
+											</td>
+											</tbody>
+
+									</table>
 								</form>
 							</div>
 							<div class="modal-footer">
