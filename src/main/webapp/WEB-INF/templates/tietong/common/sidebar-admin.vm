@@ -25,6 +25,15 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                        <li #if($active_sidebar_id == "emplyee" or $active_sidebar_id == "upload") class="active" #end>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 配置模块<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li #if($active_sidebar_id == "emplyee") style="background-color:#eee;" #end>
+                                    <a href="${s.ctx}pages/index.html">test</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

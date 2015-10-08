@@ -75,11 +75,14 @@
 			</div>
 			<div class="modal-body">
 				<!-- Disable the styling -->
-				<form id="batch_add_form"
-					action="upload.do?url=/rest/employee/batchAddCommit"
+				<form id="upload_form"
+					action="upload.do?url=/rest/upload/batchAddCommit"
 					method="post" enctype="multipart/form-data">
 					<input id="file-path" name="file" type="file" data-bfi-disabled>
-					<a id="modules_download" href="${s.ctx}download/人员基础信息.xlsx" style="text-decoration:underline;color:red;">上传模板下载</a>
+					<a id="modules_download" href="" style="text-decoration:underline;color:red;">上传模板下载</a>
+					
+					<span hidden id="modalIdTablesName" name="tableName"></span>
+					<span hidden id="modalIduploadMonth" name="uploadMonth"></span>
 				</form>
 			</div>
 			<div class="modal-footer">

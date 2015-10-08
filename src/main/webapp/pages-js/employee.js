@@ -101,7 +101,7 @@ define(function(require, exports, module) {
 				employees : employee.model.allEmployeeInfo
 			})));
 
-	        $('#dataTables-example').dataTable();
+	        //$('#dataTables-example').dataTable();
 		};
 	}
 

@@ -16,8 +16,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class UploadFile {
 
 	@RequestMapping(value = "/upload.do")
-	public String upload(@RequestParam(value = "file", required = false) MultipartFile file, String url,String truncateFlag,
-			HttpServletRequest request, RedirectAttributes attr) {
+	public String upload(@RequestParam(value = "file", required = false) MultipartFile file, String url,
+			String truncateFlag, String uploadMonth, String tableName, HttpServletRequest request,
+			RedirectAttributes attr) {
 
 		String path = request.getSession().getServletContext().getRealPath("upload");
 		String fileName = file.getOriginalFilename();
@@ -49,6 +50,8 @@ public class UploadFile {
 		// 传入路径
 		attr.addFlashAttribute("filePath", targetFile.getAbsolutePath());
 		attr.addFlashAttribute("truncateFlag", truncateFlag);
+		attr.addFlashAttribute("uploadMonth", uploadMonth);
+		attr.addFlashAttribute("tableName", tableName);
 		return "redirect:" + url;
 	}
 

@@ -32,4 +32,12 @@
 			order by a.id
 	</select>
 	
+	<delete id="truncate" >
+        truncate #{tableName}
+    </delete>
+    
+    <delete id="delete" >
+        DELETE FROM #{tableName} where upload_month=#{uploadMonth}
+    </delete>
+	
 </mapper> 

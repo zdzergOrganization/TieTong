@@ -127,7 +127,15 @@ define(function(require, exports, module) {
 			  var modal = $(this);
 			  modal.find('#myModalLabel').text('时间:' + uploadMonth + ', ' + tablesDesc + '表-上传');
 			  modal.find('#modules_download').attr('href','/TieTong/download/'+tablesDesc+'.xlsx');
+
+			  modal.find('#modalIdTablesName').text(tablesName);
+			  modal.find('#modalIduploadMonth').text(uploadMonth);
 			})
+		
+		//上传基础表
+		$('#batch_add_commit').click(function(event) {
+			$('#upload_form').submit();
+		});
 	
 	}
 

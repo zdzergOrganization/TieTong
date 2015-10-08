@@ -119,6 +119,48 @@ public class RestController {
 	public @ResponseBody StandardJsonResult getUploadTablesStatus(@RequestParam(value = "uploadMonth") String uploadMonth){
 		List<UploadTablesStatus> uploadTablesStatus = uploadTablesStatusMapper.getUploadTablesStatus(uploadMonth);
 		return new StandardJsonResult(uploadTablesStatus);
+	}	
+	
+	/**
+	 * 上传基础数据
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/upload/batchAddCommit" , method=RequestMethod.GET)
+	public String baseBatchAddCommit(HttpServletRequest request){
+		Map<String,?> map = RequestContextUtils.getInputFlashMap(request);   
+		//读取文件路径
+		String filePath = (String) map.get("filePath");
+		String uploadMonth = (String) map.get("uploadMonth");
+		String tableName = (String) map.get("tableName");
+		//先删除数据
+		uploadTablesStatusMapper.delete(tableName, uploadMonth);;
+		
+		//读取批量导入的信息
+		ReadExcel readExcel = new ReadExcel();
+		Workbook wb  = readExcel.read(filePath);
+        Sheet sheet = wb.getSheetAt(0);     //获得第一个表单  
+
+    	Employee employee = new Employee();
+        //去掉表头，从第一行取数据
+        for(int i=1;i<=sheet.getLastRowNum();i++){
+        	//Employee employee = new Employee();
+            Row row = sheet.getRow(i);
+            String s = readExcel.getValue(row.getCell(0));
+            employee.setEmployeeName(s);
+            employee.setType(readExcel.getValue(row.getCell(1)));
+            employee.setRegionPQ(readExcel.getValue(row.getCell(2)));
+            employee.setRegionQ(readExcel.getValue(row.getCell(3)));
+            employee.setRegionWG(readExcel.getValue(row.getCell(4)));
+            employee.setEntryDate(readExcel.getValue(row.getCell(5)));
+            employee.setQuitDate(readExcel.getValue(row.getCell(6)));
+            
+            //插入数据库
+            tieTongMapper.insertEmployeeInfo(employee);
+        }
+        
+        return "redirect:/pages/employee.html";
+        
 	}
 
 }
