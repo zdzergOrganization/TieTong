@@ -37,7 +37,13 @@
     </delete>
     
     <delete id="delete" >
-        DELETE FROM #{tableName} where upload_month=#{uploadMonth}
+        DELETE FROM ${tableName} where upload_month=str_to_date(#{uploadMonth},'%Y-%m')
     </delete>
+    
+	<insert id="insertBZ" parameterType="com.tietong.pojo.BZ">
+	insert into bz(upload_month,a,b,c,d,e,f,g,h,i,j,k,l,create_time)
+	values
+	(str_to_date(#{upload_month},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},#{g},#{h},#{i},#{j},#{k},#{l},now())
+	</insert>
 	
 </mapper> 

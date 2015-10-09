@@ -54,12 +54,25 @@ public class ReadExcel {
  
  public String getValue(Cell cell) {
      if (cell.getCellType() == cell.CELL_TYPE_BOOLEAN) {
-         return String.valueOf(cell.getBooleanCellValue());
+         return subZeroAndDot(String.valueOf(cell.getBooleanCellValue()));
      } else if (cell.getCellType() == cell.CELL_TYPE_NUMERIC) {
-         return String.valueOf(cell.getNumericCellValue());
+         return subZeroAndDot(String.valueOf(cell.getNumericCellValue()));
      } else {
          return cell.getStringCellValue();
      }
  }
+ 
+ /** 
+  * 使用java正则表达式去掉多余的.与0 
+  * @param s 
+  * @return  
+  */  
+ public static String subZeroAndDot(String s){  
+     if(s.indexOf(".") > 0){  
+         s = s.replaceAll("0+?$", "");//去掉多余的0  
+         s = s.replaceAll("[.]$", "");//如最后一位是.则去掉  
+     }  
+     return s;  
+ }  
 	 
 }

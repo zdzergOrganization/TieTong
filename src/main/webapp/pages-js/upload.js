@@ -128,8 +128,9 @@ define(function(require, exports, module) {
 			  modal.find('#myModalLabel').text('时间:' + uploadMonth + ', ' + tablesDesc + '表-上传');
 			  modal.find('#modules_download').attr('href','/TieTong/download/'+tablesDesc+'.xlsx');
 
-			  modal.find('#modalIdTablesName').text(tablesName);
-			  modal.find('#modalIduploadMonth').text(uploadMonth);
+			  //modal.find('#modalIdTablesName').text(tablesName);
+			  modal.find('#modalIdTablesName').attr('value',tablesName);
+			  modal.find('#modalIduploadMonth').attr('value',uploadMonth);
 			})
 		
 		//上传基础表

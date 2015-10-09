@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.tietong.pojo.UploadTablesStatus;
+import com.tietong.pojo.BZ;
 
 public interface UploadTablesStatusMapper {
 	/**
@@ -18,5 +19,7 @@ public interface UploadTablesStatusMapper {
 	public void truncate(String tableName);
 	
 	public void delete(@Param(value="tableName")String tableName,@Param(value="uploadMonth")String uploadMonth);
+	
+	public void insertBZ(BZ bz);
 	
 }

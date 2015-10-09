@@ -44,7 +44,7 @@
 								<td hidden id="idTablesName">!{uploadTable.tablesName}</td>
 								<td id="idTablesDesc">!{uploadTable.tablesDesc}</td>
 								{@if uploadTable.cnt>0}
-								<td style="color:green">已上传</td>
+								<td style="color:green">已上传!{uploadTable.cnt}条记录</td>
 								{@else}
 								<td style="color:red">未上传</td>
 								{@/if}
@@ -76,13 +76,13 @@
 			<div class="modal-body">
 				<!-- Disable the styling -->
 				<form id="upload_form"
-					action="upload.do?url=/rest/upload/batchAddCommit"
+					action="upload.do?url=/base/upload/batchAddCommit"
 					method="post" enctype="multipart/form-data">
 					<input id="file-path" name="file" type="file" data-bfi-disabled>
 					<a id="modules_download" href="" style="text-decoration:underline;color:red;">上传模板下载</a>
 					
-					<span hidden id="modalIdTablesName" name="tableName"></span>
-					<span hidden id="modalIduploadMonth" name="uploadMonth"></span>
+					<input hidden id="modalIdTablesName" name="tableName">
+					<input hidden id="modalIduploadMonth" name="uploadMonth">
 				</form>
 			</div>
 			<div class="modal-footer">
