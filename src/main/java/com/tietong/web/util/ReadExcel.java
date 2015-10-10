@@ -6,6 +6,7 @@ import java.text.DecimalFormat;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -60,8 +61,20 @@ public class ReadExcel {
          return subZeroAndDot(String.valueOf(df.format(cell.getNumericCellValue())));
      } else if (cell.getCellType() == cell.CELL_TYPE_STRING) {
          return  cell.getStringCellValue();
-     }else if (cell.getCellType() == cell.CELL_TYPE_FORMULA) {
-         return  subZeroAndDot(String.valueOf(df.format(cell.getNumericCellValue())));
+     }else if (cell.getCellType() == cell.CELL_TYPE_FORMULA) {         
+         try{
+        	 return  subZeroAndDot(String.valueOf(df.format(cell.getNumericCellValue())));
+         }
+         catch(Exception e1){
+        	 try{
+        		 return  cell.getStringCellValue();
+        	 }
+        	 catch(Exception e2){
+        		 return null;
+        	 }
+        	 
+         }
+         //return  subZeroAndDot(String.valueOf(df.format(cell.getNumericCellValue())));
      }
      else {
     	 return null;

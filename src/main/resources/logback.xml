@@ -25,11 +25,11 @@
  
 	<logger name="logback" />
 	
-	<logger name="org.apache.ibatis" level="INFO" additivity="false">
+	<logger name="org.apache.ibatis" level="ERROR" additivity="false">
 		<appender-ref ref="STDOUT" />
 	</logger>
 
-	<root level="DEBUG">
+	<root level="ERROR">
 		<appender-ref ref="STDOUT" />
 		<appender-ref ref="FILE" />
 	</root>

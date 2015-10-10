@@ -75,9 +75,9 @@ define(function(require, exports, module) {
 
 	function View(upload) {
 		//查看所有职员信息
-		View.prototype.allEmployeeInfo_loading = function() {
+		View.prototype.uploadTablesStatus_loading = function() {
 			var html = '<i class="fa fa-spinner fa-spin" style="font-size: 2em; line-height:2em;"></i>';
-			$('#tables-rows').html('<td colspan="9" align="center">' + html + '</td>');
+			$('#tables-rows').html('<td colspan="5" align="center">' + html + '</td>');
 		};
 		
 		View.prototype.uploadTablesStatus_loaded = function() {
@@ -136,6 +136,7 @@ define(function(require, exports, module) {
 		//上传基础表
 		$('#batch_add_commit').click(function(event) {
 			$('#upload_form').submit();
+			upload.view.uploadTablesStatus_loading();
 		});
 	
 	}

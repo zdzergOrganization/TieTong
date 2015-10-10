@@ -288,19 +288,19 @@ public class BaseUploadController {
 			Row row = sheet.getRow(i);
 			if(row != null){
 				bz.setUpload_month(uploadMonth);
-				if(row.getCell(0) != null){bz.setA(readExcel.getValue(row.getCell(0)));  }
-				if(row.getCell(1) != null){bz.setB(readExcel.getValue(row.getCell(1)));  }
-				if(row.getCell(2) != null){bz.setC(readExcel.getValue(row.getCell(2)));  }
-				if(row.getCell(3) != null){bz.setD(readExcel.getValue(row.getCell(3)));  }
-				if(row.getCell(4) != null){bz.setE(readExcel.getValue(row.getCell(4)));  }
-				if(row.getCell(5) != null){bz.setF(readExcel.getValue(row.getCell(5)));  }
-				if(row.getCell(6) != null){bz.setG(readExcel.getValue(row.getCell(6)));  }
-				if(row.getCell(7) != null){bz.setH(readExcel.getValue(row.getCell(7)));  }
-				if(row.getCell(8) != null){bz.setI(readExcel.getValue(row.getCell(8)));  }
-				if(row.getCell(9) != null){bz.setJ(readExcel.getValue(row.getCell(9)));  }
-				if(row.getCell(10) != null){bz.setK(readExcel.getValue(row.getCell(10)));  }
-				if(row.getCell(11) != null){bz.setL(readExcel.getValue(row.getCell(11)));  }
-				if(row.getCell(12) != null){bz.setM(readExcel.getValue(row.getCell(12)));  }
+				if(row.getCell(0) != null){bz.setA(readExcel.getValue(row.getCell(0)));  }   else{bz.setA(null);}
+				if(row.getCell(1) != null){bz.setB(readExcel.getValue(row.getCell(1)));  }   else{bz.setB(null);}
+				if(row.getCell(2) != null){bz.setC(readExcel.getValue(row.getCell(2)));  }   else{bz.setC(null);}
+				if(row.getCell(3) != null){bz.setD(readExcel.getValue(row.getCell(3)));  }   else{bz.setD(null);}
+				if(row.getCell(4) != null){bz.setE(readExcel.getValue(row.getCell(4)));  }   else{bz.setE(null);}
+				if(row.getCell(5) != null){bz.setF(readExcel.getValue(row.getCell(5)));  }   else{bz.setF(null);}
+				if(row.getCell(6) != null){bz.setG(readExcel.getValue(row.getCell(6)));  }   else{bz.setG(null);}
+				if(row.getCell(7) != null){bz.setH(readExcel.getValue(row.getCell(7)));  }   else{bz.setH(null);}
+				if(row.getCell(8) != null){bz.setI(readExcel.getValue(row.getCell(8)));  }   else{bz.setI(null);}
+				if(row.getCell(9) != null){bz.setJ(readExcel.getValue(row.getCell(9)));  }   else{bz.setJ(null);}
+				if(row.getCell(10) != null){bz.setK(readExcel.getValue(row.getCell(10)));  } else{bz.setK(null);}
+				if(row.getCell(11) != null){bz.setL(readExcel.getValue(row.getCell(11)));  } else{bz.setL(null);}
+				if(row.getCell(12) != null){bz.setM(readExcel.getValue(row.getCell(12)));  } else{bz.setM(null);}
 			}
 			
 
@@ -312,8 +312,8 @@ public class BaseUploadController {
 	public void uploadJTKH_KH(ReadExcel readExcel,Sheet sheet,String uploadMonth) {
 
 		JTKH_KH bz = new JTKH_KH();
-		// 去掉表头，从第一行取数据
-		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+		// 去掉表头，从第3行取数据
+		for (int i = 2; i <= sheet.getLastRowNum(); i++) {
 			Row row = sheet.getRow(i);
 			if(row != null){
 				bz.setUpload_month(uploadMonth);
