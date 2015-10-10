@@ -75,7 +75,7 @@ public class BaseUploadController {
 		
 		
         
-        return "redirect:/pages/upload.html";
+        return "redirect:/pages/upload.html" + "?uploadMonth=" + uploadMonth;
         
 	}
 	

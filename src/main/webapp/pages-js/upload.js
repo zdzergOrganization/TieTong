@@ -142,8 +142,22 @@ define(function(require, exports, module) {
 	}
 
 	upload.prototype.init = function() {
-		//设置当前时间
-		$('.datepicker').datepicker('setDate',new Date());
+		//查看页面url是否有传值
+		var url = location.href;
+		if(url.lastIndexOf("?")!=-1){
+			var uploadMonth = url.substr(url.indexOf("uploadMonth=") + 12, 7);
+			uploadMonth = uploadMonth.replace(/-/g,"/");
+			uploadMonth = uploadMonth + '/01 00:00:00'
+			var date1 = new Date(uploadMonth);
+			//设置时间
+			$('.datepicker').datepicker('setDate',date1);
+		}
+		else{
+			//设置当前时间
+			$('.datepicker').datepicker('setDate',new Date());
+		}
+		
+		
 		
 		var datepicker_date = $('.datepicker').datepicker('getDate');
 	    var y = datepicker_date.getFullYear();
