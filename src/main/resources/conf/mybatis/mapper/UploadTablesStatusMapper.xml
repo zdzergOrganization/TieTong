@@ -45,5 +45,42 @@
 	values
 	(str_to_date(#{upload_month},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},#{g},#{h},#{i},#{j},#{k},#{l},now())
 	</insert>
+    
+	<insert id="insertY_GH_TD" parameterType="com.tietong.pojo.Y_GH_TD">
+	insert into y_gh_td(upload_month,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,ab,ac,ad,ae,af,ag,ah,ai,aj,ak,al,am,an,ao,ap,aq,ar,xas,xat,au,av,aw,ax,ay,az,ba,bb,bc,create_time)
+	values
+	(str_to_date(#{upload_month},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},#{g},#{h},#{i},#{j},#{k},#{l},#{m},#{n},#{o},#{p},#{q},#{r},#{s},#{t},#{u},#{v},#{w},#{x},#{y},#{z},#{aa},#{ab},#{ac},#{ad},#{ae},#{af},#{ag},#{ah},#{ai},#{aj},#{ak},#{al},#{am},#{an},#{ao},#{ap},#{aq},#{ar},#{as},#{at},#{au},#{av},#{aw},#{ax},#{ay},#{az},#{ba},#{bb},#{bc},now())
+	</insert>
+    
+	<insert id="insertAD_XZ_XF" parameterType="com.tietong.pojo.AD_XZ_XF">
+	insert into AD_XZ_XF(upload_month,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,ab,ac,ad,ae,af,ag,ah,ai,aj,ak,al,am,an,ao,ap,aq,ar,xas,xat,au,create_time)
+	values
+	(str_to_date(#{upload_month},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},#{g},#{h},#{i},#{j},#{k},#{l},#{m},#{n},#{o},#{p},#{q},#{r},#{s},#{t},#{u},#{v},#{w},#{x},#{y},#{z},#{aa},#{ab},#{ac},#{ad},#{ae},#{af},#{ag},#{ah},#{ai},#{aj},#{ak},#{al},#{am},#{an},#{ao},#{ap},#{aq},#{ar},#{as},#{at},#{au},now())
+	</insert>
+    
+	<insert id="insertZXLN_ZYYN" parameterType="com.tietong.pojo.ZXLN_ZYYN">
+	insert into ZXLN_ZYYN(upload_month,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,create_time)
+	values
+	(str_to_date(#{upload_month},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},#{g},#{h},#{i},#{j},#{k},#{l},#{m},#{n},#{o},#{p},#{q},#{r},#{s},#{t},#{u},#{v},#{w},now())
+	</insert>
+    
+	<insert id="insertGZXRY_DYWGDF" parameterType="com.tietong.pojo.GZXRY_DYWGDF">
+	insert into GZXRY_DYWGDF(upload_month,a,b,c,d,e,f,g,h,i,j,k,l,m,create_time)
+	values
+	(str_to_date(#{upload_month},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},#{g},#{h},#{i},#{j},#{k},#{l},#{m},now())
+	</insert>
+    
+	<insert id="insertJTKH_KH" parameterType="com.tietong.pojo.JTKH_KH">
+	insert into JTKH_KH(upload_month,a,b,c,d,e,f,g,h,i,create_time)
+	values
+	(str_to_date(#{upload_month},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},#{g},#{h},#{i},now())
+	</insert>
+    
+	<insert id="insertJTKH_ZB" parameterType="com.tietong.pojo.JTKH_ZB">
+	insert into JTKH_ZB(upload_month,a,b,c,d,e,f,create_time)
+	values
+	(str_to_date(#{upload_month},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},now())
+	</insert>
+	
 	
 </mapper> 

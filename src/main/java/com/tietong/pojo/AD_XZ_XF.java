@@ -9,7 +9,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-public class ad_xz_xf {
+public class AD_XZ_XF {
 	private int id;
 	private String upload_month;
 	private String a;
@@ -55,5 +55,9 @@ public class ad_xz_xf {
 	private String ao;
 	private String ap;
 	private String aq;
+	private String ar;
+	private String as;
+	private String at;
+	private String au;
 	private String createTime;
 }

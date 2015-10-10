@@ -2,12 +2,11 @@ package com.tietong.web.util;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DecimalFormat;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ReadExcel {
@@ -51,14 +50,21 @@ public class ReadExcel {
          return String.valueOf(hssfCell.getStringCellValue());
      }
  }*/
+	 
+	 DecimalFormat df = new DecimalFormat("0");  
  
  public String getValue(Cell cell) {
      if (cell.getCellType() == cell.CELL_TYPE_BOOLEAN) {
          return subZeroAndDot(String.valueOf(cell.getBooleanCellValue()));
      } else if (cell.getCellType() == cell.CELL_TYPE_NUMERIC) {
-         return subZeroAndDot(String.valueOf(cell.getNumericCellValue()));
-     } else {
-         return cell.getStringCellValue();
+         return subZeroAndDot(String.valueOf(df.format(cell.getNumericCellValue())));
+     } else if (cell.getCellType() == cell.CELL_TYPE_STRING) {
+         return  cell.getStringCellValue();
+     }else if (cell.getCellType() == cell.CELL_TYPE_FORMULA) {
+         return  subZeroAndDot(String.valueOf(df.format(cell.getNumericCellValue())));
+     }
+     else {
+    	 return null;
      }
  }
  
