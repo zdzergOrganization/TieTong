@@ -1,0 +1,88 @@
+#set($layout="common/layout-page-admin.vm")
+#set($header="common/header-admin.vm")
+#set($active_sidebar_id="employee_type")
+#set($sidebar="common/sidebar-admin.vm")
+<!-- <h1 class="page-header">人员信息</h1>
+ -->
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+
+			<div class="panel-heading">
+				员工入职时长
+			</div>
+
+			<!-- /.panel-heading -->
+			<div class="panel-body">
+				<div class="table-responsive">
+					<!-- <table class="table table-striped table-bordered table-hover" id="dataTables-example"> -->
+					<table class="table table-striped table-bordered table-hover"
+						id="dataTables-example">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th hidden>人员姓名id</th>
+								<th>考核月份</th>
+								<th>人员姓名</th>
+								<th>类型</th>
+								<th>片区</th>
+								<th>区</th>
+								<th>所属网格</th>
+								<th>到职日</th>
+								<th>职务暂停日</th>
+								<th>入职时长类型</th>
+							</tr>
+						</thead>
+						<tbody id="tables-rows">
+
+						</tbody>
+					</table>
+					<script type="text/juicer" id="tmpl-tables">
+				{@each employees as employee,index}
+					<tr class="odd gradeX">
+						<td>!{Number(index)+1}</td>
+						<td hidden id="employee_id">!{employee.id}</td>
+						<td>!{employee.kpiDate}</td>
+						<td>!{employee.employeeName}</td>
+						<td>!{employee.type}</td>
+						<td>!{employee.regionPQ}</td>
+						<td>!{employee.regionQ}</td>
+						<td>!{employee.regionWG}</td>
+						<td>!{employee.entryDate}</td>
+						<td>!{employee.quitDate}</td>
+						<td>!{employee.employeeType}</td>
+					</tr>
+				{@/each}
+			</script><!-- 
+			<div style="margin-top : 40px;border-top: 1px dashed #CACACA;" >
+			<button type="button" class="btn btn-primary btn-lg" style="margin-left : 600px;margin-top : 20px;">下一步</button>
+			</div> -->
+				</div>
+			</div>
+			<!-- /.panel-body -->
+		</div>
+		<!-- /.panel -->
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+
+			<div  >
+			<button type="button" class="btn btn-primary btn-lg" style="margin-left : 600px;margin-top : 10px;">下一步</button>
+			</div>
+<script>
+	(function() {
+		require([ '${s.ctx}resources/js/biz-init.js' ], function() {
+			var employeeTypeJs = '${s.ctx}pages-js/employeeType.js?version=2';
+			require([ "jquery", 'biz-utils', employeeTypeJs, 'EventEmitter',
+					'juicer' , 'datatables'], function($, Biz, employeeTypeJs) {
+				Biz.Utils.debug("dependencies loaded.");
+				$(document).ready(function() {
+					Biz.Utils.debug("document ready.");
+					new employeeTypeJs().init();
+				});
+			});
+		});
+	}());
+	/* setTimeout("$('#dataTables-example').dataTable();",5000); */
+</script>

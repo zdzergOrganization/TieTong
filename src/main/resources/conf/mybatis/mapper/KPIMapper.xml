@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tietong.dao.KPIMapper"> 
+	
+	<insert id="insertEmployeeInfoType">
+	<![CDATA[
+	insert into employee_info_month
+	(kpi_date,employee_name,type,region_pq,region_q,region_wg,entry_date,quit_date,employee_type,create_time)
+	select 
+	str_to_date(#{KPIMonth},'%Y-%m'),employee_name,type,region_pq,region_q,region_wg,entry_date,quit_date,
+	case 
+	when to_days(last_day(concat(#{KPIMonth},'-01'))) - to_days(entry_date) < 0 
+	then '0'
+	when 
+	YEAR(last_day(concat(#{KPIMonth},'-01'))) = YEAR(entry_date) and MONTH(last_day(concat(#{KPIMonth},'-01'))) = MONTH(entry_date) 
+	and DAYOFMONTH(entry_date) > 15 
+	then 'E'
+	when 
+	YEAR(last_day(concat(#{KPIMonth},'-01'))) = YEAR(entry_date) and MONTH(last_day(concat(#{KPIMonth},'-01'))) = MONTH(entry_date) 
+	and DAYOFMONTH(entry_date) >= 11 and DAYOFMONTH(entry_date) <= 15
+	then 'H'
+	when 
+	YEAR(last_day(concat(#{KPIMonth},'-01'))) = YEAR(entry_date) and MONTH(last_day(concat(#{KPIMonth},'-01'))) = MONTH(entry_date) 
+	and DAYOFMONTH(entry_date) >= 6 and DAYOFMONTH(entry_date) <= 10
+	then 'T'
+	when 
+	YEAR(last_day(concat(#{KPIMonth},'-01'))) = YEAR(entry_date) and MONTH(last_day(concat(#{KPIMonth},'-01'))) = MONTH(entry_date) 
+	and DAYOFMONTH(entry_date) >= 1 and DAYOFMONTH(entry_date) <= 5
+	then '1'
+	when 
+	(YEAR(last_day(concat(#{KPIMonth},'-01'))) != YEAR(entry_date) or MONTH(last_day(concat(#{KPIMonth},'-01'))) != MONTH(entry_date)) and
+	TIMESTAMPDIFF(MONTH,concat(DATE_FORMAT(entry_date,'%Y-%m'),'-01'),concat(#{KPIMonth},'-01')) >= 3
+	then '4'
+	when 
+	(YEAR(last_day(concat(#{KPIMonth},'-01'))) != YEAR(entry_date) or MONTH(last_day(concat(#{KPIMonth},'-01'))) != MONTH(entry_date)) and
+	TIMESTAMPDIFF(MONTH,concat(DATE_FORMAT(entry_date,'%Y-%m'),'-01'),concat(#{KPIMonth},'-01')) >= 2
+	then '3'
+	when 
+	(YEAR(last_day(concat(#{KPIMonth},'-01'))) != YEAR(entry_date) or MONTH(last_day(concat(#{KPIMonth},'-01'))) != MONTH(entry_date)) and
+	TIMESTAMPDIFF(MONTH,concat(DATE_FORMAT(entry_date,'%Y-%m'),'-01'),concat(#{KPIMonth},'-01')) >= 1
+	then '2'
+	end as employee_type,
+	now()
+	from employee_info;
+	]]>
+	</insert>
+	
+	<select id="getEmployeeInfoType" resultType="com.tietong.pojo.EmployeeType">
+		SELECT
+    		id,
+    		DATE_FORMAT(kpi_date,'%Y-%m') as kpiDate,
+    		employee_name as employeeName,
+    		type,
+    		region_pq as regionPQ,
+    		region_q as regionQ,
+    		region_wg as regionWG,
+    		entry_date as entryDate,
+    		quit_date as quitDate,
+    		employee_type as employeeType,
+    		create_time as createTime
+    	FROM employee_info_month a
+    	where DATE_FORMAT(kpi_date,'%Y-%m') = #{KPIMonth}
+    	order by id desc
+	</select>
+    
+    <delete id="deleteMonthEmployee" >
+        DELETE FROM employee_info_month where DATE_FORMAT(kpi_date,'%Y-%m') = #{KPIMonth}
+    </delete>
+	
+	
+</mapper> 

@@ -25,11 +25,14 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-                        <li #if($active_sidebar_id == "emplyee" or $active_sidebar_id == "upload") class="active" #end>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 配置模块<span class="fa arrow"></span></a>
+                        <li #if($active_sidebar_id == "dateset" or $active_sidebar_id == "employee_type") class="active" #end>
+                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> 工资计算<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li #if($active_sidebar_id == "emplyee") style="background-color:#eee;" #end>
-                                    <a href="${s.ctx}pages/index.html">test</a>
+                                <li #if($active_sidebar_id == "dateset") style="background-color:#eee;" #end>
+                                    <a href="${s.ctx}pages/dateset.html">考核日期</a>
+                                </li>
+                                <li #if($active_sidebar_id == "employee_type") style="background-color:#eee;" #end>
+                                    <a href="${s.ctx}pages/employee_type.html">员工当月入职时长</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
