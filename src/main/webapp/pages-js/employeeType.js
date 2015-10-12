@@ -13,10 +13,6 @@ define(function(require, exports, module) {
 			url : Biz.Constant.ctx + 'kpi/employee/getAllEmployeeInfoType',
 			method : 'GET'
 		},
-		employeeDel : {
-			url : Biz.Constant.ctx + 'rest/employee/employeeDel',
-			method : 'GET'
-		},
 	};
 
 	function Model(employee) {
@@ -32,20 +28,8 @@ define(function(require, exports, module) {
 				enumerable : true,
 				configurable : false,
 			},
-			"employeeDelId" : {
-				set : function(value) {
-					this._employeeDelId = value;
-				},
-				get : function() {
-					return this._employeeDelId;
-				},
-				enumerable : true,
-				configurable : false,
-			},
-			
 		});
 		this.allEmployeeInfo = [];
-		this.employeeDelId = '';
 		return this;
 	}
 
@@ -69,45 +53,9 @@ define(function(require, exports, module) {
 			
 		};
 		
-		Controller.prototype.employeeDel = function(employeeDelId) {
-			
-			/*$.ajax({
-				method: urls.employeeDel.method,
-				url: urls.employeeDel.url,
-				data: {employeeDelId : employeeDelId},
-                async : false,
-				dataType: 'json',
-				success: function(data, status) {
-					Biz.Utils.handlAjaxResult(data).done(function(json) {
-						employee.controller.getAllEmployeeInfo();
-					}).fail(function() {
-					});
-				}
-			});
-			
-			window.location.replace("http://www.baidu.com/");*/
-
-			$.ajax({
-				method: urls.employeeDel.method,
-				url: urls.employeeDel.url,
-				data: {employeeDelId : employeeDelId},
-                async : false,
-				dataType: 'json',
-				success: function(data, status) {
-					location.href="employee.html"
-				}
-			});
-			
-		};
-		
 	}
 
 	function View(employee) {
-		//查看所有职员信息
-		/*View.prototype.allEmployeeInfo_loading = function() {
-			var html = '<i class="fa fa-spinner fa-spin" style="font-size: 2em; line-height:2em;"></i>';
-			$('#tables-rows').html('<td colspan="9" align="center">' + html + '</td>');
-		};*/
 		
 		View.prototype.allEmployeeInfo_loaded = function() {
 			var tbody = $("#tables-rows");
@@ -132,7 +80,7 @@ define(function(require, exports, module) {
 	                "sLast": "尾页"
 	                }
 	            },
-	            "aLengthMenu": [[-1, 10, 25, 50, 100], ["所有", 10, 30, 50, 100]],  
+	            "aLengthMenu": [[10, 25, 50, 100, -1], [10, 30, 50, 100, "所有"]],  
 	        });
 		};
 	}
@@ -147,21 +95,20 @@ define(function(require, exports, module) {
 		this.controller = new Controller(employee);
 		
 		employee.ee.addListeners('allEmployeeInfo_loaded',[ employee.view.allEmployeeInfo_loaded ]);
-				
-		$('#batch_add_commit').click(function(event) {
-			$('#batch_add_form').submit();
-		});
 		
-		$('#single_add_commit').click(function(event) {
-			$('#single_add_form').submit();
-		});
-		
-		$('#tables-rows').delegate('.employeeDel','click',function(){
-			employee.model.employeeDelId=$($($(this).parent('td')).parent('tr')).find('#employee_id').text();
-		})
-
-		$('#employeeDelModal').delegate('#employeeDelBtn','click',function(){
-			employee.controller.employeeDel(employee.model.employeeDelId);
+		//查看页面url是否有传值
+		var url = location.href;
+		var KPIMonth;
+		if(url.lastIndexOf("?")!=-1){
+			KPIMonth = url.substr(url.indexOf("KPIMonth=") + 9, 7);
+		}
+		else{
+			KPIMonth = url.substr(url.indexOf("KPIMonth=") + 9, 7);
+		}
+		$('#kpi_dx_btn').click(function(event) {
+			//$('#batch_add_form').submit();
+			window.location= 'kpi/kpi_dx?KPIMonth=' + KPIMonth
+				//'kpi_dx.html?KPIMonth=' + KPIMonth
 		});
 	}
 

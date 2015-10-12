@@ -82,5 +82,29 @@
 	(str_to_date(#{upload_month},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},now())
 	</insert>
 	
+	<select id="getBZ" resultType="com.tietong.pojo.BZ">
+		select id,upload_month,a,b,c,d,e,f,g,h,i,j,k,l,create_time as createTime
+		from bz
+		where 
+		DATE_FORMAT(upload_month,'%Y-%m') = #{uploadMonth}
+		and b = #{employeeType}
+	</select>
+	
+	<select id="getY_GH_TD" resultType="com.tietong.pojo.Y_GH_TD">
+		select id,upload_month,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,ab,ac,ad,ae,af,ag,ah,ai,aj,ak,al,am,an,ao,ap,aq,ar,xas,xat,au,av,aw,ax,ay,az,ba,bb,bc,create_time as createTime
+		from Y_GH_TD
+		where 
+		DATE_FORMAT(upload_month,'%Y-%m') = #{uploadMonth}
+		and xat = #{employeeName}
+	</select>
+	
+	<select id="getAD_XZ_XF" resultType="com.tietong.pojo.AD_XZ_XF">
+		select id,upload_month,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,ab,ac,ad,ae,af,ag,ah,ai,aj,ak,al,am,an,ao,ap,aq,ar,xas,xat,au,create_time as createTime
+		from AD_XZ_XF
+		where 
+		DATE_FORMAT(upload_month,'%Y-%m') = #{uploadMonth}
+		and u = #{employeeName}
+	</select>
+	
 	
 </mapper> 

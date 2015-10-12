@@ -1,6 +1,6 @@
 #set($layout="common/layout-page-admin.vm")
 #set($header="common/header-admin.vm")
-#set($active_sidebar_id="employee_type")
+#set($active_sidebar_id="kpi_dx")
 #set($sidebar="common/sidebar-admin.vm")
 <!-- <h1 class="page-header">人员信息</h1>
  -->
@@ -26,12 +26,16 @@
 								<th>考核月份</th>
 								<th>人员姓名</th>
 								<th>类型</th>
-								<th>片区</th>
-								<th>区</th>
-								<th>所属网格</th>
 								<th>到职日</th>
 								<th>职务暂停日</th>
 								<th>入职时长类型</th>
+								<th>标准底薪</th>
+								<th>住房补贴</th>
+								<th>通信费补贴</th>
+								<th>交通补贴</th>
+								<th>固话奖励考核</th>
+								<th>ADSL奖励考核</th>
+								<th>实发底薪</th>
 							</tr>
 						</thead>
 						<tbody id="tables-rows">
@@ -68,7 +72,7 @@
 </div>
 
 			<div  >
-			<button type="button" id="kpi_dx_btn" class="btn btn-primary btn-lg" style="margin-left : 600px;margin-top : 10px;">下一步->底薪计算</button>
+			<button type="button" class="btn btn-primary btn-lg" style="margin-left : 600px;margin-top : 10px;">下一步->提成计算</button>
 			</div>
 <script>
 	(function() {

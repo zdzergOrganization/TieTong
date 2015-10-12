@@ -32,7 +32,7 @@
 	when 
 	(YEAR(last_day(concat(#{KPIMonth},'-01'))) != YEAR(entry_date) or MONTH(last_day(concat(#{KPIMonth},'-01'))) != MONTH(entry_date)) and
 	TIMESTAMPDIFF(MONTH,concat(DATE_FORMAT(entry_date,'%Y-%m'),'-01'),concat(#{KPIMonth},'-01')) >= 3
-	then '4'
+	then 'Y'
 	when 
 	(YEAR(last_day(concat(#{KPIMonth},'-01'))) != YEAR(entry_date) or MONTH(last_day(concat(#{KPIMonth},'-01'))) != MONTH(entry_date)) and
 	TIMESTAMPDIFF(MONTH,concat(DATE_FORMAT(entry_date,'%Y-%m'),'-01'),concat(#{KPIMonth},'-01')) >= 2
@@ -46,6 +46,18 @@
 	from employee_info;
 	]]>
 	</insert>
+	
+	<insert id="insertKPI_DX" parameterType="com.tietong.pojo.KPI_DX">
+	insert into kpi_dx(kpi_date,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,ab,ac,create_time)
+	values
+	(str_to_date(#{kpi_date},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},#{g},#{h},#{i},#{j},#{k},#{l},#{m},#{n},#{o},#{p},#{q},#{r},#{s},#{t},#{u},#{v},#{w},#{x},#{y},#{z},#{aa},#{ab},#{ac},now())
+	</insert>
+	
+	<select id="getKPI_DX" resultType="com.tietong.pojo.KPI_DX">
+	select kpi_date,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,ab,ac,create_time
+	from kpi_dx
+	where DATE_FORMAT(kpi_date,'%Y-%m') = #{KPIMonth}
+	</select>
 	
 	<select id="getEmployeeInfoType" resultType="com.tietong.pojo.EmployeeType">
 		SELECT

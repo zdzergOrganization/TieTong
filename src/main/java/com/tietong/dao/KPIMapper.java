@@ -3,6 +3,7 @@ package com.tietong.dao;
 import java.util.List;
 
 import com.tietong.pojo.EmployeeType;
+import com.tietong.pojo.KPI_DX;
 
 public interface KPIMapper {
 
@@ -25,6 +26,15 @@ public interface KPIMapper {
 	 * @return 
 	 */
 	public List<EmployeeType> getEmployeeInfoType(String KPIMonth);
+	
+
+	public List<KPI_DX> getKPI_DX(String KPIMonth);
+	
+	/**
+	 * 插入员工底薪
+	 * @param KPIMonth
+	 */
+	public void insertKPI_DX(KPI_DX kpi_dx);
 	
 	
 	

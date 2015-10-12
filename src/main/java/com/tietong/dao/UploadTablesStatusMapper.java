@@ -40,7 +40,11 @@ public interface UploadTablesStatusMapper {
 	
 	public void insertJTKH_ZB(JTKH_ZB bz);
 	
+	//查询
+	public BZ getBZ(@Param(value="uploadMonth")String uploadMonth,@Param(value="employeeType")String employeeType);
 	
+	public List<Y_GH_TD> getY_GH_TD(@Param(value="uploadMonth")String uploadMonth,@Param(value="employeeName")String employeeName);
+	public List<AD_XZ_XF> getAD_XZ_XF(@Param(value="uploadMonth")String uploadMonth,@Param(value="employeeName")String employeeName);
 	
 	
 	
