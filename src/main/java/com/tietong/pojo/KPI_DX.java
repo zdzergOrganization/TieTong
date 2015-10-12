@@ -11,7 +11,7 @@ import lombok.ToString;
 @NoArgsConstructor
 public class KPI_DX {
 	private int id;
-	private String kpi_date;
+	private String kpiDate;
 	private String a;
 	private String b;
 	private String c;
@@ -41,5 +41,5 @@ public class KPI_DX {
 	private String aa;
 	private String ab;
 	private String ac;
-	private String create_time;
+	private String createTime;
 }

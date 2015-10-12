@@ -1,12 +1,15 @@
 package com.tietong.web.util;
 
-public class IntNullToString {
+public class StringNullToInt {
 	public static int trans(String s){
 		if(s == null){
 			return 0;
 		}
 		else{
-			return Integer.parseInt(s);
+			try{return Integer.parseInt(s);}
+			catch(Exception e){
+				return 0;
+			}
 		}
 		
 	}

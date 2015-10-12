@@ -54,7 +54,7 @@
 	</insert>
 	
 	<select id="getKPI_DX" resultType="com.tietong.pojo.KPI_DX">
-	select kpi_date,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,ab,ac,create_time
+	select DATE_FORMAT(kpi_date,'%Y-%m') as kpiDate,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,ab,ac,create_time as createTime
 	from kpi_dx
 	where DATE_FORMAT(kpi_date,'%Y-%m') = #{KPIMonth}
 	</select>

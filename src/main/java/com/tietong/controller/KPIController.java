@@ -16,7 +16,7 @@ import com.tietong.pojo.EmployeeType;
 import com.tietong.pojo.KPI_DX;
 import com.tietong.pojo.Y_GH_TD;
 import com.tietong.web.conf.StandardJsonResult;
-import com.tietong.web.util.IntNullToString;
+import com.tietong.web.util.StringNullToInt;
 
 @Controller
 //@RequestMapping("/kpi")
@@ -44,6 +44,14 @@ public class KPIController {
 		return new StandardJsonResult(employees);
 	}
 	
+	@RequestMapping(value="/kpi/getDX")
+	public @ResponseBody StandardJsonResult getDX(String KPIMonth){
+		//查询当月人员类型
+		List<KPI_DX> kpi_dxs = kpiMapper.getKPI_DX(KPIMonth);
+	    
+		return new StandardJsonResult(kpi_dxs);
+	}
+	
 	@RequestMapping(value="/pages/kpi/kpi_dx" , method=RequestMethod.GET)
 	public String kpi_dx(String KPIMonth){
 		//查询当月人员类型
@@ -60,7 +68,7 @@ public class KPIController {
 			//插入底薪
 			
 			//人员基本属性
-			kpi_dx.setKpi_date(KPIMonth);
+			kpi_dx.setKpiDate(KPIMonth);
 			kpi_dx.setD(employeeName);
 			kpi_dx.setE(employee.getType());
 			kpi_dx.setF(employee.getEntryDate());
@@ -81,7 +89,7 @@ public class KPIController {
 			int gh_wc_rw = 0;//固话完成任务-暂时为线数
 			for(Y_GH_TD y_gh_td : y_gh_tds){
 				if(y_gh_td.getAu() != null)
-				{gh_wc_rw = gh_wc_rw + IntNullToString.trans(y_gh_td.getAu());}
+				{gh_wc_rw = gh_wc_rw + StringNullToInt.trans(y_gh_td.getAu());}
 			}
 			
 			//1.2集团客户
@@ -93,10 +101,10 @@ public class KPIController {
 			//固话总任务
 			int gh_zrw = 0;
 			if(kpi_dx.getJ() == null){
-				gh_zrw = IntNullToString.trans(bz.getG());
+				gh_zrw = StringNullToInt.trans(bz.getG());
 			}
 			else{
-				gh_zrw = IntNullToString.trans(bz.getG()) * IntNullToString.trans(kpi_dx.getJ());
+				gh_zrw = StringNullToInt.trans(bz.getG()) * StringNullToInt.trans(kpi_dx.getJ());
 			}
 			
 			int gh_xkh_xs = dy_gh_zj - gh_zrw;//固话需考核线数
@@ -118,12 +126,12 @@ public class KPIController {
 			
 			//2.ADSL奖励考核
 			//2.1 AD新装任务(线数)
-			int ads_rws = IntNullToString.trans(bz.getK());
+			int ads_rws = StringNullToInt.trans(bz.getK());
 			//2.2 AD装机
 			List<AD_XZ_XF> ad_xz_xfs = uploadTablesStatusMapper.getAD_XZ_XF(KPIMonth,employeeName);
 			int ad_zj = 0;//AD装机
 			for(AD_XZ_XF ad_xz_xf : ad_xz_xfs){
-				ad_zj = ad_zj + IntNullToString.trans(ad_xz_xf.getX());
+				ad_zj = ad_zj + StringNullToInt.trans(ad_xz_xf.getX());
 			}
 			//2.3汇总
 			int adsl_kh_jl = 0;
@@ -156,13 +164,13 @@ public class KPIController {
 			int sf_dx = 0;
 			//4.1计算是否全部扣除，宽带是否少于9线
 			if(employeeType.equals('Y') && ad_zj < 9){
-				sf_dx = IntNullToString.trans(bz.getD());
+				sf_dx = StringNullToInt.trans(bz.getD());
 			}
-			else if((IntNullToString.trans(bz.getC()) + IntNullToString.trans(bz.getE()) + IntNullToString.trans(bz.getF()) + kh_hz) < 0){
-				sf_dx = IntNullToString.trans(bz.getD());
+			else if((StringNullToInt.trans(bz.getC()) + StringNullToInt.trans(bz.getE()) + StringNullToInt.trans(bz.getF()) + kh_hz) < 0){
+				sf_dx = StringNullToInt.trans(bz.getD());
 			}
 			else{
-				sf_dx = (IntNullToString.trans(bz.getC()) + IntNullToString.trans(bz.getE()) + IntNullToString.trans(bz.getF()) + kh_hz);
+				sf_dx = (StringNullToInt.trans(bz.getC()) + StringNullToInt.trans(bz.getE()) + StringNullToInt.trans(bz.getF()) + kh_hz);
 			}
 			
 			//4.2 插入实发底薪
