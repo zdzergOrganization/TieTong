@@ -86,7 +86,7 @@ public class BaseUploadController {
 		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
 			Row row = sheet.getRow(i);
 			if(row != null){
-				bz.setUpload_month(uploadMonth);
+				bz.setUploadMonth(uploadMonth);
 				if(row.getCell(0) != null){bz.setA(readExcel.getValue(row.getCell(0)));  }
 				if(row.getCell(1) != null){bz.setB(readExcel.getValue(row.getCell(1)));  }
 				if(row.getCell(2) != null){bz.setC(readExcel.getValue(row.getCell(2)));  }
@@ -114,7 +114,7 @@ public class BaseUploadController {
 		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
 			Row row = sheet.getRow(i);
 			if(row != null){
-				bz.setUpload_month(uploadMonth);
+				bz.setUploadMonth(uploadMonth);
 				if(row.getCell(0) != null){bz.setA(readExcel.getValue(row.getCell(0)));  }
 				if(row.getCell(1) != null){bz.setB(readExcel.getValue(row.getCell(1)));  }
 				if(row.getCell(2) != null){bz.setC(readExcel.getValue(row.getCell(2)));  }
@@ -185,7 +185,7 @@ public class BaseUploadController {
 		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
 			Row row = sheet.getRow(i);
 			if(row != null){
-				bz.setUpload_month(uploadMonth);
+				bz.setUploadMonth(uploadMonth);
 				if(row.getCell(0) != null){bz.setA(readExcel.getValue(row.getCell(0)));  }
 				if(row.getCell(1) != null){bz.setB(readExcel.getValue(row.getCell(1)));  }
 				if(row.getCell(2) != null){bz.setC(readExcel.getValue(row.getCell(2)));  }
@@ -248,7 +248,7 @@ public class BaseUploadController {
 		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
 			Row row = sheet.getRow(i);
 			if(row != null){
-				bz.setUpload_month(uploadMonth);
+				bz.setUploadMonth(uploadMonth);
 				if(row.getCell(0) != null){bz.setA(readExcel.getValue(row.getCell(0)));  }
 				if(row.getCell(1) != null){bz.setB(readExcel.getValue(row.getCell(1)));  }
 				if(row.getCell(2) != null){bz.setC(readExcel.getValue(row.getCell(2)));  }
@@ -287,7 +287,7 @@ public class BaseUploadController {
 		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
 			Row row = sheet.getRow(i);
 			if(row != null){
-				bz.setUpload_month(uploadMonth);
+				bz.setUploadMonth(uploadMonth);
 				if(row.getCell(0) != null){bz.setA(readExcel.getValue(row.getCell(0)));  }   else{bz.setA(null);}
 				if(row.getCell(1) != null){bz.setB(readExcel.getValue(row.getCell(1)));  }   else{bz.setB(null);}
 				if(row.getCell(2) != null){bz.setC(readExcel.getValue(row.getCell(2)));  }   else{bz.setC(null);}
@@ -316,7 +316,7 @@ public class BaseUploadController {
 		for (int i = 2; i <= sheet.getLastRowNum(); i++) {
 			Row row = sheet.getRow(i);
 			if(row != null){
-				bz.setUpload_month(uploadMonth);
+				bz.setUploadMonth(uploadMonth);
 				if(row.getCell(0) != null){bz.setA(readExcel.getValue(row.getCell(0)));  }
 				if(row.getCell(1) != null){bz.setB(readExcel.getValue(row.getCell(1)));  }
 				if(row.getCell(2) != null){bz.setC(readExcel.getValue(row.getCell(2)));  }
@@ -341,7 +341,7 @@ public class BaseUploadController {
 		for (int i = 2; i <= sheet.getLastRowNum(); i++) {
 			Row row = sheet.getRow(i);
 			if(row != null){
-				bz.setUpload_month(uploadMonth);
+				bz.setUploadMonth(uploadMonth);
 				if(row.getCell(0) != null){bz.setA(readExcel.getValue(row.getCell(0)));  }else{bz.setA(null);}
 				if(row.getCell(1) != null){bz.setB(readExcel.getValue(row.getCell(1)));  }else{bz.setB(null);}
 				if(row.getCell(2) != null){bz.setC(readExcel.getValue(row.getCell(2)));  }else{bz.setC(null);}

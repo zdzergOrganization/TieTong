@@ -11,7 +11,7 @@ import lombok.ToString;
 @NoArgsConstructor
 public class JTKH_KH {
 	private int id;
-	private String upload_month;
+	private String uploadMonth;
 	private String a;
 	private String b;
 	private String c;

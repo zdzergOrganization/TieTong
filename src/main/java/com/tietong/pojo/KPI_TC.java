@@ -9,9 +9,9 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-public class ZXLN_ZYYN {
+public class KPI_TC {
 	private int id;
-	private String uploadMonth;
+	private String kpiDate;
 	private String a;
 	private String b;
 	private String c;
@@ -35,5 +35,21 @@ public class ZXLN_ZYYN {
 	private String u;
 	private String v;
 	private String w;
+	private String x;
+	private String y;
+	private String z;
+	private String aa;
+	private String ab;
+	private String ac;
+	private String ad;
+	private String ae;
+	private String af;
+	private String ag;
+	private String ah;
+	private String ai;
+	private String aj;
+	private String ak;
+	private String al;
+	private String am;
 	private String createTime;
 }

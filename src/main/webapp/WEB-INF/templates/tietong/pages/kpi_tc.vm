@@ -26,16 +26,17 @@
 								<th>考核月份</th>
 								<th>人员姓名</th>
 								<th>类型</th>
-								<th>到职日</th>
-								<th>职务暂停日</th>
-								<th>入职时长类型</th>
-								<th>标准底薪</th>
-								<th>住房补贴</th>
-								<th>通信费补贴</th>
-								<th>交通补贴</th>
-								<th>固话奖励考核</th>
-								<th>ADSL奖励考核</th>
-								<th>实发底薪</th>
+								<th>所属网格</th>
+								<th>普通宽带提成</th>
+								<th>价值宽带提成</th>
+								<th>超出基本奖</th>
+								<th>销装维超出奖</th>
+								<th>续费考核</th>
+								<th>固定IP提成</th>
+								<th>固定IP续费率考核</th>
+								<th>集团客户考核</th>
+								<th>集团客户提成</th>
+								<th>总提成</th>
 							</tr>
 						</thead>
 						<tbody id="tables-rows">
@@ -43,23 +44,24 @@
 						</tbody>
 					</table>
 					<script type="text/juicer" id="tmpl-tables">
-				{@each kpi_dxs as kpi_dx,index}
+				{@each kpi_tcs as kpi_tc,index}
 					<tr class="odd gradeX">
 						<td>!{Number(index)+1}</td>
-						<td hidden id="employee_id">!{kpi_dx.id}</td>
-						<td>!{kpi_dx.kpiDate}</td>
-						<td>!{kpi_dx.d}</td>
-						<td>!{kpi_dx.e}</td>
-						<td>!{kpi_dx.f}</td>
-						<td>!{kpi_dx.k}</td>
-						<td>!{kpi_dx.i}</td>
-						<td>!{kpi_dx.l}</td>
-						<td>!{kpi_dx.m}</td>
-						<td>!{kpi_dx.n}</td>
-						<td>!{kpi_dx.o}</td>
-						<td>!{kpi_dx.s}</td>
-						<td>!{kpi_dx.x}</td>
-						<td>!{kpi_dx.aa}</td>
+						<td hidden id="employee_id">!{kpi_tc.id}</td>
+						<td>!{kpi_tc.kpiDate}</td>
+						<td>!{kpi_tc.b}</td>
+						<td>!{kpi_tc.c}</td>
+						<td>!{kpi_tc.d}</td>
+						<td>!{kpi_tc.w}</td>
+						<td>!{kpi_tc.x}</td>
+						<td>!{kpi_tc.z}</td>
+						<td>!{kpi_tc.ab}</td>
+						<td>!{kpi_tc.ac}</td>
+						<td>!{kpi_tc.ad}</td>
+						<td>!{kpi_tc.ae}</td>
+						<td>!{kpi_tc.af}</td>
+						<td>!{kpi_tc.ag}</td>
+						<td>!{kpi_tc.ai}</td>
 					</tr>
 				{@/each}
 			</script><!-- 
@@ -81,13 +83,13 @@
 <script>
 	(function() {
 		require([ '${s.ctx}resources/js/biz-init.js' ], function() {
-			var kpi_dxJs = '${s.ctx}pages-js/kpi_dx.js?version=2';
-			require([ "jquery", 'biz-utils', kpi_dxJs, 'EventEmitter',
-					'juicer' , 'datatables'], function($, Biz, kpi_dxJs) {
+			var kpi_tcJs = '${s.ctx}pages-js/kpi_tc.js?version=2';
+			require([ "jquery", 'biz-utils', kpi_tcJs, 'EventEmitter',
+					'juicer' , 'datatables'], function($, Biz, kpi_tcJs) {
 				Biz.Utils.debug("dependencies loaded.");
 				$(document).ready(function() {
 					Biz.Utils.debug("document ready.");
-					new kpi_dxJs().init();
+					new kpi_tcJs().init();
 				});
 			});
 		});

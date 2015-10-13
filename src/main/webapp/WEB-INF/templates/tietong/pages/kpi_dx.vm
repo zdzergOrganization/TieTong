@@ -76,7 +76,7 @@
 </div>
 
 			<div  >
-			<button type="button" class="btn btn-primary btn-lg" style="margin-left : 600px;margin-top : 10px;">下一步->提成计算</button>
+			<button id="kpi_tc_btn" type="button" class="btn btn-primary btn-lg" style="margin-left : 600px;margin-top : 10px;">下一步->提成计算</button>
 			</div>
 <script>
 	(function() {

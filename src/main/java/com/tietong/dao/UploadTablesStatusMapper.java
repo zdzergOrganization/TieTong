@@ -44,7 +44,16 @@ public interface UploadTablesStatusMapper {
 	public BZ getBZ(@Param(value="uploadMonth")String uploadMonth,@Param(value="employeeType")String employeeType);
 	
 	public List<Y_GH_TD> getY_GH_TD(@Param(value="uploadMonth")String uploadMonth,@Param(value="employeeName")String employeeName);
+	
 	public List<AD_XZ_XF> getAD_XZ_XF(@Param(value="uploadMonth")String uploadMonth,@Param(value="employeeName")String employeeName);
+
+	public List<ZXLN_ZYYN> getZXLN_ZYYN(@Param(value="uploadMonth")String uploadMonth,@Param(value="employeeName")String employeeName);
+
+	public List<GZXRY_DYWGDF> getGZXRY_DYWGDF(@Param(value="uploadMonth")String uploadMonth,@Param(value="employeeName")String employeeName);
+
+	public List<JTKH_KH> getJTKH_KH(@Param(value="uploadMonth")String uploadMonth,@Param(value="employeeName")String employeeName);
+
+	public List<JTKH_ZB> getJTKH_ZB(@Param(value="uploadMonth")String uploadMonth,@Param(value="employeeName")String employeeName);
 	
 	
 	

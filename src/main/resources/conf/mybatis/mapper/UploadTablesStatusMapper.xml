@@ -43,43 +43,43 @@
 	<insert id="insertBZ" parameterType="com.tietong.pojo.BZ">
 	insert into bz(upload_month,a,b,c,d,e,f,g,h,i,j,k,l,create_time)
 	values
-	(str_to_date(#{upload_month},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},#{g},#{h},#{i},#{j},#{k},#{l},now())
+	(str_to_date(#{uploadMonth},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},#{g},#{h},#{i},#{j},#{k},#{l},now())
 	</insert>
     
 	<insert id="insertY_GH_TD" parameterType="com.tietong.pojo.Y_GH_TD">
 	insert into y_gh_td(upload_month,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,ab,ac,ad,ae,af,ag,ah,ai,aj,ak,al,am,an,ao,ap,aq,ar,xas,xat,au,av,aw,ax,ay,az,ba,bb,bc,create_time)
 	values
-	(str_to_date(#{upload_month},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},#{g},#{h},#{i},#{j},#{k},#{l},#{m},#{n},#{o},#{p},#{q},#{r},#{s},#{t},#{u},#{v},#{w},#{x},#{y},#{z},#{aa},#{ab},#{ac},#{ad},#{ae},#{af},#{ag},#{ah},#{ai},#{aj},#{ak},#{al},#{am},#{an},#{ao},#{ap},#{aq},#{ar},#{as},#{at},#{au},#{av},#{aw},#{ax},#{ay},#{az},#{ba},#{bb},#{bc},now())
+	(str_to_date(#{uploadMonth},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},#{g},#{h},#{i},#{j},#{k},#{l},#{m},#{n},#{o},#{p},#{q},#{r},#{s},#{t},#{u},#{v},#{w},#{x},#{y},#{z},#{aa},#{ab},#{ac},#{ad},#{ae},#{af},#{ag},#{ah},#{ai},#{aj},#{ak},#{al},#{am},#{an},#{ao},#{ap},#{aq},#{ar},#{as},#{at},#{au},#{av},#{aw},#{ax},#{ay},#{az},#{ba},#{bb},#{bc},now())
 	</insert>
     
 	<insert id="insertAD_XZ_XF" parameterType="com.tietong.pojo.AD_XZ_XF">
 	insert into AD_XZ_XF(upload_month,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,ab,ac,ad,ae,af,ag,ah,ai,aj,ak,al,am,an,ao,ap,aq,ar,xas,xat,au,create_time)
 	values
-	(str_to_date(#{upload_month},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},#{g},#{h},#{i},#{j},#{k},#{l},#{m},#{n},#{o},#{p},#{q},#{r},#{s},#{t},#{u},#{v},#{w},#{x},#{y},#{z},#{aa},#{ab},#{ac},#{ad},#{ae},#{af},#{ag},#{ah},#{ai},#{aj},#{ak},#{al},#{am},#{an},#{ao},#{ap},#{aq},#{ar},#{as},#{at},#{au},now())
+	(str_to_date(#{uploadMonth},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},#{g},#{h},#{i},#{j},#{k},#{l},#{m},#{n},#{o},#{p},#{q},#{r},#{s},#{t},#{u},#{v},#{w},#{x},#{y},#{z},#{aa},#{ab},#{ac},#{ad},#{ae},#{af},#{ag},#{ah},#{ai},#{aj},#{ak},#{al},#{am},#{an},#{ao},#{ap},#{aq},#{ar},#{as},#{at},#{au},now())
 	</insert>
     
 	<insert id="insertZXLN_ZYYN" parameterType="com.tietong.pojo.ZXLN_ZYYN">
 	insert into ZXLN_ZYYN(upload_month,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,create_time)
 	values
-	(str_to_date(#{upload_month},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},#{g},#{h},#{i},#{j},#{k},#{l},#{m},#{n},#{o},#{p},#{q},#{r},#{s},#{t},#{u},#{v},#{w},now())
+	(str_to_date(#{uploadMonth},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},#{g},#{h},#{i},#{j},#{k},#{l},#{m},#{n},#{o},#{p},#{q},#{r},#{s},#{t},#{u},#{v},#{w},now())
 	</insert>
     
 	<insert id="insertGZXRY_DYWGDF" parameterType="com.tietong.pojo.GZXRY_DYWGDF">
 	insert into GZXRY_DYWGDF(upload_month,a,b,c,d,e,f,g,h,i,j,k,l,m,create_time)
 	values
-	(str_to_date(#{upload_month},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},#{g},#{h},#{i},#{j},#{k},#{l},#{m},now())
+	(str_to_date(#{uploadMonth},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},#{g},#{h},#{i},#{j},#{k},#{l},#{m},now())
 	</insert>
     
 	<insert id="insertJTKH_KH" parameterType="com.tietong.pojo.JTKH_KH">
 	insert into JTKH_KH(upload_month,a,b,c,d,e,f,g,h,i,create_time)
 	values
-	(str_to_date(#{upload_month},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},#{g},#{h},#{i},now())
+	(str_to_date(#{uploadMonth},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},#{g},#{h},#{i},now())
 	</insert>
     
 	<insert id="insertJTKH_ZB" parameterType="com.tietong.pojo.JTKH_ZB">
 	insert into JTKH_ZB(upload_month,a,b,c,d,e,f,create_time)
 	values
-	(str_to_date(#{upload_month},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},now())
+	(str_to_date(#{uploadMonth},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},now())
 	</insert>
 	
 	<select id="getBZ" resultType="com.tietong.pojo.BZ">
@@ -104,6 +104,38 @@
 		where 
 		DATE_FORMAT(upload_month,'%Y-%m') = #{uploadMonth}
 		and u = #{employeeName}
+	</select>
+	
+	<select id="getZXLN_ZYYN" resultType="com.tietong.pojo.ZXLN_ZYYN">
+		select id,upload_month as uploadMonth,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,create_time as createTime
+		from ZXLN_ZYYN
+		where 
+		DATE_FORMAT(upload_month,'%Y-%m') = #{uploadMonth}
+		and u = #{employeeName}
+	</select>
+	
+	<select id="getGZXRY_DYWGDF" resultType="com.tietong.pojo.GZXRY_DYWGDF">
+		select id,upload_month as uploadMonth,a,b,c,d,e,f,g,h,i,j,k,l,m,create_time as createTime
+		from GZXRY_DYWGDF
+		where 
+		DATE_FORMAT(upload_month,'%Y-%m') = #{uploadMonth}
+		and b = #{employeeName}
+	</select>
+	
+	<select id="getJTKH_KH" resultType="com.tietong.pojo.JTKH_KH">
+		select id,upload_month as uploadMonth,a,b,c,d,e,f,g,h,i,create_time as createTime
+		from JTKH_KH
+		where 
+		DATE_FORMAT(upload_month,'%Y-%m') = #{uploadMonth}
+		and b = #{employeeName}
+	</select>
+	
+	<select id="getJTKH_ZB" resultType="com.tietong.pojo.JTKH_ZB">
+		select id,upload_month as uploadMonth,a,b,c,d,e,f,create_time as createTime
+		from JTKH_ZB
+		where 
+		DATE_FORMAT(upload_month,'%Y-%m') = #{uploadMonth}
+		and a = #{employeeName}
 	</select>
 	
 	

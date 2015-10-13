@@ -50,13 +50,34 @@
 	<insert id="insertKPI_DX" parameterType="com.tietong.pojo.KPI_DX">
 	insert into kpi_dx(kpi_date,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,ab,ac,create_time)
 	values
-	(str_to_date(#{kpi_date},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},#{g},#{h},#{i},#{j},#{k},#{l},#{m},#{n},#{o},#{p},#{q},#{r},#{s},#{t},#{u},#{v},#{w},#{x},#{y},#{z},#{aa},#{ab},#{ac},now())
+	(str_to_date(#{kpiDate},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},#{g},#{h},#{i},#{j},#{k},#{l},#{m},#{n},#{o},#{p},#{q},#{r},#{s},#{t},#{u},#{v},#{w},#{x},#{y},#{z},#{aa},#{ab},#{ac},now())
+	
+	</insert>
+	<insert id="insertKPI_TC" parameterType="com.tietong.pojo.KPI_TC">
+	insert into kpi_tc(kpi_date,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,ab,ac,ad,ae,af,ag,ah,ai,aj,ak,al,am,create_time)
+	values
+	(str_to_date(#{kpiDate},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},#{g},#{h},#{i},#{j},#{k},#{l},#{m},#{n},#{o},#{p},#{q},#{r},#{s},#{t},#{u},#{v},#{w},#{x},#{y},#{z},#{aa},#{ab},#{ac},#{ad},#{ae},#{af},#{ag},#{ah},#{ai},#{aj},#{ak},#{al},#{am},now())
 	</insert>
 	
 	<select id="getKPI_DX" resultType="com.tietong.pojo.KPI_DX">
 	select DATE_FORMAT(kpi_date,'%Y-%m') as kpiDate,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,ab,ac,create_time as createTime
 	from kpi_dx
 	where DATE_FORMAT(kpi_date,'%Y-%m') = #{KPIMonth}
+	</select>
+	
+	<select id="getKPI_TC" resultType="com.tietong.pojo.KPI_TC">
+	select DATE_FORMAT(kpi_date,'%Y-%m') as kpiDate,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,round(w,2) as w,round(x,2) as x,y,z,aa,ab,ac,ad,ae,af,ag,ah,round(ai) as ai,aj,ak,al,am,create_time as createTime
+	from kpi_tc
+	where DATE_FORMAT(kpi_date,'%Y-%m') = #{KPIMonth}
+	</select>
+	
+	<select id="getKPI_DXName" resultType="com.tietong.pojo.KPI_DX">
+		select DATE_FORMAT(kpi_date,'%Y-%m') as kpiDate,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,ab,ac,create_time as createTime
+		from KPI_DX
+		where 
+		DATE_FORMAT(kpi_date,'%Y-%m') = #{uploadMonth}
+		and d = #{employeeName}
+		limit 1
 	</select>
 	
 	<select id="getEmployeeInfoType" resultType="com.tietong.pojo.EmployeeType">
@@ -80,6 +101,13 @@
     <delete id="deleteMonthEmployee" >
         DELETE FROM employee_info_month where DATE_FORMAT(kpi_date,'%Y-%m') = #{KPIMonth}
     </delete>
-	
+    
+    <delete id="deleteMonthDX" >
+        DELETE FROM kpi_dx where DATE_FORMAT(kpi_date,'%Y-%m') = #{KPIMonth}
+    </delete>
+    
+    <delete id="deleteMonthTC" >
+        DELETE FROM kpi_tc where DATE_FORMAT(kpi_date,'%Y-%m') = #{KPIMonth}
+    </delete>
 	
 </mapper> 
