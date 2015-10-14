@@ -19,6 +19,7 @@ import com.tietong.pojo.BZ;
 import com.tietong.pojo.GZXRY_DYWGDF;
 import com.tietong.pojo.JTKH_KH;
 import com.tietong.pojo.JTKH_ZB;
+import com.tietong.pojo.JT_KH;
 import com.tietong.pojo.Y_GH_TD;
 import com.tietong.pojo.ZXLN_ZYYN;
 import com.tietong.web.util.ReadExcel;
@@ -67,6 +68,9 @@ public class BaseUploadController {
 			break;
 		case "jtkh_zb":
 			uploadJTKH_ZB(readExcel,sheet,uploadMonth);
+			break;
+		case "jt_kh":
+			uploadJT_KH(readExcel,sheet,uploadMonth);
 			break;
 
 		default:
@@ -353,6 +357,43 @@ public class BaseUploadController {
 
 			// 插入数据库
 			uploadTablesStatusMapper.insertJTKH_ZB(bz);
+		}
+	}
+	
+	public void uploadJT_KH(ReadExcel readExcel,Sheet sheet,String uploadMonth) {
+
+		JT_KH bz = new JT_KH();
+		// 去掉表头，从第一行取数据
+		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+			Row row = sheet.getRow(i);
+			if(row != null){
+				bz.setUploadMonth(uploadMonth);
+				if(row.getCell(0) != null){bz.setA(readExcel.getValue(row.getCell(0)));  }
+				if(row.getCell(1) != null){bz.setB(readExcel.getValue(row.getCell(1)));  }
+				if(row.getCell(2) != null){bz.setC(readExcel.getValue(row.getCell(2)));  }
+				if(row.getCell(3) != null){bz.setD(readExcel.getValue(row.getCell(3)));  }
+				if(row.getCell(4) != null){bz.setE(readExcel.getValue(row.getCell(4)));  }
+				if(row.getCell(5) != null){bz.setF(readExcel.getValue(row.getCell(5)));  }
+				if(row.getCell(6) != null){bz.setG(readExcel.getValue(row.getCell(6)));  }
+				if(row.getCell(7) != null){bz.setH(readExcel.getValue(row.getCell(7)));  }
+				if(row.getCell(8) != null){bz.setI(readExcel.getValue(row.getCell(8)));  }
+				if(row.getCell(9) != null){bz.setJ(readExcel.getValue(row.getCell(9)));  }
+				if(row.getCell(10) != null){bz.setK(readExcel.getValue(row.getCell(10)));  }
+				if(row.getCell(11) != null){bz.setL(readExcel.getValue(row.getCell(11)));  }
+				if(row.getCell(12) != null){bz.setM(readExcel.getValue(row.getCell(12)));  }
+				if(row.getCell(13) != null){bz.setN(readExcel.getValue(row.getCell(13)));  }
+				if(row.getCell(14) != null){bz.setO(readExcel.getValue(row.getCell(14)));  }
+				if(row.getCell(15) != null){bz.setP(readExcel.getValue(row.getCell(15)));  }
+				if(row.getCell(16) != null){bz.setQ(readExcel.getValue(row.getCell(16)));  }
+				if(row.getCell(17) != null){bz.setR(readExcel.getValue(row.getCell(17)));  }
+				if(row.getCell(18) != null){bz.setS(readExcel.getValue(row.getCell(18)));  }
+				if(row.getCell(19) != null){bz.setT(readExcel.getValue(row.getCell(19)));  }
+				if(row.getCell(20) != null){bz.setU(readExcel.getValue(row.getCell(20)));  }
+			}
+			
+
+			// 插入数据库
+			uploadTablesStatusMapper.insertJT_KH(bz);
 		}
 	}
 

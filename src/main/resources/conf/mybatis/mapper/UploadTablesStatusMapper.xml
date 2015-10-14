@@ -26,6 +26,8 @@
 				select 'jtkh_kh' as table_name,DATE_FORMAT(upload_month,'%Y-%m') as upload_month,count(1) as cnt  from jtkh_kh a group by DATE_FORMAT(upload_month,'%Y-%m')
 				union ALL
 				select 'jtkh_zb' as table_name,DATE_FORMAT(upload_month,'%Y-%m') as upload_month,count(1) as cnt  from jtkh_zb a group by DATE_FORMAT(upload_month,'%Y-%m')
+				union ALL
+				select 'jt_kh' as table_name,DATE_FORMAT(upload_month,'%Y-%m') as upload_month,count(1) as cnt  from jt_kh a group by DATE_FORMAT(upload_month,'%Y-%m')
 			) b
 			on a.tables_name = b.table_name
 			and b.upload_month = #{uploadMonth}
@@ -80,6 +82,12 @@
 	insert into JTKH_ZB(upload_month,a,b,c,d,e,f,create_time)
 	values
 	(str_to_date(#{uploadMonth},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},now())
+	</insert>
+    
+	<insert id="insertJT_KH" parameterType="com.tietong.pojo.JT_KH">
+	insert into JT_KH(upload_month,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,create_time)
+	values
+	(str_to_date(#{uploadMonth},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},#{g},#{h},#{i},#{j},#{k},#{l},#{m},#{n},#{o},#{p},#{q},#{r},#{s},#{t},#{u},now())
 	</insert>
 	
 	<select id="getBZ" resultType="com.tietong.pojo.BZ">
@@ -136,6 +144,14 @@
 		where 
 		DATE_FORMAT(upload_month,'%Y-%m') = #{uploadMonth}
 		and a = #{employeeName}
+	</select>
+	
+	<select id="getJT_KH" resultType="com.tietong.pojo.JT_KH">
+		select id,upload_month,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,create_time as createTime
+		from jt_kh
+		where 
+		DATE_FORMAT(upload_month,'%Y-%m') = #{uploadMonth}
+		and f = #{employeeName}
 	</select>
 	
 	

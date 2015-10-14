@@ -9,6 +9,7 @@ import com.tietong.pojo.BZ;
 import com.tietong.pojo.GZXRY_DYWGDF;
 import com.tietong.pojo.JTKH_KH;
 import com.tietong.pojo.JTKH_ZB;
+import com.tietong.pojo.JT_KH;
 import com.tietong.pojo.UploadTablesStatus;
 import com.tietong.pojo.Y_GH_TD;
 import com.tietong.pojo.ZXLN_ZYYN;
@@ -40,6 +41,8 @@ public interface UploadTablesStatusMapper {
 	
 	public void insertJTKH_ZB(JTKH_ZB bz);
 	
+	public void insertJT_KH(JT_KH bz);
+	
 	//查询
 	public BZ getBZ(@Param(value="uploadMonth")String uploadMonth,@Param(value="employeeType")String employeeType);
 	
@@ -54,6 +57,8 @@ public interface UploadTablesStatusMapper {
 	public List<JTKH_KH> getJTKH_KH(@Param(value="uploadMonth")String uploadMonth,@Param(value="employeeName")String employeeName);
 
 	public List<JTKH_ZB> getJTKH_ZB(@Param(value="uploadMonth")String uploadMonth,@Param(value="employeeName")String employeeName);
+
+	public List<JT_KH> getJT_KH(@Param(value="uploadMonth")String uploadMonth,@Param(value="employeeName")String employeeName);
 	
 	
 	

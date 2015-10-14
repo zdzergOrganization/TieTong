@@ -20,5 +20,6 @@ public class EmployeeType {
 	private String entryDate;
 	private String quitDate;
 	private String employeeType;
+	private String employeeTypeRel;
 	private String createTime;
 }

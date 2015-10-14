@@ -59,8 +59,8 @@ public class RestController {
             employee.setRegionPQ(readExcel.getValue(row.getCell(2)));
             employee.setRegionQ(readExcel.getValue(row.getCell(3)));
             employee.setRegionWG(readExcel.getValue(row.getCell(4)));
-            employee.setEntryDate(readExcel.getValue(row.getCell(5)));
-            employee.setQuitDate(readExcel.getValue(row.getCell(6)));
+            employee.setEntryDate(readExcel.getValue(row.getCell(5)).replace('/','-'));
+            employee.setQuitDate(readExcel.getValue(row.getCell(6)).replace('/','-'));
             
             //先不输入计算月份
             //employee.setMonth_end_date(readExcel.getValue(row.getCell(7)));

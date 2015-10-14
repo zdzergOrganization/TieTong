@@ -2,6 +2,7 @@ package com.tietong.controller;
 
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +31,12 @@ public class KPIController {
 	private KPIMapper kpiMapper;
 	@Autowired
 	private UploadTablesStatusMapper uploadTablesStatusMapper;
-		
+	
+	/**
+	 * 算出当月人员入职时长类型
+	 * @param KPIMonth
+	 * @return
+	 */
 	@RequestMapping(value="/kpi/dateset" , method=RequestMethod.POST)
 	public String dateSet(String KPIMonth){
 		//先删除计算月份数据
@@ -41,6 +47,11 @@ public class KPIController {
         return "redirect:/pages/employee_type.html?KPIMonth=" + KPIMonth;
 	}
 	
+	/**
+	 * 查询人员入职时长类型
+	 * @param KPIMonth
+	 * @return
+	 */
 	@RequestMapping(value="/kpi/employee/getAllEmployeeInfoType")
 	public @ResponseBody StandardJsonResult getAllEmployeeInfoType(String KPIMonth){
 		//查询当月人员类型
@@ -49,6 +60,11 @@ public class KPIController {
 		return new StandardJsonResult(employees);
 	}
 	
+	/**
+	 * 查询当月计算的底薪
+	 * @param KPIMonth
+	 * @return
+	 */
 	@RequestMapping(value="/kpi/getDX")
 	public @ResponseBody StandardJsonResult getDX(String KPIMonth){
 		//查询当月人员底薪
@@ -57,6 +73,11 @@ public class KPIController {
 		return new StandardJsonResult(kpi_dxs);
 	}
 	
+	/**
+	 * 查询当月计算的提成
+	 * @param KPIMonth
+	 * @return
+	 */
 	@RequestMapping(value="/kpi/getTC")
 	public @ResponseBody StandardJsonResult getTC(String KPIMonth){
 		//查询当月人员提成
@@ -65,6 +86,11 @@ public class KPIController {
 		return new StandardJsonResult(kpi_tcs);
 	}
 	
+	/**
+	 * 底薪计算
+	 * @param KPIMonth
+	 * @return
+	 */
 	@RequestMapping(value="/pages/kpi/kpi_dx" , method=RequestMethod.GET)
 	public String kpi_dx(String KPIMonth){
 		//先删除计算月份数据
@@ -90,13 +116,22 @@ public class KPIController {
 			kpi_dx.setF(employee.getEntryDate());
 			kpi_dx.setK(employee.getQuitDate());
 			kpi_dx.setI(employeeType);
-			kpi_dx.setJ(null);//暂时不会算
+			//入职时长
+			kpi_dx.setJ(employee.getEmployeeTypeRel());
 			
 			//底薪固定
-			kpi_dx.setL(bz.getC());//标准底薪
-			kpi_dx.setM(bz.getD());//住房
-			kpi_dx.setN(bz.getE());//通信
-			kpi_dx.setO(bz.getF());//交通
+			if(StringUtils.isNotBlank(employee.getEmployeeTypeRel())){
+				kpi_dx.setL((int)(StringNullToInt.transToDouble(bz.getC()) * StringNullToInt.transToDouble(employee.getEmployeeTypeRel())) + "");//标准底薪
+				kpi_dx.setM((int)(StringNullToInt.transToDouble(bz.getD()) * StringNullToInt.transToDouble(employee.getEmployeeTypeRel())) + "");//住房
+				kpi_dx.setN((int)(StringNullToInt.transToDouble(bz.getE()) * StringNullToInt.transToDouble(employee.getEmployeeTypeRel())) + "");//通信
+				kpi_dx.setO((int)(StringNullToInt.transToDouble(bz.getF()) * StringNullToInt.transToDouble(employee.getEmployeeTypeRel())) + "");//交通
+			}
+			else{
+				kpi_dx.setL(bz.getC());//标准底薪
+				kpi_dx.setM(bz.getD());//住房
+				kpi_dx.setN(bz.getE());//通信
+				kpi_dx.setO(bz.getF());//交通
+			}
 			
 			//1.计算固话奖励考核
 			
@@ -199,7 +234,11 @@ public class KPIController {
 	    return "redirect:/pages/kpi_dx.html?KPIMonth=" + KPIMonth;
 	}
 	
-
+	/**
+	 * 提成计算
+	 * @param KPIMonth
+	 * @return
+	 */
 	@RequestMapping(value="/pages/kpi/kpi_tc" , method=RequestMethod.GET)
 	public String kpi_tc(String KPIMonth){
 		//先删除计算月份数据

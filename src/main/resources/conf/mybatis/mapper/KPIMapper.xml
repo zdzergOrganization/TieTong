@@ -7,7 +7,7 @@
 	<insert id="insertEmployeeInfoType">
 	<![CDATA[
 	insert into employee_info_month
-	(kpi_date,employee_name,type,region_pq,region_q,region_wg,entry_date,quit_date,employee_type,create_time)
+	(kpi_date,employee_name,type,region_pq,region_q,region_wg,entry_date,quit_date,employee_type,employee_type_rel,create_time)
 	select 
 	str_to_date(#{KPIMonth},'%Y-%m'),employee_name,type,region_pq,region_q,region_wg,entry_date,quit_date,
 	case 
@@ -42,6 +42,11 @@
 	TIMESTAMPDIFF(MONTH,concat(DATE_FORMAT(entry_date,'%Y-%m'),'-01'),concat(#{KPIMonth},'-01')) >= 1
 	then '2'
 	end as employee_type,
+	case
+	when 
+	YEAR(last_day(concat(#{KPIMonth},'-01'))) = YEAR(quit_date) and MONTH(last_day(concat(#{KPIMonth},'-01'))) = MONTH(quit_date) 
+	then round(DAYOFMONTH(quit_date)/DAYOFMONTH(last_day(concat(#{KPIMonth},'-01'))),2)
+	end as employee_type_rel,
 	now()
 	from employee_info;
 	]]>
@@ -92,6 +97,7 @@
     		entry_date as entryDate,
     		quit_date as quitDate,
     		employee_type as employeeType,
+    		employee_type_rel as employeeTypeRel,
     		create_time as createTime
     	FROM employee_info_month a
     	where DATE_FORMAT(kpi_date,'%Y-%m') = #{KPIMonth}
