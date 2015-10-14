@@ -64,6 +64,12 @@
 	(str_to_date(#{kpiDate},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},#{g},#{h},#{i},#{j},#{k},#{l},#{m},#{n},#{o},#{p},#{q},#{r},#{s},#{t},#{u},#{v},#{w},#{x},#{y},#{z},#{aa},#{ab},#{ac},#{ad},#{ae},#{af},#{ag},#{ah},#{ai},#{aj},#{ak},#{al},#{am},now())
 	</insert>
 	
+	<insert id="insertKPI_GZ" parameterType="com.tietong.pojo.KPI_GZ">
+	insert into kpi_gz(kpi_date,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,create_time)
+	values
+	(str_to_date(#{kpiDate},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},#{g},#{h},#{i},#{j},#{k},#{l},#{m},#{n},#{o},#{p},#{q},#{r},#{s},#{t},#{u},#{v},now())
+	</insert>
+	
 	<select id="getKPI_DX" resultType="com.tietong.pojo.KPI_DX">
 	select DATE_FORMAT(kpi_date,'%Y-%m') as kpiDate,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,ab,ac,create_time as createTime
 	from kpi_dx
@@ -76,12 +82,27 @@
 	where DATE_FORMAT(kpi_date,'%Y-%m') = #{KPIMonth}
 	</select>
 	
+	<select id="getKPI_GZ" resultType="com.tietong.pojo.KPI_GZ">
+	select DATE_FORMAT(kpi_date,'%Y-%m') as kpiDate,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,create_time as createTime
+	from kpi_gz
+	where DATE_FORMAT(kpi_date,'%Y-%m') = #{KPIMonth}
+	</select>
+	
 	<select id="getKPI_DXName" resultType="com.tietong.pojo.KPI_DX">
 		select DATE_FORMAT(kpi_date,'%Y-%m') as kpiDate,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,ab,ac,create_time as createTime
 		from KPI_DX
 		where 
 		DATE_FORMAT(kpi_date,'%Y-%m') = #{uploadMonth}
 		and d = #{employeeName}
+		limit 1
+	</select>
+	
+	<select id="getKPI_TCName" resultType="com.tietong.pojo.KPI_TC">
+		select DATE_FORMAT(kpi_date,'%Y-%m') as kpiDate,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,create_time as createTime
+		from KPI_TC
+		where 
+		DATE_FORMAT(kpi_date,'%Y-%m') = #{uploadMonth}
+		and b = #{employeeName}
 		limit 1
 	</select>
 	
@@ -114,6 +135,10 @@
     
     <delete id="deleteMonthTC" >
         DELETE FROM kpi_tc where DATE_FORMAT(kpi_date,'%Y-%m') = #{KPIMonth}
+    </delete>
+    
+    <delete id="deleteMonthGZ" >
+        DELETE FROM kpi_gz where DATE_FORMAT(kpi_date,'%Y-%m') = #{KPIMonth}
     </delete>
 	
 </mapper> 

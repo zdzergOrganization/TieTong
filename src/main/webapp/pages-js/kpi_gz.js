@@ -10,7 +10,7 @@ define(function(require, exports, module) {
 	// 申明需要访问到的URL
 	var urls = {
 		getAllEmployeeInfo : {
-			url : Biz.Constant.ctx + 'kpi/getTC',
+			url : Biz.Constant.ctx + 'kpi/getGZ',
 			method : 'GET'
 		},
 	};
@@ -60,7 +60,7 @@ define(function(require, exports, module) {
 		View.prototype.allEmployeeInfo_loaded = function() {
 			var tbody = $("#tables-rows");
 			tbody.html($(tmplTables.render({
-				kpi_tcs : employee.model.allEmployeeInfo
+				kpi_gzs : employee.model.allEmployeeInfo
 			})));
 
 	        $('#dataTables-example').dataTable({

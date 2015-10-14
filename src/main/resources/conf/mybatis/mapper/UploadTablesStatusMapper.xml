@@ -28,6 +28,12 @@
 				select 'jtkh_zb' as table_name,DATE_FORMAT(upload_month,'%Y-%m') as upload_month,count(1) as cnt  from jtkh_zb a group by DATE_FORMAT(upload_month,'%Y-%m')
 				union ALL
 				select 'jt_kh' as table_name,DATE_FORMAT(upload_month,'%Y-%m') as upload_month,count(1) as cnt  from jt_kh a group by DATE_FORMAT(upload_month,'%Y-%m')
+				union ALL
+				select 'jk_wcl' as table_name,DATE_FORMAT(upload_month,'%Y-%m') as upload_month,count(1) as cnt  from jk_wcl a group by DATE_FORMAT(upload_month,'%Y-%m')
+				union ALL
+				select 'yff_k' as table_name,DATE_FORMAT(upload_month,'%Y-%m') as upload_month,count(1) as cnt  from yff_k a group by DATE_FORMAT(upload_month,'%Y-%m')
+				union ALL
+				select 'xyy_tc_hzb' as table_name,DATE_FORMAT(upload_month,'%Y-%m') as upload_month,count(1) as cnt  from xyy_tc_hzb a group by DATE_FORMAT(upload_month,'%Y-%m')
 			) b
 			on a.tables_name = b.table_name
 			and b.upload_month = #{uploadMonth}
@@ -88,6 +94,24 @@
 	insert into JT_KH(upload_month,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,create_time)
 	values
 	(str_to_date(#{uploadMonth},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},#{g},#{h},#{i},#{j},#{k},#{l},#{m},#{n},#{o},#{p},#{q},#{r},#{s},#{t},#{u},now())
+	</insert>
+    
+	<insert id="insertJK_WCL" parameterType="com.tietong.pojo.JK_WCL">
+	insert into JK_WCL(upload_month,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,create_time)
+	values
+	(str_to_date(#{uploadMonth},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},#{g},#{h},#{i},#{j},#{k},#{l},#{m},#{n},#{o},#{p},now())
+	</insert>
+    
+	<insert id="insertYFF_K" parameterType="com.tietong.pojo.YFF_K">
+	insert into YFF_K(upload_month,a,b,c,d,e,f,g,h,i,j,k,l,create_time)
+	values
+	(str_to_date(#{uploadMonth},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},#{g},#{h},#{i},#{j},#{k},#{l},now())
+	</insert>
+    
+	<insert id="insertXYY_TC_HZB" parameterType="com.tietong.pojo.XYY_TC_HZB">
+	insert into XYY_TC_HZB(upload_month,a,b,c,d,e,f,g,h,i,j,create_time)
+	values
+	(str_to_date(#{uploadMonth},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},#{g},#{h},#{i},#{j},now())
 	</insert>
 	
 	<select id="getBZ" resultType="com.tietong.pojo.BZ">
@@ -152,6 +176,30 @@
 		where 
 		DATE_FORMAT(upload_month,'%Y-%m') = #{uploadMonth}
 		and f = #{employeeName}
+	</select>
+	
+	<select id="getJK_WCL" resultType="com.tietong.pojo.JK_WCL">
+		select id,upload_month,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,create_time as createTime
+		from JK_WCL
+		where 
+		DATE_FORMAT(upload_month,'%Y-%m') = #{uploadMonth}
+		and c = #{employeeName}
+	</select>
+	
+	<select id="getYFF_K" resultType="com.tietong.pojo.YFF_K">
+		select id,upload_month,a,b,c,d,e,f,g,h,i,j,k,l,create_time as createTime
+		from YFF_K
+		where 
+		DATE_FORMAT(upload_month,'%Y-%m') = #{uploadMonth}
+		and b = #{employeeName}
+	</select>
+	
+	<select id="getXYY_TC_HZB" resultType="com.tietong.pojo.XYY_TC_HZB">
+		select id,upload_month,a,b,c,d,e,f,g,h,i,j,create_time as createTime
+		from XYY_TC_HZB
+		where 
+		DATE_FORMAT(upload_month,'%Y-%m') = #{uploadMonth}
+		and c = #{employeeName}
 	</select>
 	
 	

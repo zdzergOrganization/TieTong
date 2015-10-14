@@ -17,9 +17,12 @@ import com.tietong.dao.UploadTablesStatusMapper;
 import com.tietong.pojo.AD_XZ_XF;
 import com.tietong.pojo.BZ;
 import com.tietong.pojo.GZXRY_DYWGDF;
+import com.tietong.pojo.JK_WCL;
 import com.tietong.pojo.JTKH_KH;
 import com.tietong.pojo.JTKH_ZB;
 import com.tietong.pojo.JT_KH;
+import com.tietong.pojo.XYY_TC_HZB;
+import com.tietong.pojo.YFF_K;
 import com.tietong.pojo.Y_GH_TD;
 import com.tietong.pojo.ZXLN_ZYYN;
 import com.tietong.web.util.ReadExcel;
@@ -72,6 +75,15 @@ public class BaseUploadController {
 		case "jt_kh":
 			uploadJT_KH(readExcel,sheet,uploadMonth);
 			break;
+		case "jk_wcl":
+			uploadJK_WCL(readExcel,sheet,uploadMonth);
+			break;
+		case "yff_k":
+			uploadYYF_K(readExcel,sheet,uploadMonth);
+			break;
+		case "xyy_tc_hzb":
+			uploadXYY_TC_HZB(readExcel,sheet,uploadMonth);
+			break;
 
 		default:
 			break;
@@ -87,7 +99,7 @@ public class BaseUploadController {
 
 		BZ bz = new BZ();
 		// 去掉表头，从第一行取数据
-		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+		for (int i = 0; i <= sheet.getLastRowNum(); i++) {
 			Row row = sheet.getRow(i);
 			if(row != null){
 				bz.setUploadMonth(uploadMonth);
@@ -115,7 +127,7 @@ public class BaseUploadController {
 
 		Y_GH_TD bz = new Y_GH_TD();
 		// 去掉表头，从第一行取数据
-		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+		for (int i = 0; i <= sheet.getLastRowNum(); i++) {
 			Row row = sheet.getRow(i);
 			if(row != null){
 				bz.setUploadMonth(uploadMonth);
@@ -186,7 +198,7 @@ public class BaseUploadController {
 
 		AD_XZ_XF bz = new AD_XZ_XF();
 		// 去掉表头，从第一行取数据
-		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+		for (int i = 0; i <= sheet.getLastRowNum(); i++) {
 			Row row = sheet.getRow(i);
 			if(row != null){
 				bz.setUploadMonth(uploadMonth);
@@ -249,7 +261,7 @@ public class BaseUploadController {
 
 		ZXLN_ZYYN bz = new ZXLN_ZYYN();
 		// 去掉表头，从第一行取数据
-		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+		for (int i = 0; i <= sheet.getLastRowNum(); i++) {
 			Row row = sheet.getRow(i);
 			if(row != null){
 				bz.setUploadMonth(uploadMonth);
@@ -288,7 +300,7 @@ public class BaseUploadController {
 
 		GZXRY_DYWGDF bz = new GZXRY_DYWGDF();
 		// 去掉表头，从第一行取数据
-		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+		for (int i = 0; i <= sheet.getLastRowNum(); i++) {
 			Row row = sheet.getRow(i);
 			if(row != null){
 				bz.setUploadMonth(uploadMonth);
@@ -317,7 +329,7 @@ public class BaseUploadController {
 
 		JTKH_KH bz = new JTKH_KH();
 		// 去掉表头，从第3行取数据
-		for (int i = 2; i <= sheet.getLastRowNum(); i++) {
+		for (int i = 0; i <= sheet.getLastRowNum(); i++) {
 			Row row = sheet.getRow(i);
 			if(row != null){
 				bz.setUploadMonth(uploadMonth);
@@ -342,7 +354,7 @@ public class BaseUploadController {
 
 		JTKH_ZB bz = new JTKH_ZB();
 		// 去掉表头，从第3行取数据
-		for (int i = 2; i <= sheet.getLastRowNum(); i++) {
+		for (int i = 0; i <= sheet.getLastRowNum(); i++) {
 			Row row = sheet.getRow(i);
 			if(row != null){
 				bz.setUploadMonth(uploadMonth);
@@ -364,7 +376,7 @@ public class BaseUploadController {
 
 		JT_KH bz = new JT_KH();
 		// 去掉表头，从第一行取数据
-		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+		for (int i = 0; i <= sheet.getLastRowNum(); i++) {
 			Row row = sheet.getRow(i);
 			if(row != null){
 				bz.setUploadMonth(uploadMonth);
@@ -394,6 +406,92 @@ public class BaseUploadController {
 
 			// 插入数据库
 			uploadTablesStatusMapper.insertJT_KH(bz);
+		}
+	}
+	
+	public void uploadJK_WCL(ReadExcel readExcel,Sheet sheet,String uploadMonth) {
+
+		JK_WCL bz = new JK_WCL();
+		// 去掉表头，从第3行取数据
+		for (int i = 0; i <= sheet.getLastRowNum(); i++) {
+			Row row = sheet.getRow(i);
+			if(row != null){
+				bz.setUploadMonth(uploadMonth);
+				if(row.getCell(0) != null){bz.setA(readExcel.getValue(row.getCell(0)));  }
+				if(row.getCell(1) != null){bz.setB(readExcel.getValue(row.getCell(1)));  }
+				if(row.getCell(2) != null){bz.setC(readExcel.getValue(row.getCell(2)));  }
+				if(row.getCell(3) != null){bz.setD(readExcel.getValue(row.getCell(3)));  }
+				if(row.getCell(4) != null){bz.setE(readExcel.getValue(row.getCell(4)));  }
+				if(row.getCell(5) != null){bz.setF(readExcel.getValue(row.getCell(5)));  }
+				if(row.getCell(6) != null){bz.setG(readExcel.getValue(row.getCell(6)));  }
+				if(row.getCell(7) != null){bz.setH(readExcel.getValue(row.getCell(7)));  }
+				if(row.getCell(8) != null){bz.setI(readExcel.getValue(row.getCell(8)));  }
+				if(row.getCell(9) != null){bz.setJ(readExcel.getValue(row.getCell(9)));  }
+				if(row.getCell(10) != null){bz.setK(readExcel.getValue(row.getCell(10)));  }
+				if(row.getCell(11) != null){bz.setL(readExcel.getValue(row.getCell(11)));  }
+				if(row.getCell(12) != null){bz.setM(readExcel.getValue(row.getCell(12)));  }
+				if(row.getCell(13) != null){bz.setN(readExcel.getValue(row.getCell(13)));  }
+				if(row.getCell(14) != null){bz.setO(readExcel.getValue(row.getCell(14)));  }
+				if(row.getCell(15) != null){bz.setP(readExcel.getValue(row.getCell(15)));  }
+			}
+			
+
+			// 插入数据库
+			uploadTablesStatusMapper.insertJK_WCL(bz);
+		}
+	}
+	
+	public void uploadYYF_K(ReadExcel readExcel,Sheet sheet,String uploadMonth) {
+
+		YFF_K bz = new YFF_K();
+		// 去掉表头，从第3行取数据
+		for (int i = 0; i <= sheet.getLastRowNum(); i++) {
+			Row row = sheet.getRow(i);
+			if(row != null){
+				bz.setUploadMonth(uploadMonth);
+				if(row.getCell(0) != null){bz.setA(readExcel.getValue(row.getCell(0)));  }
+				if(row.getCell(1) != null){bz.setB(readExcel.getValue(row.getCell(1)));  }
+				if(row.getCell(2) != null){bz.setC(readExcel.getValue(row.getCell(2)));  }
+				if(row.getCell(3) != null){bz.setD(readExcel.getValue(row.getCell(3)));  }
+				if(row.getCell(4) != null){bz.setE(readExcel.getValue(row.getCell(4)));  }
+				if(row.getCell(5) != null){bz.setF(readExcel.getValue(row.getCell(5)));  }
+				if(row.getCell(6) != null){bz.setG(readExcel.getValue(row.getCell(6)));  }
+				if(row.getCell(7) != null){bz.setH(readExcel.getValue(row.getCell(7)));  }
+				if(row.getCell(8) != null){bz.setI(readExcel.getValue(row.getCell(8)));  }
+				if(row.getCell(9) != null){bz.setJ(readExcel.getValue(row.getCell(9)));  }
+				if(row.getCell(10) != null){bz.setK(readExcel.getValue(row.getCell(10)));  }
+				if(row.getCell(11) != null){bz.setL(readExcel.getValue(row.getCell(11)));  }
+			}
+			
+
+			// 插入数据库
+			uploadTablesStatusMapper.insertYFF_K(bz);
+		}
+	}
+	
+	public void uploadXYY_TC_HZB(ReadExcel readExcel,Sheet sheet,String uploadMonth) {
+
+		XYY_TC_HZB bz = new XYY_TC_HZB();
+		// 去掉表头，从第3行取数据
+		for (int i = 0; i <= sheet.getLastRowNum(); i++) {
+			Row row = sheet.getRow(i);
+			if(row != null){
+				bz.setUploadMonth(uploadMonth);
+				if(row.getCell(0) != null){bz.setA(readExcel.getValue(row.getCell(0)));  }
+				if(row.getCell(1) != null){bz.setB(readExcel.getValue(row.getCell(1)));  }
+				if(row.getCell(2) != null){bz.setC(readExcel.getValue(row.getCell(2)));  }
+				if(row.getCell(3) != null){bz.setD(readExcel.getValue(row.getCell(3)));  }
+				if(row.getCell(4) != null){bz.setE(readExcel.getValue(row.getCell(4)));  }
+				if(row.getCell(5) != null){bz.setF(readExcel.getValue(row.getCell(5)));  }
+				if(row.getCell(6) != null){bz.setG(readExcel.getValue(row.getCell(6)));  }
+				if(row.getCell(7) != null){bz.setH(readExcel.getValue(row.getCell(7)));  }
+				if(row.getCell(8) != null){bz.setI(readExcel.getValue(row.getCell(8)));  }
+				if(row.getCell(9) != null){bz.setJ(readExcel.getValue(row.getCell(9)));  }
+			}
+			
+
+			// 插入数据库
+			uploadTablesStatusMapper.insertXYY_TC_HZB(bz);
 		}
 	}
 
