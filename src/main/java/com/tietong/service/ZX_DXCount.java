@@ -16,10 +16,10 @@ import com.tietong.pojo.Y_GH_TD;
 import com.tietong.web.util.StringNullToInt;
 
 public class ZX_DXCount {
-	@Autowired
+	/*@Autowired
 	private KPIMapper kpiMapper;
 	@Autowired
-	private UploadTablesStatusMapper uploadTablesStatusMapper;
+	private UploadTablesStatusMapper uploadTablesStatusMapper;*/
 	
 	/**
 	 * 底薪计算
@@ -27,7 +27,7 @@ public class ZX_DXCount {
 	 * @param employee
 	 * @return
 	 */
-	public void dxCount(String KPIMonth, EmployeeType employee){
+	public void dxCount(String KPIMonth, EmployeeType employee,KPIMapper kpiMapper,UploadTablesStatusMapper uploadTablesStatusMapper){
 
 			//初始化底薪对象
 			KPI_DX kpi_dx = new KPI_DX();
@@ -36,8 +36,9 @@ public class ZX_DXCount {
 			String employeeType = employee.getEmployeeType();
 			
 			//根据类型查询基本补贴
+			uploadTablesStatusMapper.getBZ(KPIMonth,employeeType);
 			BZ bz = uploadTablesStatusMapper.getBZ(KPIMonth,employeeType);
-			if(bz == null){return;}
+			//if(bz == null){return;}
 			//插入底薪
 			
 			//人员基本属性

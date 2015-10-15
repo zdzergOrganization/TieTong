@@ -211,7 +211,7 @@
 	</select>
 	
 	<select id="getZW_YTH_DF" resultType="com.tietong.pojo.ZW_YTH_DF">
-		select id,upload_month,a,b,c,d,e,f,g,h,i,j,create_time as createTime
+		select id,upload_month,a,b,c,d,e,f,g,h,i,create_time as createTime
 		from ZW_YTH_DF
 		where 
 		DATE_FORMAT(upload_month,'%Y-%m') = #{uploadMonth}

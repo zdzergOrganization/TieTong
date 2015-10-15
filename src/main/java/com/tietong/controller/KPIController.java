@@ -121,22 +121,22 @@ public class KPIController {
 
 		for (EmployeeType employee : employees) {
 			//取出类型
-			String employeeType = employee.getEmployeeType();
+			String employeeType = employee.getType();
 			// 分类型算底薪
 			if ("直销".equals(employeeType)) {
-				new ZX_DXCount().dxCount(KPIMonth, employee);
+				new ZX_DXCount().dxCount(KPIMonth, employee,kpiMapper,uploadTablesStatusMapper);
 			}
 			else if("一体化".equals(employeeType)){
-				new YTH_DXCount().dxCount(KPIMonth, employee);
+				new YTH_DXCount().dxCount(KPIMonth, employee,kpiMapper,uploadTablesStatusMapper);
 			}
 			else if("销装维".equals(employeeType)){
-				new XZW_DXCount().dxCount(KPIMonth, employee);
+				new XZW_DXCount().dxCount(KPIMonth, employee,kpiMapper,uploadTablesStatusMapper);
 			}
 			else if("集客经理".equals(employeeType)){
-				new JK_DXCount().dxCount(KPIMonth, employee);
+				new JK_DXCount().dxCount(KPIMonth, employee,kpiMapper,uploadTablesStatusMapper);
 			}
 			else if("集客专员".equals(employeeType)){
-				new JK_DXCount().dxCount(KPIMonth, employee);
+				new JK_DXCount().dxCount(KPIMonth, employee,kpiMapper,uploadTablesStatusMapper);
 			}
 		}
 

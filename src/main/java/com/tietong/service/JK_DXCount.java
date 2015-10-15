@@ -26,9 +26,11 @@ public class JK_DXCount {
 	 * 底薪计算
 	 * @param KPIMonth
 	 * @param employee
+	 * @param uploadTablesStatusMapper 
+	 * @param kpiMapper 
 	 * @return
 	 */
-	public void dxCount(String KPIMonth, EmployeeType employee){
+	public void dxCount(String KPIMonth, EmployeeType employee, KPIMapper kpiMapper, UploadTablesStatusMapper uploadTablesStatusMapper){
 
 		//初始化底薪对象
 		KPI_DX kpi_dx = new KPI_DX();
