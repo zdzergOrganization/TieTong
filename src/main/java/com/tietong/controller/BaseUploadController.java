@@ -99,7 +99,7 @@ public class BaseUploadController {
 
 		BZ bz = new BZ();
 		// 去掉表头，从第一行取数据
-		for (int i = 0; i <= sheet.getLastRowNum(); i++) {
+		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
 			Row row = sheet.getRow(i);
 			if(row != null){
 				bz.setUploadMonth(uploadMonth);
@@ -127,7 +127,7 @@ public class BaseUploadController {
 
 		Y_GH_TD bz = new Y_GH_TD();
 		// 去掉表头，从第一行取数据
-		for (int i = 0; i <= sheet.getLastRowNum(); i++) {
+		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
 			Row row = sheet.getRow(i);
 			if(row != null){
 				bz.setUploadMonth(uploadMonth);
@@ -198,7 +198,7 @@ public class BaseUploadController {
 
 		AD_XZ_XF bz = new AD_XZ_XF();
 		// 去掉表头，从第一行取数据
-		for (int i = 0; i <= sheet.getLastRowNum(); i++) {
+		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
 			Row row = sheet.getRow(i);
 			if(row != null){
 				bz.setUploadMonth(uploadMonth);
@@ -261,7 +261,7 @@ public class BaseUploadController {
 
 		ZXLN_ZYYN bz = new ZXLN_ZYYN();
 		// 去掉表头，从第一行取数据
-		for (int i = 0; i <= sheet.getLastRowNum(); i++) {
+		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
 			Row row = sheet.getRow(i);
 			if(row != null){
 				bz.setUploadMonth(uploadMonth);
@@ -300,7 +300,7 @@ public class BaseUploadController {
 
 		GZXRY_DYWGDF bz = new GZXRY_DYWGDF();
 		// 去掉表头，从第一行取数据
-		for (int i = 0; i <= sheet.getLastRowNum(); i++) {
+		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
 			Row row = sheet.getRow(i);
 			if(row != null){
 				bz.setUploadMonth(uploadMonth);
@@ -329,7 +329,7 @@ public class BaseUploadController {
 
 		JTKH_KH bz = new JTKH_KH();
 		// 去掉表头，从第3行取数据
-		for (int i = 0; i <= sheet.getLastRowNum(); i++) {
+		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
 			Row row = sheet.getRow(i);
 			if(row != null){
 				bz.setUploadMonth(uploadMonth);
@@ -354,7 +354,7 @@ public class BaseUploadController {
 
 		JTKH_ZB bz = new JTKH_ZB();
 		// 去掉表头，从第3行取数据
-		for (int i = 0; i <= sheet.getLastRowNum(); i++) {
+		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
 			Row row = sheet.getRow(i);
 			if(row != null){
 				bz.setUploadMonth(uploadMonth);
@@ -376,7 +376,7 @@ public class BaseUploadController {
 
 		JT_KH bz = new JT_KH();
 		// 去掉表头，从第一行取数据
-		for (int i = 0; i <= sheet.getLastRowNum(); i++) {
+		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
 			Row row = sheet.getRow(i);
 			if(row != null){
 				bz.setUploadMonth(uploadMonth);
@@ -413,7 +413,7 @@ public class BaseUploadController {
 
 		JK_WCL bz = new JK_WCL();
 		// 去掉表头，从第3行取数据
-		for (int i = 0; i <= sheet.getLastRowNum(); i++) {
+		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
 			Row row = sheet.getRow(i);
 			if(row != null){
 				bz.setUploadMonth(uploadMonth);
@@ -445,7 +445,7 @@ public class BaseUploadController {
 
 		YFF_K bz = new YFF_K();
 		// 去掉表头，从第3行取数据
-		for (int i = 0; i <= sheet.getLastRowNum(); i++) {
+		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
 			Row row = sheet.getRow(i);
 			if(row != null){
 				bz.setUploadMonth(uploadMonth);
@@ -473,7 +473,7 @@ public class BaseUploadController {
 
 		XYY_TC_HZB bz = new XYY_TC_HZB();
 		// 去掉表头，从第3行取数据
-		for (int i = 0; i <= sheet.getLastRowNum(); i++) {
+		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
 			Row row = sheet.getRow(i);
 			if(row != null){
 				bz.setUploadMonth(uploadMonth);
