@@ -3,7 +3,6 @@ package com.tietong.service;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.tietong.dao.KPIMapper;
 import com.tietong.dao.UploadTablesStatusMapper;
