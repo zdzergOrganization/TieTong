@@ -105,10 +105,12 @@ define(function(require, exports, module) {
 		else{
 			KPIMonth = url.substr(url.indexOf("KPIMonth=") + 9, 7);
 		}
-		$('#kpi_gz_btn').click(function(event) {
-			//$('#batch_add_form').submit();
-			window.location= 'kpi/kpi_gz?KPIMonth=' + KPIMonth
-				//'kpi_dx.html?KPIMonth=' + KPIMonth
+		$('#download_gz').click(function(event) {
+
+			window.location= Biz.Constant.ctx + 'excel/download/gz?KPIMonth=' + KPIMonth + "&filePath=" + "D:/students.xlsx";
+			//var filePath = Biz.Constant.ctx + 'download/' + KPIMonth + '-工资.xlsx';
+			//window.location.href = filePath;
+
 		});
 	}
 

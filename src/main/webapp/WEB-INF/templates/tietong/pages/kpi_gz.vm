@@ -30,6 +30,8 @@
 								<th>类型</th>
 								<th>入职时间</th>
 								<th>所属网格</th>
+								<th>实发底薪</th>
+								<th>集客人员绩效工资</th>
 								<th>个人提成</th>
 								<th>单项考核</th>
 								<th>预付卡提成</th>
@@ -54,6 +56,8 @@
 						<td>!{kpi_gz.d}</td>
 						<td>!{kpi_gz.e}</td>
 						<td>!{kpi_gz.f}</td>
+						<td>!{kpi_gz.g}</td>
+						<td>!{kpi_gz.h}</td>
 						<td>!{kpi_gz.i}</td>
 						<td>!{kpi_gz.j}</td>
 						<td>!{kpi_gz.k}</td>
@@ -76,7 +80,7 @@
 </div>
 
 			<div  >
-			<button type="button" class="btn btn-primary btn-lg" style="margin-left : 600px;margin-top : 10px;">下载</button>
+			<button id="download_gz" type="button" class="btn btn-primary btn-lg" style="margin-left : 600px;margin-top : 10px;">下载</button>
 			</div>
 <script>
 	(function() {

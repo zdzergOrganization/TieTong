@@ -43,7 +43,7 @@
                                     <a href="${s.ctx}pages/kpi_tc.html">提成计算</a>
                                 </li>
                                 <li #if($active_sidebar_id == "kpi_gz") style="background-color:#eee;" #end>
-                                    <a href="${s.ctx}pages/kpi_tc.html">工资</a>
+                                    <a href="${s.ctx}pages/kpi_gz.html">工资</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
