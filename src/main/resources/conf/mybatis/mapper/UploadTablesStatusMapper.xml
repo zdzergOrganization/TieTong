@@ -34,6 +34,8 @@
 				select 'yff_k' as table_name,DATE_FORMAT(upload_month,'%Y-%m') as upload_month,count(1) as cnt  from yff_k a group by DATE_FORMAT(upload_month,'%Y-%m')
 				union ALL
 				select 'xyy_tc_hzb' as table_name,DATE_FORMAT(upload_month,'%Y-%m') as upload_month,count(1) as cnt  from xyy_tc_hzb a group by DATE_FORMAT(upload_month,'%Y-%m')
+				union ALL
+				select 'zw_yth_df' as table_name,DATE_FORMAT(upload_month,'%Y-%m') as upload_month,count(1) as cnt  from zw_yth_df a group by DATE_FORMAT(upload_month,'%Y-%m')
 			) b
 			on a.tables_name = b.table_name
 			and b.upload_month = #{uploadMonth}
@@ -112,6 +114,12 @@
 	insert into XYY_TC_HZB(upload_month,a,b,c,d,e,f,g,h,i,j,create_time)
 	values
 	(str_to_date(#{uploadMonth},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},#{g},#{h},#{i},#{j},now())
+	</insert>
+    
+	<insert id="insertZW_YTH_DF" parameterType="com.tietong.pojo.ZW_YTH_DF">
+	insert into ZW_YTH_DF(upload_month,a,b,c,d,e,f,g,h,i,create_time)
+	values
+	(str_to_date(#{uploadMonth},'%Y-%m'),#{a},#{b},#{c},#{d},#{e},#{f},#{g},#{h},#{i},now())
 	</insert>
 	
 	<select id="getBZ" resultType="com.tietong.pojo.BZ">
@@ -197,6 +205,14 @@
 	<select id="getXYY_TC_HZB" resultType="com.tietong.pojo.XYY_TC_HZB">
 		select id,upload_month,a,b,c,d,e,f,g,h,i,j,create_time as createTime
 		from XYY_TC_HZB
+		where 
+		DATE_FORMAT(upload_month,'%Y-%m') = #{uploadMonth}
+		and c = #{employeeName}
+	</select>
+	
+	<select id="getZW_YTH_DF" resultType="com.tietong.pojo.ZW_YTH_DF">
+		select id,upload_month,a,b,c,d,e,f,g,h,i,j,create_time as createTime
+		from ZW_YTH_DF
 		where 
 		DATE_FORMAT(upload_month,'%Y-%m') = #{uploadMonth}
 		and c = #{employeeName}

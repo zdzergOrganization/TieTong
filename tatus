@@ -1,0 +1,221 @@
+[33mcommit 700cc5f4f2b910ce1d6c1da42a1d4c175797e515[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Thu Oct 15 16:33:17 2015 +0800
+
+    excel头只保留一行
+
+[33mcommit 1b4e5b1309297239995a5527a92711bd15ae9e46[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Thu Oct 15 16:06:58 2015 +0800
+
+    梳理了一下导入导出的错误
+
+[33mcommit 30d11baa74a755004e43487ced1f82aef8fa5383[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Thu Oct 15 13:15:11 2015 +0800
+
+    去掉测试的类
+
+[33mcommit 4b2af1d86638d09f49dbbed14bfb3d323ca17794[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Thu Oct 15 13:12:35 2015 +0800
+
+    下载excel搞定
+
+[33mcommit 38a5724dfa2fa431549270d0f1cb0334b0dd88dc[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Wed Oct 14 19:44:44 2015 +0800
+
+    解决工资计算，但是不一定对，还需要下载excel
+
+[33mcommit 573db944d1d96d6822e2547da29700c34f7ae0a0[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Wed Oct 14 16:09:23 2015 +0800
+
+    解决集团客户上传
+
+[33mcommit a26347556760044732fb58e20bbc5543413841bb[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Tue Oct 13 23:18:03 2015 +0800
+
+    提成计算完毕
+
+[33mcommit fede3fe1ff92b00c41f64703c80f3e1e378c228d[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Mon Oct 12 22:31:29 2015 +0800
+
+    解决底薪计算，下一步提成计算
+
+[33mcommit 66cbb1e51f816fd152dbbe06aba500fe78783600[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Mon Oct 12 11:03:18 2015 +0800
+
+    解决了底薪的计算，页面还未做查询
+
+[33mcommit 8fbd9d0d539b7da04c00cc4cd4801b4f11325582[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Sun Oct 11 21:10:04 2015 +0800
+
+    解决第一步结算 人员时长类型
+
+[33mcommit 79d04c0847a121436e23160c286ceb61b4d23763[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Sat Oct 10 15:54:48 2015 +0800
+
+    修改了上传表后时间选择不延续的问题
+
+[33mcommit 13cfb0a6213d007009a57ff9d8cf7a3bc7985120[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Sat Oct 10 15:26:04 2015 +0800
+
+    解决内存问题，修改了tomcat配置
+
+[33mcommit 1761722ad806bae40307a53c1a092bc937ec9191[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Sat Oct 10 12:11:51 2015 +0800
+
+    上传成功，需要修改为批量 ，要不内存泄露
+
+[33mcommit ef585036f67eb37efca1dc33ec93922da18b8b30[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Fri Oct 9 21:47:43 2015 +0800
+
+    成功上传标准表
+
+[33mcommit 3c762d50e77aa26fb61df59c6354f60447aa7143[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Thu Oct 8 19:14:16 2015 +0800
+
+    解决单独添加用户表格格式
+
+[33mcommit 1adcdeddabfbca1ae1b493a44f5e801cde3b7853[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Thu Oct 8 17:32:24 2015 +0800
+
+    解决分页
+
+[33mcommit 03731a341fa2caac0d9413dbe2f85b7ad0169613[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Thu Oct 8 15:05:18 2015 +0800
+
+    2015-10-08
+
+[33mcommit b37a9b5bd037c7274975a5ed9ba478bec3db61bf[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Tue Oct 6 02:46:47 2015 +0800
+
+    解决了动态模态框的问题，还需要上传基础表
+
+[33mcommit c7927b5783d87da9b1db0ec7f0cb500311a21a48[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Tue Oct 6 01:11:24 2015 +0800
+
+    解决查询上传表状态
+
+[33mcommit 3f5900aa1728433f1e47a8a32892cd19e99cedb6[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Wed Sep 30 00:01:14 2015 +0800
+
+    业务表上传 日期控件调整完毕
+
+[33mcommit 272f507018ded580f92f77f494ab9d34443f899e[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Tue Sep 29 02:31:45 2015 +0800
+
+    批量前清空调整完毕，单个人员添加调整完毕，就差datatable的分页了
+
+[33mcommit f7270120b3f4b30f7cffbde931dd54a7b2a6ac93[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Tue Sep 29 00:50:45 2015 +0800
+
+    删除开发完毕
+
+[33mcommit 885fd93b8242fc8778c1a9bf35678be7b364ae26[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Mon Sep 28 13:12:07 2015 +0800
+
+    批量添加+表格显示完成，还差分页和批量后跳转
+
+[33mcommit e63d9a0082e898139c010fcdd3fe9e977baad466[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Thu Sep 24 16:47:38 2015 +0800
+
+    插入数据库成功
+
+[33mcommit e0e81d890418068593bdbe2adda18ac20de879ac[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Thu Sep 24 11:12:11 2015 +0800
+
+    uploadfile成功
+
+[33mcommit 60f55b9e5fb84d79641cbe523e0dbbbe56e6bf35[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Tue Sep 22 13:56:19 2015 +0800
+
+    20150922
+
+[33mcommit bcb4cfa3fa458fc605b37df07eb13626a531b906[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Sun Sep 20 20:13:09 2015 +0800
+
+    输入人员信息进行到一半
+
+[33mcommit b463f34fc8a9158c76d84a60b2b273640815e610[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Sat Sep 19 17:08:42 2015 +0800
+
+    test 读取excel
+
+[33mcommit 0730ad65ae3cde5a0e90ed6e513e09b234979658[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Sat Sep 19 09:56:48 2015 +0800
+
+    sidebar点击灰色
+
+[33mcommit f89c2836e04471243a69968a5ad94eae22019ddc[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Mon Sep 14 14:34:49 2015 +0800
+
+    在家调整完毕能启动 sidebar
+
+[33mcommit 7d8c38a208d022354cea26390052d5d4b3b11681[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Sat Sep 12 17:17:47 2015 +0800
+
+    sbadmin 登录登出
+
+[33mcommit 6cd8da29d080fc9a51366a50a09156118af9618e[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Wed Jul 29 19:22:47 2015 +0800
+
+    链接数据库
+
+[33mcommit 5f97b0471379cd9c75933d9fc2d0439684ef2c68[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Tue Jul 28 17:10:26 2015 +0800
+
+    增加tietong件夹
+
+[33mcommit bcb854568c834f8594a208abcd7e9418d4acddcd[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Mon Jul 20 17:31:54 2015 +0800
+
+    框架搭建完毕
+
+[33mcommit 6c08c3e2519d3ed30edc418a183be2bb63fac3ff[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Mon Jul 20 16:04:40 2015 +0800
+
+    瘦身
+
+[33mcommit a9502342249927d7d6e027ef6d25d9d4af7e2343[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Mon Jul 20 14:09:40 2015 +0800
+
+    修改pom
+
+[33mcommit f4c30e41680248e6015d22fbe311abd936dab1dc[m
+Author: 夜书 <zhouding.zd@alibaba-inc.com>
+Date:   Mon Jul 20 14:00:49 2015 +0800
+
+    初始化

@@ -24,6 +24,7 @@ import com.tietong.pojo.JT_KH;
 import com.tietong.pojo.XYY_TC_HZB;
 import com.tietong.pojo.YFF_K;
 import com.tietong.pojo.Y_GH_TD;
+import com.tietong.pojo.ZW_YTH_DF;
 import com.tietong.pojo.ZXLN_ZYYN;
 import com.tietong.web.util.ReadExcel;
 
@@ -84,13 +85,14 @@ public class BaseUploadController {
 		case "xyy_tc_hzb":
 			uploadXYY_TC_HZB(readExcel,sheet,uploadMonth);
 			break;
+		case "zw_yth_df":
+			uploadZW_YTH_DF(readExcel,sheet,uploadMonth);
+			break;
 
 		default:
 			break;
 		}
 		
-		
-        
         return "redirect:/pages/upload.html" + "?uploadMonth=" + uploadMonth;
         
 	}
@@ -492,6 +494,31 @@ public class BaseUploadController {
 
 			// 插入数据库
 			uploadTablesStatusMapper.insertXYY_TC_HZB(bz);
+		}
+	}
+	
+	public void uploadZW_YTH_DF(ReadExcel readExcel,Sheet sheet,String uploadMonth) {
+
+		ZW_YTH_DF bz = new ZW_YTH_DF();
+		// 去掉表头，从第3行取数据
+		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+			Row row = sheet.getRow(i);
+			if(row != null){
+				bz.setUploadMonth(uploadMonth);
+				if(row.getCell(0) != null){bz.setA(readExcel.getValue(row.getCell(0)));  }
+				if(row.getCell(1) != null){bz.setB(readExcel.getValue(row.getCell(1)));  }
+				if(row.getCell(2) != null){bz.setC(readExcel.getValue(row.getCell(2)));  }
+				if(row.getCell(3) != null){bz.setD(readExcel.getValue(row.getCell(3)));  }
+				if(row.getCell(4) != null){bz.setE(readExcel.getValue(row.getCell(4)));  }
+				if(row.getCell(5) != null){bz.setF(readExcel.getValue(row.getCell(5)));  }
+				if(row.getCell(6) != null){bz.setG(readExcel.getValue(row.getCell(6)));  }
+				if(row.getCell(7) != null){bz.setH(readExcel.getValue(row.getCell(7)));  }
+				if(row.getCell(8) != null){bz.setI(readExcel.getValue(row.getCell(8)));  }
+			}
+			
+
+			// 插入数据库
+			uploadTablesStatusMapper.insertZW_YTH_DF(bz);
 		}
 	}
 
