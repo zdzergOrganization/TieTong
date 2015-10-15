@@ -107,7 +107,7 @@ define(function(require, exports, module) {
 		}
 		$('#download_gz').click(function(event) {
 
-			window.location= Biz.Constant.ctx + 'excel/download/gz?KPIMonth=' + KPIMonth + "&filePath=" + "D:/students.xlsx";
+			window.location= Biz.Constant.ctx + 'excel/download/gz?KPIMonth=' + KPIMonth
 			//var filePath = Biz.Constant.ctx + 'download/' + KPIMonth + '-工资.xlsx';
 			//window.location.href = filePath;
 
