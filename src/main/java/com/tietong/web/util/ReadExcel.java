@@ -6,8 +6,10 @@ import java.text.DecimalFormat;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFDataValidation;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ReadExcel {
@@ -58,7 +60,12 @@ public class ReadExcel {
      if (cell.getCellType() == cell.CELL_TYPE_BOOLEAN) {
          return subZeroAndDot(String.valueOf(cell.getBooleanCellValue()));
      } else if (cell.getCellType() == cell.CELL_TYPE_NUMERIC) {
-         return subZeroAndDot(String.valueOf(df.format(cell.getNumericCellValue())));
+    	 if(DateUtil.isCellDateFormatted(cell)){
+    		 	return new DataFormatter().formatRawCellContents(cell.getNumericCellValue(), 0, "yyyy-mm-dd");// 格式化日期
+    		 }else{
+    			 return subZeroAndDot(String.valueOf(df.format(cell.getNumericCellValue())));
+    		 }
+         
      } else if (cell.getCellType() == cell.CELL_TYPE_STRING) {
          return  cell.getStringCellValue();
      }else if (cell.getCellType() == cell.CELL_TYPE_FORMULA) {         
