@@ -83,7 +83,7 @@
 	</select>
 	
 	<select id="getKPI_GZ" resultType="com.tietong.pojo.KPI_GZ">
-	select DATE_FORMAT(kpi_date,'%Y-%m') as kpiDate,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,create_time as createTime
+	select DATE_FORMAT(kpi_date,'%Y-%m') as kpiDate,a,b,c,d,e,f,g,h,round(i,2) as i,j,k,l,m,n,round(o,2) as o,round(p,2) as p,q,r,s,t,u,v,create_time as createTime
 	from kpi_gz
 	where DATE_FORMAT(kpi_date,'%Y-%m') = #{KPIMonth}
 	</select>
@@ -98,7 +98,7 @@
 	</select>
 	
 	<select id="getKPI_TCName" resultType="com.tietong.pojo.KPI_TC">
-		select DATE_FORMAT(kpi_date,'%Y-%m') as kpiDate,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,create_time as createTime
+		select DATE_FORMAT(kpi_date,'%Y-%m') as kpiDate,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,ab,ac,ad,ae,af,ag,ah,ai,aj,ak,al,am,create_time as createTime
 		from KPI_TC
 		where 
 		DATE_FORMAT(kpi_date,'%Y-%m') = #{uploadMonth}

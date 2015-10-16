@@ -33,28 +33,6 @@ public class ReadExcel {
 	        }
 			return null;  
 	    }  
-	 
- /*private String getValue(XSSFCell xssfRow) {
-     if (xssfRow.getCellType() == xssfRow.CELL_TYPE_BOOLEAN) {
-         return String.valueOf(xssfRow.getBooleanCellValue());
-     } else if (xssfRow.getCellType() == xssfRow.CELL_TYPE_NUMERIC) {
-         return String.valueOf(xssfRow.getNumericCellValue());
-     } else {
-         return String.valueOf(xssfRow.getStringCellValue());
-     }
- }
-
- private String getValue(HSSFCell hssfCell) {
-     if (hssfCell.getCellType() == hssfCell.CELL_TYPE_BOOLEAN) {
-         return String.valueOf(hssfCell.getBooleanCellValue());
-     } else if (hssfCell.getCellType() == hssfCell.CELL_TYPE_NUMERIC) {
-         return String.valueOf(hssfCell.getNumericCellValue());
-     } else {
-         return String.valueOf(hssfCell.getStringCellValue());
-     }
- }*/
-	 
-	 DecimalFormat df = new DecimalFormat("0");  
  
  public String getValue(Cell cell) {
      if (cell.getCellType() == cell.CELL_TYPE_BOOLEAN) {
@@ -63,14 +41,14 @@ public class ReadExcel {
     	 if(DateUtil.isCellDateFormatted(cell)){
     		 	return new DataFormatter().formatRawCellContents(cell.getNumericCellValue(), 0, "yyyy-mm-dd");// 格式化日期
     		 }else{
-    			 return subZeroAndDot(String.valueOf(df.format(cell.getNumericCellValue())));
+    			 return subZeroAndDot(String.valueOf(cell.getNumericCellValue()));
     		 }
          
      } else if (cell.getCellType() == cell.CELL_TYPE_STRING) {
          return  cell.getStringCellValue();
      }else if (cell.getCellType() == cell.CELL_TYPE_FORMULA) {         
          try{
-        	 return  subZeroAndDot(String.valueOf(df.format(cell.getNumericCellValue())));
+        	 return  subZeroAndDot(String.valueOf(cell.getNumericCellValue()));
          }
          catch(Exception e1){
         	 try{
