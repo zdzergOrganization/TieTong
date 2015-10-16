@@ -99,9 +99,9 @@ public class BaseUploadController {
 	
 	public void uploadBZ(ReadExcel readExcel,Sheet sheet,String uploadMonth) {
 
-		BZ bz = new BZ();
 		// 去掉表头，从第一行取数据
 		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+			BZ bz = new BZ();
 			Row row = sheet.getRow(i);
 			if(row != null){
 				bz.setUploadMonth(uploadMonth);
@@ -127,9 +127,9 @@ public class BaseUploadController {
 	
 	public void uploadY_GH_TD(ReadExcel readExcel,Sheet sheet,String uploadMonth) {
 
-		Y_GH_TD bz = new Y_GH_TD();
 		// 去掉表头，从第一行取数据
 		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+			Y_GH_TD bz = new Y_GH_TD();
 			Row row = sheet.getRow(i);
 			if(row != null){
 				bz.setUploadMonth(uploadMonth);
@@ -198,9 +198,9 @@ public class BaseUploadController {
 	
 	public void uploadAD_XZ_XF(ReadExcel readExcel,Sheet sheet,String uploadMonth) {
 
-		AD_XZ_XF bz = new AD_XZ_XF();
 		// 去掉表头，从第一行取数据
 		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+			AD_XZ_XF bz = new AD_XZ_XF();
 			Row row = sheet.getRow(i);
 			if(row != null){
 				bz.setUploadMonth(uploadMonth);
@@ -261,9 +261,9 @@ public class BaseUploadController {
 	
 	public void uploadZXLN_ZYYN(ReadExcel readExcel,Sheet sheet,String uploadMonth) {
 
-		ZXLN_ZYYN bz = new ZXLN_ZYYN();
 		// 去掉表头，从第一行取数据
 		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+			ZXLN_ZYYN bz = new ZXLN_ZYYN();
 			Row row = sheet.getRow(i);
 			if(row != null){
 				bz.setUploadMonth(uploadMonth);
@@ -300,9 +300,9 @@ public class BaseUploadController {
 	
 	public void uploadGZXRY_DYWGDF(ReadExcel readExcel,Sheet sheet,String uploadMonth) {
 
-		GZXRY_DYWGDF bz = new GZXRY_DYWGDF();
 		// 去掉表头，从第一行取数据
 		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+			GZXRY_DYWGDF bz = new GZXRY_DYWGDF();
 			Row row = sheet.getRow(i);
 			if(row != null){
 				bz.setUploadMonth(uploadMonth);
@@ -329,9 +329,9 @@ public class BaseUploadController {
 	
 	public void uploadJTKH_KH(ReadExcel readExcel,Sheet sheet,String uploadMonth) {
 
-		JTKH_KH bz = new JTKH_KH();
 		// 去掉表头，从第3行取数据
 		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+			JTKH_KH bz = new JTKH_KH();
 			Row row = sheet.getRow(i);
 			if(row != null){
 				bz.setUploadMonth(uploadMonth);
@@ -354,9 +354,9 @@ public class BaseUploadController {
 	
 	public void uploadJTKH_ZB(ReadExcel readExcel,Sheet sheet,String uploadMonth) {
 
-		JTKH_ZB bz = new JTKH_ZB();
 		// 去掉表头，从第3行取数据
 		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+			JTKH_ZB bz = new JTKH_ZB();
 			Row row = sheet.getRow(i);
 			if(row != null){
 				bz.setUploadMonth(uploadMonth);
@@ -376,9 +376,9 @@ public class BaseUploadController {
 	
 	public void uploadJT_KH(ReadExcel readExcel,Sheet sheet,String uploadMonth) {
 
-		JT_KH bz = new JT_KH();
 		// 去掉表头，从第一行取数据
 		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+			JT_KH bz = new JT_KH();
 			Row row = sheet.getRow(i);
 			if(row != null){
 				bz.setUploadMonth(uploadMonth);
@@ -413,9 +413,9 @@ public class BaseUploadController {
 	
 	public void uploadJK_WCL(ReadExcel readExcel,Sheet sheet,String uploadMonth) {
 
-		JK_WCL bz = new JK_WCL();
 		// 去掉表头，从第3行取数据
 		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+			JK_WCL bz = new JK_WCL();
 			Row row = sheet.getRow(i);
 			if(row != null){
 				bz.setUploadMonth(uploadMonth);
@@ -445,9 +445,9 @@ public class BaseUploadController {
 	
 	public void uploadYYF_K(ReadExcel readExcel,Sheet sheet,String uploadMonth) {
 
-		YFF_K bz = new YFF_K();
 		// 去掉表头，从第3行取数据
 		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+			YFF_K bz = new YFF_K();
 			Row row = sheet.getRow(i);
 			if(row != null){
 				bz.setUploadMonth(uploadMonth);
@@ -473,9 +473,9 @@ public class BaseUploadController {
 	
 	public void uploadXYY_TC_HZB(ReadExcel readExcel,Sheet sheet,String uploadMonth) {
 
-		XYY_TC_HZB bz = new XYY_TC_HZB();
 		// 去掉表头，从第3行取数据
 		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+			XYY_TC_HZB bz = new XYY_TC_HZB();
 			Row row = sheet.getRow(i);
 			if(row != null){
 				bz.setUploadMonth(uploadMonth);
@@ -499,9 +499,9 @@ public class BaseUploadController {
 	
 	public void uploadZW_YTH_DF(ReadExcel readExcel,Sheet sheet,String uploadMonth) {
 
-		ZW_YTH_DF bz = new ZW_YTH_DF();
 		// 去掉表头，从第3行取数据
 		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+			ZW_YTH_DF bz = new ZW_YTH_DF();
 			Row row = sheet.getRow(i);
 			if(row != null){
 				bz.setUploadMonth(uploadMonth);

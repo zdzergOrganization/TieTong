@@ -181,7 +181,14 @@ public class ZX_DXCount {
 			}
 			kpi_dx.setAa(sf_dx + "");// 插入实发底薪
 			
-			//12. 插入数据库
+			//12. 直销固话是否不达标（销装维宽带是否达标）
+			String zx_gh_xzw = "达标";
+			if("Y".equals(employeeType) && dy_gh_zj < gh_zrw/2){
+				zx_gh_xzw = "1";
+			}
+			kpi_dx.setAb(zx_gh_xzw);//插入直销固话是否不达标（销装维宽带是否不达标）
+			
+			//13. 插入数据库
 			kpiMapper.insertKPI_DX(kpi_dx);
 		
 	}

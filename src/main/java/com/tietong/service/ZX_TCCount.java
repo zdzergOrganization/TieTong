@@ -36,53 +36,75 @@ public class ZX_TCCount {
 		kpi_tc.setC(employee.getType());
 		kpi_tc.setD(employee.getRegionWG());
 		
-		//1.固话提成
-		double gh_tc = 0;
-		//1.1 固话提成=（预付固话实收+后付固话实收）*0.08 
-		//预付固话实收+后付固话实收
+		//1.2. 后付固话实收+预付固话实收
+		double hf_gh_ss = 0;
+		double yf_gh_ss = 0;
 		List<ZXLN_ZYYN> zxln_zyyns = uploadTablesStatusMapper.getZXLN_ZYYN(KPIMonth,employeeName);
 		for(ZXLN_ZYYN zxln_zyyn : zxln_zyyns){
-			gh_tc = gh_tc + StringNullToInt.trans(zxln_zyyn.getI()) + StringNullToInt.trans(zxln_zyyn.getJ());
+			hf_gh_ss = hf_gh_ss + StringNullToInt.transToDouble(zxln_zyyn.getJ());
+			yf_gh_ss = yf_gh_ss + StringNullToInt.transToDouble(zxln_zyyn.getI());
 		}
-
-		gh_tc = Math.ceil((gh_tc*0.8)*100)/100;//两位小数
-		//插入
-		kpi_tc.setH(gh_tc+"");
+		kpi_tc.setE(hf_gh_ss+"");//插入后付固话实收
+		kpi_tc.setF(yf_gh_ss+"");//插入预付固话实收
 		
-		//2. 固话未完成任务数一半，当月新增AD提成扣减2%
-		double gh_wwc_yb = 0;
-		//新增收入
+		//3. 固话总实收 = 预付固话实收+后付固话实收
+		double gh_tc = hf_gh_ss + yf_gh_ss;
+		kpi_tc.setG(gh_tc+"");//插入固话总实收
+		
+		//4. 固话提成=（预付固话实收+后付固话实收）*0.08 
+		gh_tc = Math.ceil((gh_tc*0.08)*100)/100;//两位小数
+		kpi_tc.setH(gh_tc+"");//插入固话提成
+		
+		//5. 固话考核是否达标
+		String gh_kh_db = null;
+		KPI_DX kpi_dx = kpiMapper.getKPI_DXName(KPIMonth,employeeName);
+		gh_kh_db = kpi_dx.getAb();
+		kpi_tc.setI(gh_kh_db+"");//插入固话考核是否达标 1为不达标
+
+		//6. 新装+续费总收入  新增收入
+		int xz_xf_zsr = 0;
 		int xz_sr = 0;
 		List<AD_XZ_XF> ad_xz_xfs = uploadTablesStatusMapper.getAD_XZ_XF(KPIMonth,employeeName);
 		for(AD_XZ_XF ad_xz_xf : ad_xz_xfs){
-			xz_sr = xz_sr + StringNullToInt.trans(ad_xz_xf.getN());
+			xz_xf_zsr = xz_xf_zsr + StringNullToInt.trans(ad_xz_xf.getAf());
+			xz_sr = xz_sr + StringNullToInt.trans(ad_xz_xf.getAg());
 		}
+		kpi_tc.setK(xz_xf_zsr+"");//插入新增收入
+		kpi_tc.setL(xz_sr+"");//插入新增收入
 		
-		KPI_DX kpi_dx = kpiMapper.getKPI_DXName(KPIMonth,employeeName);
-		if("Y".equals(kpi_dx.getI()) && StringNullToInt.trans(kpi_dx.getP()) < StringNullToInt.trans(kpi_dx.getQ())/2){
+		//7. 固话未完成任务数一半，当月新增AD提成扣减2%
+		double gh_wwc_yb = 0;
+		
+		if("1".equals(gh_kh_db)){
 			gh_wwc_yb = xz_sr * -0.02;
 		}
 		else{
 			gh_wwc_yb = 0;
 		}
-		//插入
-		kpi_tc.setJ(gh_wwc_yb+"");
+		kpi_tc.setJ(gh_wwc_yb+"");//插入 固话未完成任务数一半，当月新增AD提成扣减2%
 		
-		//3. 普通宽带提成
-		double pu_kd_tc = 0;
 		
-		int pu_kd_sr = 0;//普通宽带收入
-		int jz_kd_sr = 0;//价值宽带收入
-		double xz_xf_zxs = 0;//新装+续费总线数（不含固定IP）
-		double qz_xz = 0;//其中新装(含普通及价值）
+		//8. 普通宽带收入 M
+		int pu_kd_sr = 0;
+		//9. 价值宽带收入 N
+		int jz_kd_sr = 0;
+		//10. 新装+续费总线数（不含固定IP）O
+		double xz_xf_zxs = 0;
+		//11. 其中新装(含普通及价值） P
+		double qz_xz = 0;
 		for(AD_XZ_XF ad_xz_xf : ad_xz_xfs){
 			pu_kd_sr = pu_kd_sr + StringNullToInt.trans(ad_xz_xf.getAd());
 			jz_kd_sr = jz_kd_sr + StringNullToInt.trans(ad_xz_xf.getAe());
 			xz_xf_zxs = xz_xf_zxs + StringNullToInt.transToDouble(ad_xz_xf.getW());
 			qz_xz = qz_xz + StringNullToInt.transToDouble(ad_xz_xf.getX());
 		}
-		//普通宽带提成点数
-		//价值宽带提成点数
+		kpi_tc.setM(pu_kd_sr+"");//插入 普通宽带收入 M
+		kpi_tc.setN(jz_kd_sr+"");//插入 价值宽带收入 N
+		kpi_tc.setO(xz_xf_zxs+"");//插入 新装+续费总线数（不含固定IP）O
+		kpi_tc.setP(qz_xz+"");//插入 其中新装(含普通及价值） P
+		
+		//12. 普通宽带提成点数
+		//13. 价值宽带提成点数
 		double pu_kd_tcds = 0;
 		double jz_kd_tcds = 0;
 		if(xz_xf_zxs>70 && qz_xz>=40){
@@ -93,7 +115,7 @@ public class ZX_TCCount {
 			pu_kd_tcds = 0.07;
 			jz_kd_tcds = 0.10;
 		}
-		else if(xz_xf_zxs>=25 && qz_xz<40){
+		else if(qz_xz>=25 && qz_xz<40){
 			pu_kd_tcds = 0.07;
 			jz_kd_tcds = 0.10;
 		}
@@ -107,19 +129,18 @@ public class ZX_TCCount {
 			pu_kd_tcds = 0.07;
 			jz_kd_tcds = 0.10;
 		}
+		kpi_tc.setS(pu_kd_tcds+"");//插入 普通宽带提成点数S
+		kpi_tc.setT(jz_kd_tcds+"");//插入 价值宽带提成点数 T
 		
-		//普通宽带提成
-		pu_kd_tc = pu_kd_sr * pu_kd_tcds;
-		//插入
-		kpi_tc.setW(pu_kd_tc+"");
+		//14. 普通宽带提成
+		double pu_kd_tc = pu_kd_sr * pu_kd_tcds;
+		kpi_tc.setW(pu_kd_tc+"");//插入普通宽带提成
 		
-		//4. 价值宽带提成
-		double jz_kd_tc = 0;
-		jz_kd_tc = jz_kd_sr * jz_kd_tcds;
-		//插入
-		kpi_tc.setX(jz_kd_tc+"");
+		//15. 价值宽带提成
+		double jz_kd_tc = jz_kd_sr * jz_kd_tcds;
+		kpi_tc.setX(jz_kd_tc+"");//插入价值宽带提成
 		
-		//5. 超出基本奖
+		//16. 超出基本奖
 		double cc_jb_j = 0;
 		if(xz_xf_zxs>80){
 			cc_jb_j = (xz_xf_zxs-40)*15;
@@ -136,14 +157,13 @@ public class ZX_TCCount {
 		else{
 			cc_jb_j = 0;
 		}
-		//插入
-		kpi_tc.setZ(cc_jb_j+"");
+		kpi_tc.setZ(cc_jb_j+"");//插入超出基本奖
 		
-		//6. 销装维超20线奖励
+		//17. 销装维超20线奖励
 		int xzw_c_jl = 0;
-		//7. 续费考核
+		//18. 续费考核
 		int xfkh = 0;
-		//8. 固定IP提成
+		//19. 固定IP提成
 		int gd_ip_tc = 0;
 		
 		for(AD_XZ_XF ad_xz_xf : ad_xz_xfs){
@@ -158,7 +178,7 @@ public class ZX_TCCount {
 		kpi_tc.setAc(xfkh+"");
 		kpi_tc.setAd(gd_ip_tc+"");
 		
-		//9.固定IP续费率考核
+		//20.固定IP续费率考核
 		int gd_id_xfl_kh = 0;
 		List<GZXRY_DYWGDF> gzxry_dywgdfs = uploadTablesStatusMapper.getGZXRY_DYWGDF(KPIMonth,employeeName);
 		
@@ -167,7 +187,7 @@ public class ZX_TCCount {
 		}
 		kpi_tc.setAe(gd_id_xfl_kh+"");
 		
-		//10. 集团客户考核
+		//21. 集团客户考核
 		int jt_kh_kh = 0;
 		List<JTKH_KH> jtkh_khs = uploadTablesStatusMapper.getJTKH_KH(KPIMonth,employeeName);
 		
@@ -175,7 +195,7 @@ public class ZX_TCCount {
 			jt_kh_kh = jt_kh_kh + StringNullToInt.trans(jtkh_kh.getH());
 		}
 		kpi_tc.setAf(jt_kh_kh+"");
-		//11. 集团客户提成
+		//22. 集团客户提成
 		int jt_kh_tc = 0;
 		List<JTKH_ZB> jtkh_zbs = uploadTablesStatusMapper.getJTKH_ZB(KPIMonth,employeeName);
 		
@@ -185,7 +205,7 @@ public class ZX_TCCount {
 		kpi_tc.setAg(jt_kh_tc+"");
 		
 		
-		//汇总 插入总提成
+		//23. 汇总 插入总提成
 		double ztc = 0;
 		ztc = gh_tc+gh_wwc_yb+pu_kd_tc+jz_kd_tc+cc_jb_j+xzw_c_jl+xfkh+gd_ip_tc+gd_id_xfl_kh+jt_kh_kh+jt_kh_tc;
 		kpi_tc.setAi(ztc+"");

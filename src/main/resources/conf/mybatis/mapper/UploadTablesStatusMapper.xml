@@ -151,7 +151,7 @@
 		from ZXLN_ZYYN
 		where 
 		DATE_FORMAT(upload_month,'%Y-%m') = #{uploadMonth}
-		and u = #{employeeName}
+		and f = #{employeeName}
 	</select>
 	
 	<select id="getGZXRY_DYWGDF" resultType="com.tietong.pojo.GZXRY_DYWGDF">
