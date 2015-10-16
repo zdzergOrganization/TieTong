@@ -45,7 +45,7 @@
 	case
 	when 
 	YEAR(last_day(concat(#{KPIMonth},'-01'))) = YEAR(quit_date) and MONTH(last_day(concat(#{KPIMonth},'-01'))) = MONTH(quit_date) 
-	then round(DAYOFMONTH(quit_date)/DAYOFMONTH(last_day(concat(#{KPIMonth},'-01'))),2)
+	then round((DAYOFMONTH(quit_date)-1)/DAYOFMONTH(last_day(concat(#{KPIMonth},'-01'))),3)
 	end as employee_type_rel,
 	now()
 	from employee_info;

@@ -106,10 +106,10 @@ public class YTH_DXCount {
 				//底薪固定
 				if(StringUtils.isNotBlank(employee.getEmployeeTypeRel())){
 					
-					kpi_dx.setL((int)(StringNullToInt.transToDouble(bz.getC()) * StringNullToInt.transToDouble(employee.getEmployeeTypeRel())) + "");//标准底薪
-					kpi_dx.setM((int)(StringNullToInt.transToDouble(bz.getD()) * StringNullToInt.transToDouble(employee.getEmployeeTypeRel())) + "");//住房
-					kpi_dx.setN((int)(StringNullToInt.transToDouble(bz.getE()) * StringNullToInt.transToDouble(employee.getEmployeeTypeRel())) + "");//通信
-					kpi_dx.setO((int)(StringNullToInt.transToDouble(bz.getF()) * StringNullToInt.transToDouble(employee.getEmployeeTypeRel())) + "");//交通
+					kpi_dx.setL(Math.round(StringNullToInt.transToDouble(bz.getC()) * StringNullToInt.transToDouble(employee.getEmployeeTypeRel())) + "");//标准底薪
+					kpi_dx.setM(Math.round(StringNullToInt.transToDouble(bz.getD()) * StringNullToInt.transToDouble(employee.getEmployeeTypeRel())) + "");//住房
+					kpi_dx.setN(Math.round(StringNullToInt.transToDouble(bz.getE()) * StringNullToInt.transToDouble(employee.getEmployeeTypeRel())) + "");//通信
+					kpi_dx.setO(Math.round(StringNullToInt.transToDouble(bz.getF()) * StringNullToInt.transToDouble(employee.getEmployeeTypeRel())) + "");//交通
 				}
 				else{
 					kpi_dx.setL(bz.getC());//标准底薪
@@ -150,7 +150,7 @@ public class YTH_DXCount {
 					gh_zrw = StringNullToInt.trans(bz.getG());
 				}
 				else{
-					gh_zrw = StringNullToInt.trans(bz.getG()) * StringNullToInt.trans(kpi_dx.getJ());
+					gh_zrw = (int) Math.round(StringNullToInt.trans(bz.getG()) * StringNullToInt.transToDouble(kpi_dx.getJ()));
 				}
 				
 				kpi_dx.setQ(gh_zrw+"");//插入固话总任务
@@ -205,10 +205,10 @@ public class YTH_DXCount {
 				
 				//9. 考核汇总 Z
 				int kh_hz = 0;
-				if(employeeType.equals('Y') && (gh_kh_jl+adsl_kh_jl) < -1200){
+				if(employeeType.equals("Y") && (gh_kh_jl+adsl_kh_jl) < -1200){
 					kh_hz = -1200;
 				}
-				else if(!employeeType.equals('Y') && (gh_kh_jl+adsl_kh_jl) < -400){
+				else if(!employeeType.equals("Y") && (gh_kh_jl+adsl_kh_jl) < -400){
 					kh_hz = -400;
 				}
 				else{
@@ -226,13 +226,13 @@ public class YTH_DXCount {
 				//11. 实发底薪 AA
 				int sf_dx = 0;
 				if("1".equals(kj)){
-					sf_dx = StringNullToInt.trans(bz.getD());//不达标只发住房
+					sf_dx = StringNullToInt.trans(kpi_dx.getM());//不达标只发住房
 				}
-				else if((StringNullToInt.trans(bz.getC()) + StringNullToInt.trans(bz.getE()) + StringNullToInt.trans(bz.getF()) + kh_hz) < 0){
-					sf_dx = StringNullToInt.trans(bz.getD());//扣的负了，不会总的都扣钱，只发住房
+				else if((StringNullToInt.trans(kpi_dx.getL()) + StringNullToInt.trans(kpi_dx.getN()) + StringNullToInt.trans(kpi_dx.getO()) + StringNullToInt.trans(kpi_dx.getZ())) < 0){
+					sf_dx = StringNullToInt.trans(kpi_dx.getM());//扣的负了，不会总的都扣钱，只发住房
 				}
 				else{
-					sf_dx = (StringNullToInt.trans(bz.getC()) + StringNullToInt.trans(bz.getE()) + StringNullToInt.trans(bz.getF()) + kh_hz);
+					sf_dx = (StringNullToInt.trans(kpi_dx.getL()) + StringNullToInt.trans(kpi_dx.getM()) + StringNullToInt.trans(kpi_dx.getN()) + StringNullToInt.trans(kpi_dx.getO()) + StringNullToInt.trans(kpi_dx.getZ()));
 				}
 				kpi_dx.setAa(sf_dx + "");// 插入实发底薪
 			}
