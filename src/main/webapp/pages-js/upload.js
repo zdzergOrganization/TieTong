@@ -126,7 +126,7 @@ define(function(require, exports, module) {
 			  var tablesDesc =$($(a.parent('td')).parent('tr')).find('#idTablesDesc').text();
 			  var modal = $(this);
 			  modal.find('#myModalLabel').text('时间:' + uploadMonth + ', ' + tablesDesc + '表-上传');
-			  modal.find('#modules_download').attr('href','/' + Biz.Constant.ctx + '/download/'+tablesDesc+'.xlsx');
+			  modal.find('#modules_download').attr('href',Biz.Constant.ctx + 'download/'+tablesDesc+'.xlsx');
 
 			  //modal.find('#modalIdTablesName').text(tablesName);
 			  modal.find('#modalIdTablesName').attr('value',tablesName);
