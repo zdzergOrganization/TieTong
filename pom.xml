@@ -21,7 +21,7 @@
 		<dep.spring4.version>4.1.1.RELEASE</dep.spring4.version>
 	</properties>
 	<dependencies>
-		
+
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>
@@ -263,6 +263,11 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>1.14.8</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.12</version>
 		</dependency>
 	</dependencies>
 	<build>
